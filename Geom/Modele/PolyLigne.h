@@ -1,31 +1,33 @@
 /*************************************************************************
-                           Point  -  description
+                           PolyLigne  -  description
                              -------------------
     début                : 27 janv. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Interface de la classe <Point> (fichier Point.h) ------
-#if ! defined ( POINT_H_ )
-#define POINT_H_
+//---------- Interface de la classe <PolyLigne> (fichier PolyLigne.h) ------
+#if ! defined ( POLYLIGNE_H_ )
+#define POLYLIGNE_H_
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
+#include "EltGeometrique.h"
+#include "Point.h"
 
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Point>
+// Rôle de la classe <PolyLigne>
 //
 //
 //------------------------------------------------------------------------ 
 
-class Point
+class PolyLigne : public EltGeometrique
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,26 +39,22 @@ public:
     // Contrat :
     //
 
-	 int getY() const;
+
+	virtual bool Appartient(int X1, int Y1, int X2, int Y2);
+    // Mode d'emploi : renvoie vrai si la forme géométrique appartient dans le caré défini par ces deux points.
+    //
+    // Contrat :
+    //
+
+	virtual bool Translater(int deltaX, int deltaY);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	 int getX() const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
-
-     bool  Translater ( int delatX, int deltaY );
-    // Mode d'emploi: translate le point d'un certain vecteur
-    //
-    // Contrat :
-    //
 //------------------------------------------------- Surcharge d'opérateurs
-    Point & operator = ( const Point & unPoint );
+    PolyLigne & operator = ( const PolyLigne & unPolyLigne );
     // Mode d'emploi :
     //
     // Contrat :
@@ -64,25 +62,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Point ( const Point & unPoint );
+    PolyLigne ( const PolyLigne & unPolyLigne );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Point ( );
+    PolyLigne ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Point (int unX, int unY);
-    // Mode d'emploi :Constructeur avec affectation de deux valeurs
-    //
-    // Contrat :
-    //
-
-    virtual ~Point ( );
+    virtual ~PolyLigne ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -94,11 +86,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    Point point1;
+    Point point2;
 
-    int x;
-    int y;
 };
 
-//--------------------------- Autres définitions dépendantes de <Point>
+//--------------------------- Autres définitions dépendantes de <PolyLigne>
 
-#endif // POINT_H_
+#endif // POLYLIGNE_H_
