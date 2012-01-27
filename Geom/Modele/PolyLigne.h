@@ -40,14 +40,16 @@ public:
     //
 
 
-	virtual bool Appartient(int X1, int Y1, int X2, int Y2);
-    // Mode d'emploi : renvoie vrai si la forme géométrique appartient dans le caré défini par ces deux points.
+	virtual bool Appartient(int x1, int y1, int x2, int y2);
+    // Mode d'emploi : renvoie vrai si la polyligne est inclus dans le rectangle défini par ces deux points. Il peut être égal.
+	//renvoie vrai si la polyligne appartient dans le rectangle de sélection.
     //
     // Contrat :
     //
 
 	virtual bool Translater(int deltaX, int deltaY);
-    // Mode d'emploi :
+    // Mode d'emploi : translate les deux points qui définissent la polyligne par le biais du vecteur défini par deltaX et deltaY
+	//renvoie vrai si la translation s'estbien effectuée.
     //
     // Contrat :
     //
@@ -86,8 +88,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    Point point1;
-    Point point2;
+
+
 
 };
 

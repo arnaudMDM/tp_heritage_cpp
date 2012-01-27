@@ -38,6 +38,8 @@ public:
     //
 
 
+
+
 //------------------------------------------------- Surcharge d'opérateurs
     Cercle & operator = ( const Cercle & unCercle );
     // Mode d'emploi :
