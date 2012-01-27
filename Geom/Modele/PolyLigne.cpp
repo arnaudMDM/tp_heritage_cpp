@@ -33,6 +33,8 @@ PolyLigne & PolyLigne::operator = ( const PolyLigne & unPolyLigne )
 // Algorithme :
 //
 {
+	listePoints = unPolyLigne.getListePoints();
+	return this;
 } //----- Fin de operator =
 
 
@@ -44,6 +46,7 @@ PolyLigne::PolyLigne ( const PolyLigne & unPolyLigne )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <PolyLigne>" << endl;
 #endif
+    listePoints = unPolyLigne.getListePoints();
 } //----- Fin de PolyLigne (constructeur de copie)
 
 
@@ -57,6 +60,17 @@ PolyLigne::PolyLigne ( )
 } //----- Fin de PolyLigne
 
 
+PolyLigne::PolyLigne (vector<int,int> unListePoints)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <PolyLigne>" << endl;
+#endif
+    listePoints = unListePoints;
+} //----- Fin de PolyLigne
+
+
 PolyLigne::~PolyLigne ( )
 // Algorithme :
 //
@@ -64,7 +78,14 @@ PolyLigne::~PolyLigne ( )
 #ifdef MAP
     cout << "Appel au destructeur de <PolyLigne>" << endl;
 #endif
-} //----- Fin de ~PolyLigne
+}
+
+vector<Point> PolyLigne::getListePoints() const
+{
+    return listePoints;
+}
+
+ //----- Fin de ~PolyLigne
 
 
 //------------------------------------------------------------------ PRIVE

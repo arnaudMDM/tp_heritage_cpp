@@ -57,6 +57,9 @@ Point & Point::operator = ( const Point & unPoint )
 // Algorithme :
 //
 {
+    x = unPoint.getX();
+    y = unPoint.getY();
+    return this;
 } //----- Fin de operator =
 
 

@@ -59,6 +59,9 @@ Ligne & Ligne::operator = ( const Ligne & unLigne )
 // Algorithme :
 //
 {
+    point1 = unLigne.getPoint1();
+    point2 = unLigne.getPoint2();
+    return this;
 } //----- Fin de operator =
 
 

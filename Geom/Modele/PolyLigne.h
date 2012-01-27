@@ -12,6 +12,7 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
+#include<Vector>
 
 //--------------------------------------------------- Interfaces utilisées
 #include "EltGeometrique.h"
@@ -34,6 +35,12 @@ class PolyLigne : public EltGeometrique
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+	vector<Point> getListePoints() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -76,6 +83,12 @@ public:
     // Contrat :
     //
 
+    PolyLigne (vector<int,int> unListePoints);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~PolyLigne ( );
     // Mode d'emploi :
     //
@@ -89,7 +102,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-
+vector<Point> listePoints;
 
 };
 
