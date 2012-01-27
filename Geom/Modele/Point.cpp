@@ -59,7 +59,7 @@ Point & Point::operator = ( const Point & unPoint )
 {
     x = unPoint.getX();
     y = unPoint.getY();
-    return this;
+    return *this;
 } //----- Fin de operator =
 
 

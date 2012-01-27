@@ -1,13 +1,13 @@
 /*************************************************************************
-                           Cercle  -  description
+                           CommandeCreation  -  description
                              -------------------
     début                : 27 janv. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Interface de la classe <Cercle> (fichier Cercle.h) ------
-#if ! defined ( CERCLE_H_ )
-#define CERCLE_H_
+//---------- Interface de la classe <CommandeCreation> (fichier CommandeCreation.h) ------
+#if ! defined ( COMMANDECREATION_H_ )
+#define COMMANDECREATION_H_
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -20,12 +20,12 @@
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Cercle>
+// Rôle de la classe <CommandeCreation>
 //
 //
 //------------------------------------------------------------------------ 
 
-class Cercle
+class CommandeCreation
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,11 +37,10 @@ public:
     // Contrat :
     //
 
-
-
+	CommandeCreation(EltGeometrique(*f)());
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Cercle & operator = ( const Cercle & unCercle );
+    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
     // Mode d'emploi :
     //
     // Contrat :
@@ -49,19 +48,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Cercle ( const Cercle & unCercle );
+    CommandeCreation ( const CommandeCreation & unCommandeCreation );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Cercle ( );
+    CommandeCreation ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Cercle ( );
+    virtual ~CommandeCreation ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -73,9 +72,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+EltGeometrique (pointeurFonction)(int,int,int...);
 
 };
 
-//--------------------------- Autres définitions dépendantes de <Cercle>
+//--------------------------- Autres définitions dépendantes de <CommandeCreation>
 
-#endif // CERCLE_H_
+#endif // COMMANDECREATION_H_

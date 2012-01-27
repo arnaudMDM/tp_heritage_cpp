@@ -29,7 +29,7 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
-virtual bool Ligne::Appartient(int x1, int y1, int x2, int y2)
+bool Ligne::Appartient(int x1, int y1, int x2, int y2)
 // Algorithme : On vérifie que le premier point ainsi que le deuxième apprtiennent au rectangle de sélection
 //
 {
@@ -40,7 +40,7 @@ virtual bool Ligne::Appartient(int x1, int y1, int x2, int y2)
 	return false;
 } //----- Fin de Méthode
 
-virtual bool Ligne::Translater(int deltaX, int deltaY)
+bool Ligne::Translater(int deltaX, int deltaY)
 // Algorithme :
 //
 {
@@ -61,7 +61,7 @@ Ligne & Ligne::operator = ( const Ligne & unLigne )
 {
     point1 = unLigne.getPoint1();
     point2 = unLigne.getPoint2();
-    return this;
+    return *this;
 } //----- Fin de operator =
 
 
@@ -88,15 +88,14 @@ Ligne::Ligne ( )
 } //----- Fin de PolyLigne
 
 
-Ligne::Ligne (int x1, int y1, int x2, int y2)
+Ligne::Ligne (int x1, int y1, int x2, int y2):
+		point1(x1,y1),point2(x2,y2)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <PolyLigne>" << endl;
 #endif
-    point1(x1,y1);
-    point2(x2,y2);
 } //----- Fin de PolyLigne
 
 
