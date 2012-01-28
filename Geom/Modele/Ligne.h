@@ -58,9 +58,8 @@ public:
     // Contrat :
     //
 
-	virtual bool Translater(int deltaX, int deltaY);
+	virtual void Translater(int deltaX, int deltaY);
     // Mode d'emploi : translate les deux points qui définissent la polyligne par le biais du vecteur défini par deltaX et deltaY
-	//renvoie vrai si la translation s'estbien effectuée.
     //
     // Contrat :
     //

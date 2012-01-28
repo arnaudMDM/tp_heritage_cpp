@@ -50,7 +50,7 @@ public:
     //
 
 
-     bool  Translater ( int delatX, int deltaY );
+     void  Translater ( int delatX, int deltaY );
     // Mode d'emploi: translate le point d'un certain vecteur
     //
     // Contrat :

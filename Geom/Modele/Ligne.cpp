@@ -40,18 +40,12 @@ bool Ligne::Appartient(int x1, int y1, int x2, int y2)
 	return false;
 } //----- Fin de Méthode
 
-bool Ligne::Translater(int deltaX, int deltaY)
+void Ligne::Translater(int deltaX, int deltaY)
 // Algorithme :
 //
 {
-	if(point1.Translater(deltaX, deltaY))
-	{
-		if(point2.Translater(deltaX, deltaY))
-		{
-			return true;
-		}
-	}
-	return false;
+point1.Translater(deltaX, deltaY);
+point2.Translater(deltaX, deltaY);
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs

@@ -42,14 +42,12 @@ int Point::getY() const
 } //----- Fin de Méthode
 
 
-bool Point::Translater(int deltaX, int deltaY)
+void Point::Translater(int deltaX, int deltaY)
 // Algorithme : trivial
 //
 {
 	x += deltaX;
 	y += deltaY;
-
-	return true;
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs

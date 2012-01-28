@@ -12,9 +12,11 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <vector>
 
 //------------------------------------------------------ Include personnel
 #include "PolyLigne.h"
+#include "Point.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -27,6 +29,22 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+// type PolyLigne::Méthode ( liste des paramètres )
+// Algorithme :
+//
+//{
+//} //----- Fin de Méthode
+
+void PolyLigne::Translater(int deltaX, int deltaY)
+// Algorithme :
+//
+{
+	vector<Point>::iterator it;
+	for(it = listePoints.begin(); it != listePoints.end() ; it++)
+	{
+		it->Translater(deltaX, deltaY);
+	}
+} //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
 PolyLigne & PolyLigne::operator = ( const PolyLigne & unPolyLigne )
@@ -67,7 +85,11 @@ PolyLigne::PolyLigne (vector<int,int> unListePoints)
 #ifdef MAP
     cout << "Appel au constructeur de <PolyLigne>" << endl;
 #endif
-    listePoints = unListePoints;
+    for(vector<int,int>::iterator it = unListePoints.begin() ; it != unListePoints.end() ; it++)
+    {
+    	Point point(it->first,it->second);
+    	listePoints.push_back(point);
+    }
 } //----- Fin de PolyLigne
 
 
