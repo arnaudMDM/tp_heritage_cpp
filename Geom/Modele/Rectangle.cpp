@@ -28,6 +28,22 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
+bool Rectangle::Appartient ( int x1, int y1, int x2, int y2 )
+// Algorithme :
+//
+{
+	return true
+} //----- Fin de Méthode
+
+
+void Rectangle::Translater ( int deltaX, int deltaY )
+// Algorithme :
+//
+{
+	doublePoints.Translater(deltaX, deltaY);
+} //----- Fin de Méthode
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
 // Algorithme :
@@ -56,6 +72,12 @@ Rectangle::Rectangle ( )
 #endif
 } //----- Fin de Rectangle
 
+Rectangle::Rectangle (int x1, int y1, int x2, int y2)
+:doublePoints(x1, y1, x2, y2)
+// Algorithme :
+//
+{
+} //----- Fin de Méthode
 
 Rectangle::~Rectangle ( )
 // Algorithme :
@@ -64,7 +86,14 @@ Rectangle::~Rectangle ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Rectangle>" << endl;
 #endif
-} //----- Fin de ~Rectangle
+}
+
+PolyLigne Rectangle::getDoublePoints() const
+{
+    return doublePoints;
+}
+
+ //----- Fin de ~Rectangle
 
 
 //------------------------------------------------------------------ PRIVE

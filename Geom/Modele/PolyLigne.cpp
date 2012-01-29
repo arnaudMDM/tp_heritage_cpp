@@ -17,6 +17,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "PolyLigne.h"
 #include "Point.h"
+#include "Service.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -29,11 +30,19 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-// type PolyLigne::Méthode ( liste des paramètres )
+bool PolyLigne::Appartient(int x1, int y1, int x2, int y2)
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+	for(vector<Point>::iterator it = listePoints.begin() ; it != listePoints.end() ; it++)
+	{
+		if(!Contient(it->getX(),it->getY(),x1,y1,x2,y2))
+		{
+			return false;
+		}
+	}
+	return true;
+} //----- Fin de Méthode
 
 void PolyLigne::Translater(int deltaX, int deltaY)
 // Algorithme :

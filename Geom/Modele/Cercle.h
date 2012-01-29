@@ -14,6 +14,8 @@
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
+#include "EltGeometrique.h"
+#include "point.h"
 
 //------------------------------------------------------------- Constantes 
 
@@ -25,55 +27,73 @@
 //
 //------------------------------------------------------------------------ 
 
-class Cercle
+class Cercle : public EltGeometrique
 {
-//----------------------------------------------------------------- PUBLIC
-
+    //----------------------------------------------------------------- PUBLIC
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Cercle & operator = ( const Cercle & unCercle );
+	int getRayon() const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    Cercle ( const Cercle & unCercle );
+    Point getCentre() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    virtual bool Appartient(int x1, int y1, int x2, int y2);
+    // Mode d'emploi : renvoie vrai si le cercle est inclus dans le rectangle défini par ces deux points. Il peut être égal.
+    //renvoie vrai si le cercle appartient dans le rectangle de sélection.
+    //
+    // Contrat :
+    //
+    virtual void Translater(int deltaX, int deltaY);
+    // Mode d'emploi : translate le centre qui définissent le cercle par le biais du vecteur défini par deltaX et deltaY
+    //
+    // Contrat :
+    //
+    //------------------------------------------------- Surcharge d'opérateurs
+    Cercle & operator =(const Cercle & unCercle);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    //-------------------------------------------- Constructeurs - destructeur
+    Cercle(const Cercle & unCercle);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-
-    Cercle ( );
+    Cercle();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    Cercle(int x, int y, int unRayon);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Cercle ( );
+    virtual ~Cercle();
     // Mode d'emploi :
     //
     // Contrat :
     //
-
-//------------------------------------------------------------------ PRIVE 
-
+    //------------------------------------------------------------------ PRIVE
 protected:
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Attributs protégés
-
+    //----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Attributs protégés
+    Point centre;
+    int rayon;
 };
 
 //--------------------------- Autres définitions dépendantes de <Cercle>

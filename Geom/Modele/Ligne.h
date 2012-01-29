@@ -52,14 +52,14 @@ public:
     //
 
 	virtual bool Appartient(int x1, int y1, int x2, int y2);
-    // Mode d'emploi : renvoie vrai si la polyligne est inclus dans le rectangle défini par ces deux points. Il peut être égal.
-	//renvoie vrai si la polyligne appartient dans le rectangle de sélection.
+    // Mode d'emploi : renvoie vrai si la ligne est inclus dans le rectangle défini par ces deux points. Il peut être égal.
+	//renvoie vrai si la ligne appartient dans le rectangle de sélection.
     //
     // Contrat :
     //
 
 	virtual void Translater(int deltaX, int deltaY);
-    // Mode d'emploi : translate les deux points qui définissent la polyligne par le biais du vecteur défini par deltaX et deltaY
+    // Mode d'emploi : translate les deux points qui définissent la ligne par le biais du vecteur défini par deltaX et deltaY
     //
     // Contrat :
     //

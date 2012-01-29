@@ -55,7 +55,7 @@ public:
     //
 
 	virtual void Translater(int deltaX, int deltaY);
-    // Mode d'emploi : translate les deux points qui définissent la polyligne par le biais du vecteur défini par deltaX et deltaY
+    // Mode d'emploi : translate les points qui définissent la polyligne par le biais du vecteur défini par deltaX et deltaY
     //
     // Contrat :
     //
