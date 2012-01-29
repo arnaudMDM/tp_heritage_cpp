@@ -78,17 +78,19 @@ PolyLigne::PolyLigne ( )
 } //----- Fin de PolyLigne
 
 
-PolyLigne::PolyLigne (vector<int,int> unListePoints)
+PolyLigne::PolyLigne (vector<int> unListeX, vector<int> unListeY)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <PolyLigne>" << endl;
 #endif
-    vector<int,int>::iterator it;
-    for(it = unListePoints.begin() ; it != unListePoints.end() ; it++)
+    vector<int>::iterator it1;
+    vector<int>::iterator it2 = unListeY.begin();
+    for(it1 = unListeX.begin() ; it1 != unListeX.end() ; it1++)
     {
-    	listePoints.push_back(Point(it->first, it->second));
+    	it2++;
+    	listePoints.push_back(Point((*it1),(*it2)));
     }
 } //----- Fin de PolyLigne
 

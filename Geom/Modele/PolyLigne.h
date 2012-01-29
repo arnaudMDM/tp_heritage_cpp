@@ -82,7 +82,7 @@ public:
     // Contrat :
     //
 
-    PolyLigne (vector<int,int> unListePoints);
+    PolyLigne (vector<int> unListeX, vector<int> unListeY);
     // Mode d'emploi :
     //
     // Contrat :
