@@ -37,7 +37,7 @@ public:
 	//
 	// Contrat :
 	//
-	PolyLigne getDoublePoints ( ) const;
+	Ligne getDoublePoints ( ) const;
 	// Mode d'emploi :
 	//
 	// Contrat :

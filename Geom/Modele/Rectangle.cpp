@@ -32,7 +32,7 @@ bool Rectangle::Appartient ( int x1, int y1, int x2, int y2 )
 // Algorithme :
 //
 {
-	return true
+	return true;
 } //----- Fin de Méthode
 
 
@@ -49,6 +49,8 @@ Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
 // Algorithme :
 //
 {
+	doublePoints = unRectangle.getDoublePoints();
+	return *this;
 } //----- Fin de operator =
 
 
@@ -60,6 +62,7 @@ Rectangle::Rectangle ( const Rectangle & unRectangle )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Rectangle>" << endl;
 #endif
+    doublePoints = unRectangle.getDoublePoints();
 } //----- Fin de Rectangle (constructeur de copie)
 
 
@@ -88,7 +91,7 @@ Rectangle::~Rectangle ( )
 #endif
 }
 
-PolyLigne Rectangle::getDoublePoints() const
+Ligne Rectangle::getDoublePoints() const
 {
     return doublePoints;
 }
