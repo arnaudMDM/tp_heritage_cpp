@@ -85,10 +85,10 @@ PolyLigne::PolyLigne (vector<int,int> unListePoints)
 #ifdef MAP
     cout << "Appel au constructeur de <PolyLigne>" << endl;
 #endif
-    for(vector<int,int>::iterator it = unListePoints.begin() ; it != unListePoints.end() ; it++)
+    vector<int,int>::iterator it;
+    for(it = unListePoints.begin() ; it != unListePoints.end() ; it++)
     {
-    	Point point(it->first,it->second);
-    	listePoints.push_back(point);
+    	listePoints.push_back(Point(it->first, it->second));
     }
 } //----- Fin de PolyLigne
 
