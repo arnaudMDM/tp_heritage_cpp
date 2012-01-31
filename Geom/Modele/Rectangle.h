@@ -73,7 +73,7 @@ public:
 	// Contrat :
 	//
 
-	Rectangle (int x1, int y1, int x2, int y2);
+	Rectangle ( int x1, int y1, int x2, int y2 );
 	// Mode d'emploi :
 	//
 	// Contrat :

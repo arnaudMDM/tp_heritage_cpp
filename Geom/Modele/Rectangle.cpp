@@ -1,14 +1,12 @@
 /*************************************************************************
-                           Rectangle  -  description
-                             -------------------
-    début                : 27 janv. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ Rectangle  -  description
+ -------------------
+ début                : 27 janv. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <Rectangle> (fichier Rectangle.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -27,32 +25,32 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 bool Rectangle::Appartient ( int x1, int y1, int x2, int y2 )
 // Algorithme :
 //
 {
-	return true;
+if (doublePoints.Appartient(x1, y1, x2, y2))
+		{
+			return true;
+		}
+return false;
 } //----- Fin de Méthode
-
 
 void Rectangle::Translater ( int deltaX, int deltaY )
 // Algorithme :
 //
 {
-	doublePoints.Translater(deltaX, deltaY);
+doublePoints.Translater ( deltaX, deltaY );
 } //----- Fin de Méthode
-
 
 //------------------------------------------------- Surcharge d'opérateurs
 Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
 // Algorithme :
 //
 {
-	doublePoints = unRectangle.getDoublePoints();
-	return *this;
+doublePoints = unRectangle.getDoublePoints ( );
+return *this;
 } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
 Rectangle::Rectangle ( const Rectangle & unRectangle )
@@ -60,23 +58,22 @@ Rectangle::Rectangle ( const Rectangle & unRectangle )
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Rectangle>" << endl;
+cout << "Appel au constructeur de copie de <Rectangle>" << endl;
 #endif
-    doublePoints = unRectangle.getDoublePoints();
+doublePoints = unRectangle.getDoublePoints ( );
 } //----- Fin de Rectangle (constructeur de copie)
-
 
 Rectangle::Rectangle ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Rectangle>" << endl;
+cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif
 } //----- Fin de Rectangle
 
-Rectangle::Rectangle (int x1, int y1, int x2, int y2)
-:doublePoints(x1, y1, x2, y2)
+Rectangle::Rectangle ( int x1, int y1, int x2, int y2 ) :
+	doublePoints ( x1, y1, x2, y2 )
 // Algorithme :
 //
 {
@@ -87,17 +84,16 @@ Rectangle::~Rectangle ( )
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Rectangle>" << endl;
+cout << "Appel au destructeur de <Rectangle>" << endl;
 #endif
 }
 
-Ligne Rectangle::getDoublePoints() const
+Ligne Rectangle::getDoublePoints ( ) const
 {
-    return doublePoints;
+return doublePoints;
 }
 
  //----- Fin de ~Rectangle
-
 
 //------------------------------------------------------------------ PRIVE
 
