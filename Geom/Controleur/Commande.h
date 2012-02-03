@@ -14,7 +14,7 @@
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "../Modele/ObjetGeometrique.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
@@ -53,7 +53,7 @@ public:
     // Contrat :
     //
 
-    Commande ( );
+    Commande (ObjetGeometrique *contexte );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,6 +71,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    ObjetGeometrique *contexte;
 };
 
 //--------------------------- Autres définitions dépendantes de <Commande>

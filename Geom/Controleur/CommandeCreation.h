@@ -39,21 +39,21 @@ public:
     //
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+//    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
+//    // Mode d'emploi :
+//    //
+//    // Contrat :
+//    //
+//
+//
+////-------------------------------------------- Constructeurs - destructeur
+//    CommandeCreation ( const CommandeCreation & unCommandeCreation );
+//    // Mode d'emploi (constructeur de copie) :
+//    //
+//    // Contrat :
+//    //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    CommandeCreation ( const CommandeCreation & unCommandeCreation );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    CommandeCreation ( );
+    CommandeCreation (ObjetGeometrique *contexte);
     // Mode d'emploi :
     //
     // Contrat :
@@ -73,6 +73,8 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
     EltGeometrique *element;
+
+    ObjetGeometrique *contexte;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreation>

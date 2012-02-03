@@ -1,11 +1,11 @@
 /*************************************************************************
-                           CommandeCreation  -  description
+                           CommandeCreationCercle  -  description
                              -------------------
-    début                : 27 janv. 2012
+    début                : 3 févr. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Réalisation de la classe <CommandeCreation> (fichier CommandeCreation.cpp) -------
+//---------- Réalisation de la classe <CommandeCreationCercle> (fichier CommandeCreationCercle.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -14,21 +14,22 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "CommandeCreation.h"
+#include "CommandeCreationCercle.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type CommandeCreation::Méthode ( liste des paramètres )
+// type CommandeCreationCercle::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeCreation & CommandeCreation::operator = ( const CommandeCreation & unCommandeCreation )
+//CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )
 //// Algorithme :
 ////
 //{
@@ -36,35 +37,34 @@ using namespace std;
 //
 //
 ////-------------------------------------------- Constructeurs - destructeur
-//CommandeCreation::CommandeCreation ( const CommandeCreation & unCommandeCreation )
+//CommandeCreationCercle::CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle )
 //// Algorithme :
 ////
 //{
 //#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeCreation>" << endl;
+//    cout << "Appel au constructeur de copie de <CommandeCreationCercle>" << endl;
 //#endif
-//    throw string("CommandeCreation::CommandeCreation ( const CommandeCreation & unCommandeCreation )");
-//} //----- Fin de CommandeCreation (constructeur de copie)
+//} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
 
-CommandeCreation::CommandeCreation (ObjetGeometrique *contexte) : Commande(contexte)
+CommandeCreationCercle::CommandeCreationCercle (char *x1, char *x2, char *rayon, ObjetGeometrique *contexte) : CommandeCreation(contexte)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <CommandeCreation>" << endl;
+    cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
-} //----- Fin de CommandeCreation
+} //----- Fin de CommandeCreationCercle
 
 
-CommandeCreation::~CommandeCreation ( )
+CommandeCreationCercle::~CommandeCreationCercle ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <CommandeCreation>" << endl;
+    cout << "Appel au destructeur de <CommandeCreationCercle>" << endl;
 #endif
-} //----- Fin de ~CommandeCreation
+} //----- Fin de ~CommandeCreationCercle
 
 
 //------------------------------------------------------------------ PRIVE

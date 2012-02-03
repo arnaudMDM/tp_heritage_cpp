@@ -39,21 +39,21 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+//    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
+//    // Mode d'emploi :
+//    //
+//    // Contrat :
+//    //
+//
+//
+////-------------------------------------------- Constructeurs - destructeur
+//    CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle );
+//    // Mode d'emploi (constructeur de copie) :
+//    //
+//    // Contrat :
+//    //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    CommandeCreationCercle ( );
+    CommandeCreationCercle (char *x1, char *x2, char *rayon, ObjetGeometrique *contexte);
     // Mode d'emploi :
     //
     // Contrat :
@@ -74,6 +74,7 @@ protected:
     int x1;
     int x2;
     int rayon;
+
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationCercle>

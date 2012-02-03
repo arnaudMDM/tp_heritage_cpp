@@ -28,7 +28,7 @@
 //{
 //} //----- Fin de Méthode
 
-static bool GetCommande ( char * argv[], Commande* laCommande )
+static bool GetCommande ( char * argv[], Commande* laCommande, ObjetGeometrique *contexte)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
@@ -40,7 +40,7 @@ static bool GetCommande ( char * argv[], Commande* laCommande )
 	if (strcmp(argv[0], "C") == 0)
 	{
 
-			laCommande = new CommandeCreationCercle(argv[1],argv[2], argv[3]);
+			laCommande = new CommandeCreationCercle(argv[1],argv[2], argv[3], contexte);
 
 	}
 	else if (strcmp(argv[0], "R") == 0)

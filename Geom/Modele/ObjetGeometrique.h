@@ -9,6 +9,10 @@
 #if ! defined ( OBJETGEOMETRIQUE_H_ )
 #define OBJETGEOMETRIQUE_H_
 
+
+//---------------------------------------------------
+using namespace std;
+#include <vector>
 //--------------------------------------------------- Interfaces utilisées
 
 #include "EltGeometrique.h"
@@ -44,7 +48,7 @@ public:
     // Contrat :
     //
 
-    vector<EltGeometrique*> getListeEltsGeom() const;
+    vector <EltGeometrique *> getListeEltsGeom() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -63,7 +67,7 @@ public:
     // Contrat :
     //
 
-    ObjetGeometrique (vector <EltGeometrique*> uneListeEltsGeom);
+    ObjetGeometrique (vector <EltGeometrique *> uneListeEltsGeom);
     // Mode d'emploi :
     //
     // Contrat :
@@ -81,7 +85,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector <EltGeometrique*> listeEltsGeom;
+vector <EltGeometrique *> listeEltsGeom;
 };
 
 //--------------------------- Autres définitions dépendantes de <ObjetGeometrique>
