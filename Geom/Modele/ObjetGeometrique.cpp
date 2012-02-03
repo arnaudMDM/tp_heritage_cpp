@@ -35,6 +35,7 @@ string ObjetGeometrique::DescriptionEltsSelect()
 	{
 		description.append((*it)->Description());
 	}
+	return description;
 } //----- Fin de Méthode
 
 
@@ -47,6 +48,7 @@ string ObjetGeometrique::DescriptionEltsTotal()
 	{
 		description.append((*it)->Description());
 	}
+	return description;
 } //----- Fin de Méthode
 
 

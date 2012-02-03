@@ -15,6 +15,7 @@ using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
 #include "EltGeometrique.h"
+#include <vector>
 
 //------------------------------------------------------------- Constantes 
 
