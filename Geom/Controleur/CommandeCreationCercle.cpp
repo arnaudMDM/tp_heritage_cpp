@@ -31,7 +31,9 @@ void CommandeCreationCercle::execute()
 {
 	cout<<x1<<y1<<rayon<<endl;
 	element = new Cercle(x1,y1,rayon);
+	cout<<"Avant ajout au contexte"<<endl;
 	contexte->AjouterEltGeom(element);
+	cout<<"Fin execute"<<endl;
 }
 
 void CommandeCreationCercle::undo()

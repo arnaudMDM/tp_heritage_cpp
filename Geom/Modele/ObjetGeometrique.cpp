@@ -10,7 +10,8 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-
+#include <iostream>
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "ObjetGeometrique.h"
 //------------------------------------------------------------- Constantes
@@ -108,8 +109,9 @@ void ObjetGeometrique::AjouterEltGeom(EltGeometrique *unEltGeometrique)
 // Algorithme :
 //
 {
-	listeEltsGeomTotal.push_back(unEltGeometrique);
-	listeEltsGeomSelect.push_back(unEltGeometrique);
+	cout<<listeEltsGeomTotal.empty()<<endl;
+	cout<<"liste de "<<listeEltsGeomTotal.size()<<" éléments"<<endl;
+	//listeEltsGeomTotal.push_back(unEltGeometrique);
 } //----- Fin de Méthode
 
 
@@ -142,6 +144,7 @@ ObjetGeometrique::ObjetGeometrique ( )
 #ifdef MAP
     cout << "Appel au constructeur de <ObjetGeometrique>" << endl;
 #endif
+
 } //----- Fin de ObjetGeometrique
 
 

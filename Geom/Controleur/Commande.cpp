@@ -54,6 +54,10 @@ Commande::Commande (ObjetGeometrique *contexte) : contexte(contexte)
 #ifdef MAP
     cout << "Appel au constructeur de <Commande>" << endl;
 #endif
+    if(contexte == NULL)
+    	{
+    		cout<<"Erreur contexte vide"<<endl;
+    	}
 } //----- Fin de Commande
 
 
