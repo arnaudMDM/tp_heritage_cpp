@@ -38,45 +38,16 @@ public:
     //
 
 
-	virtual bool Appartient(int X1, int Y1, int X2, int Y2);
+	virtual bool Appartient(int X1, int Y1, int X2, int Y2) = 0;
     // Mode d'emploi : renvoie vrai si la forme géométrique est inclus dans le rectangle défini par ces deux points. Il peu être égal
     //renvoie vrai si la forme géométrique appartient dans le rectangle de sélection.
 	//
     // Contrat :
     //
 
-	virtual void Translater(int deltaX, int deltaY);
+	virtual void Translater(int deltaX, int deltaY) = 0;
     // Mode d'emploi : translate la forme géométrique par le biais vecteur défini par deltaX et deltaY
 	//
-    // Contrat :
-    //
-
-//------------------------------------------------- Surcharge d'opérateurs
-    EltGeometrique & operator = ( const EltGeometrique & unEltGeometrique );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//-------------------------------------------- Constructeurs - destructeur
-    EltGeometrique ( const EltGeometrique & unEltGeometrique );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    EltGeometrique ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-
-    virtual ~EltGeometrique ( );
-    // Mode d'emploi :
-    //
     // Contrat :
     //
 
