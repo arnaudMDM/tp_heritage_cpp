@@ -99,9 +99,8 @@ PolyLigne::PolyLigne (vector<int> unListeX, vector<int> unListeY)
     for(it1 = unListeX.begin() ; it1 != unListeX.end() ; it1++)
     {
     	it2++;
-    	Point *point = new Point(*it1,*it2);
-    	listePoints.push_back(point);
-    	delete(point);
+
+    	listePoints.push_back(new Point(*it1,*it2));
     }
 } //----- Fin de PolyLigne
 
