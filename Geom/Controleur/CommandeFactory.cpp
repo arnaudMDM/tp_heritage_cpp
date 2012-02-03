@@ -28,7 +28,7 @@
 //{
 //} //----- Fin de Méthode
 
-static bool GetCommande ( char * argv[], Commande* laCommande, ObjetGeometrique *contexte)
+bool CommandeFactory::GetCommande ( char * argv[], Commande* laCommande, ObjetGeometrique *contexte)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //

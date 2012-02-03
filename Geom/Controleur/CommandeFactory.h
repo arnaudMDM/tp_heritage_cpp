@@ -37,7 +37,7 @@ public:
     // Contrat :
     //
 
-	static bool GetCommande(char * argv[], Commande* laCommande, ObjetGeometrique *contexte);
+	static bool GetCommande(char * argv[], Commande *laCommande, ObjetGeometrique *contexte);
     // Mode d'emploi : Retourne l'instance d'une commande
 	// correspondant aux arguments passés en paramètre.
     //
