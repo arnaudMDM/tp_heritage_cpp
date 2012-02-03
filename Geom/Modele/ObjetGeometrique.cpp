@@ -109,9 +109,7 @@ void ObjetGeometrique::AjouterEltGeom(EltGeometrique *unEltGeometrique)
 // Algorithme :
 //
 {
-	cout<<listeEltsGeomTotal.empty()<<endl;
-	cout<<"liste de "<<listeEltsGeomTotal.size()<<" éléments"<<endl;
-	//listeEltsGeomTotal.push_back(unEltGeometrique);
+	listeEltsGeomTotal.push_back(unEltGeometrique);
 } //----- Fin de Méthode
 
 
