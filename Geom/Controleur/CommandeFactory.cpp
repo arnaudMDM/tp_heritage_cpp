@@ -30,7 +30,6 @@ using namespace std;
 
 Commande *CommandeFactory::GetCommande()
 {
-	Commande commande = new CommandeCreation();
 
 
 }

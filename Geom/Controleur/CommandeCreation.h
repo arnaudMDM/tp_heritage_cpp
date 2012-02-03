@@ -37,8 +37,6 @@ public:
     // Contrat :
     //
 
-	CommandeCreation(EltGeometrique(*f)());
-
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
     // Mode d'emploi :
@@ -72,7 +70,6 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-EltGeometrique (pointeurFonction)(int,int,int...);
 
 };
 

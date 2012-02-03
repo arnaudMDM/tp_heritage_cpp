@@ -27,11 +27,6 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-CommandeCreation::CommandeCreation(EltGeometrique (*f)())
-{
-
-}
-
 //------------------------------------------------- Surcharge d'opérateurs
 CommandeCreation & CommandeCreation::operator = ( const CommandeCreation & unCommandeCreation )
 // Algorithme :
