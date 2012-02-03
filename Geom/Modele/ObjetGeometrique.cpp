@@ -24,11 +24,28 @@
 //{
 //} //----- Fin de Méthode
 
+
+void ObjetGeometrique::SelectionnerElts(int x1, int y1, int x2, int y2)
+// Algorithme :
+//
+{
+	listeEltsGeomSelect.clear();
+	for(vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin() ; it!=listeEltsGeomTotal.end() ; it++)
+	{
+		if((*it)->Appartient(x1,y1,x2,y2))
+		{
+			listeEltsGeomSelect.push_back(*it);
+		}
+	}
+} //----- Fin de Méthode
+
+
 void ObjetGeometrique::AjouterEltGeom(EltGeometrique *unEltGeometrique)
 // Algorithme :
 //
 {
-	listeEltsGeom.push_back(unEltGeometrique);
+	listeEltsGeomTotal.push_back(unEltGeometrique);
+	listeEltsGeomSelect.push_back(unEltGeometrique);
 } //----- Fin de Méthode
 
 
@@ -37,7 +54,7 @@ ObjetGeometrique & ObjetGeometrique::operator = ( const ObjetGeometrique & unObj
 // Algorithme :
 //
 {
-	listeEltsGeom.assign(unObjetGeometrique.getListeEltsGeom().begin(),unObjetGeometrique.getListeEltsGeom().end());
+	listeEltsGeomTotal.assign(unObjetGeometrique.getListeEltsGeomTotal().begin(),unObjetGeometrique.getListeEltsGeomTotal().end());
 	return *this;
 } //----- Fin de operator =
 
@@ -50,7 +67,7 @@ ObjetGeometrique::ObjetGeometrique ( const ObjetGeometrique & unObjetGeometrique
 #ifdef MAP
     cout << "Appel au constructeur de copie de <ObjetGeometrique>" << endl;
 #endif
-    listeEltsGeom.assign(unObjetGeometrique.getListeEltsGeom().begin(),unObjetGeometrique.getListeEltsGeom().end());
+    listeEltsGeomTotal.assign(unObjetGeometrique.getListeEltsGeomTotal().begin(),unObjetGeometrique.getListeEltsGeomTotal().end());
 } //----- Fin de ObjetGeometrique (constructeur de copie)
 
 
@@ -81,14 +98,19 @@ ObjetGeometrique::ObjetGeometrique (vector <EltGeometrique*> uneListeEltsGeom)
 #ifdef MAP
     cout << "Appel au destructeur de <ObjetGeometrique>" << endl;
 #endif
-    listeEltsGeom.assign(uneListeEltsGeom.begin(),uneListeEltsGeom.end());
+    listeEltsGeomTotal.assign(uneListeEltsGeom.begin(),uneListeEltsGeom.end());
 }
 
 
 
-vector<EltGeometrique*> ObjetGeometrique::getListeEltsGeom() const
+vector<EltGeometrique*> ObjetGeometrique::getListeEltsGeomTotal() const
 {
-    return listeEltsGeom;
+    return listeEltsGeomTotal;
+}
+
+vector<EltGeometrique*> ObjetGeometrique::getListeEltsGeomSelect() const
+{
+    return listeEltsGeomSelect;
 }
 
  //----- Fin de ~ObjetGeometrique

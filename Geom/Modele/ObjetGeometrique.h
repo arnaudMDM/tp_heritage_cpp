@@ -40,6 +40,12 @@ public:
     // Contrat :
     //
 
+    void SelectionnerElts(int x1, int y1, int x2, int y2);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void AjouterEltGeom(EltGeometrique *unEltGeometrique);
     // Mode d'emploi :
     //
@@ -54,7 +60,13 @@ public:
     // Contrat :
     //
 
-    vector <EltGeometrique *> getListeEltsGeom() const;
+    vector <EltGeometrique *> getListeEltsGeomTotal() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector <EltGeometrique *> getListeEltsGeomSelect() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -91,7 +103,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector <EltGeometrique *> listeEltsGeom;
+vector <EltGeometrique *> listeEltsGeomTotal;
+vector <EltGeometrique *> listeEltsGeomSelect;
 };
 
 //--------------------------- Autres définitions dépendantes de <ObjetGeometrique>
