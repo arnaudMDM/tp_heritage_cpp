@@ -16,10 +16,16 @@ using namespace std;
 
 int main(int args, char *argv[])
 {
+	cout<<"Test"<<endl;
 	Commande *laCommande = NULL;
 	ObjetGeometrique *contexte = new ObjetGeometrique();
+	cout<<"Avant factory"<<endl;
 	CommandeFactory::GetCommande(argv,laCommande,contexte);
+	cout<<"Après Factory"<<endl;
+	if(laCommande == NULL)
+		{ cout<<"Erreur";}
 	laCommande->execute();
+	cout<<"Avant vector"<<endl;
 	vector<EltGeometrique *> elts = contexte->getListeEltsGeom();
 	Cercle *cercle = (Cercle *)elts.back();
 
