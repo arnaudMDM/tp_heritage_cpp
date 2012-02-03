@@ -1,31 +1,31 @@
 /*************************************************************************
-                           Commande  -  description
+                           CommandeCreationPoly  -  description
                              -------------------
-    début                : 27 janv. 2012
+    début                : 3 févr. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Interface de la classe <Commande> (fichier Commande.h) ------
-#if ! defined ( COMMANDE_H_ )
-#define COMMANDE_H_
+//---------- Interface de la classe <CommandeCreationPoly> (fichier CommandeCreationPoly.h) ------
+#if ! defined ( COMMANDECREATIONPOLY_H_ )
+#define COMMANDECREATIONPOLY_H_
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Commande>
+// Rôle de la classe <CommandeCreationPoly>
 //
 //
 //------------------------------------------------------------------------ 
 
-class Commande
+class CommandeCreationPoly : public CommandeCreation
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -39,7 +39,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Commande & operator = ( const Commande & unCommande );
+    CommandeCreationPoly & operator = ( const CommandeCreationPoly & unCommandeCreationPoly );
     // Mode d'emploi :
     //
     // Contrat :
@@ -47,19 +47,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Commande ( const Commande & unCommande );
+    CommandeCreationPoly ( const CommandeCreationPoly & unCommandeCreationPoly );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Commande ( );
+    CommandeCreationPoly ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Commande ( );
+    virtual ~CommandeCreationPoly ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,8 +71,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
 };
 
-//--------------------------- Autres définitions dépendantes de <Commande>
+//--------------------------- Autres définitions dépendantes de <CommandeCreationPoly>
 
-#endif // COMMANDE_H_
+#endif // COMMANDECREATIONPOLY_H_

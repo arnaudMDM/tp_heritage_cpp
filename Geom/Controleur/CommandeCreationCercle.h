@@ -1,31 +1,31 @@
 /*************************************************************************
-                           Commande  -  description
+                           CommandeCreationCercle  -  description
                              -------------------
-    début                : 27 janv. 2012
+    début                : 3 févr. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Interface de la classe <Commande> (fichier Commande.h) ------
-#if ! defined ( COMMANDE_H_ )
-#define COMMANDE_H_
+//---------- Interface de la classe <CommandeCreationCercle> (fichier CommandeCreationCercle.h) ------
+#if ! defined ( COMMANDECREATIONCERCLE_H_ )
+#define COMMANDECREATIONCERCLE_H_
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Commande>
+// Rôle de la classe <CommandeCreationCercle>
 //
 //
 //------------------------------------------------------------------------ 
 
-class Commande
+class CommandeCreationCercle : public CommandeCreation
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -39,7 +39,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Commande & operator = ( const Commande & unCommande );
+    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
     // Mode d'emploi :
     //
     // Contrat :
@@ -47,19 +47,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Commande ( const Commande & unCommande );
+    CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Commande ( );
+    CommandeCreationCercle ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Commande ( );
+    virtual ~CommandeCreationCercle ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,8 +71,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    int x1;
+    int x2;
+    int rayon;
 };
 
-//--------------------------- Autres définitions dépendantes de <Commande>
+//--------------------------- Autres définitions dépendantes de <CommandeCreationCercle>
 
-#endif // COMMANDE_H_
+#endif // COMMANDECREATIONCERCLE_H_

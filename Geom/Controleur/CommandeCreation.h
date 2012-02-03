@@ -14,7 +14,8 @@
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "../Modele/EltGeometrique.h"
+#include "Commande.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
@@ -25,7 +26,7 @@
 //
 //------------------------------------------------------------------------ 
 
-class CommandeCreation
+class CommandeCreation : public Commande
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -71,6 +72,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
+    EltGeometrique *element;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreation>

@@ -37,7 +37,13 @@ public:
     // Contrat :
     //
 
-	static Commande * GetCommande();
+	static bool GetCommande(char * argv[], Commande* laCommande);
+    // Mode d'emploi : Retourne l'instance d'une commande
+	// correspondant aux arguments passés en paramètre.
+    //
+    // Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
+	// sont traités en amont par le controleur.
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeFactory & operator = ( const CommandeFactory & unCommandeFactory );
