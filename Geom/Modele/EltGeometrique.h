@@ -12,6 +12,7 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
+#include<string>
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -37,6 +38,11 @@ public:
     // Contrat :
     //
 
+    virtual string Description() = 0;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 	virtual bool Appartient(int X1, int Y1, int X2, int Y2) = 0;
     // Mode d'emploi : renvoie vrai si la forme géométrique est inclus dans le rectangle défini par ces deux points. Il peu être égal

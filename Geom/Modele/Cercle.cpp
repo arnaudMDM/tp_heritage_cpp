@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include <sstream>
 //------------------------------------------------------ Include personnel
 #include "Cercle.h"
 #include "Point.h"
@@ -28,6 +28,22 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+
+
+string Cercle::Description()
+// Algorithme :
+//
+{
+	ostringstream osX;
+	ostringstream osY;
+	ostringstream osRayon;
+	osX << centre.getX();
+	osY << centre.getY();
+	osRayon << rayon;
+	string description = "C " + osX.str() + " " + osY.str() + " " + osRayon.str();
+	return description;
+} //----- Fin de Méthode
+
 
 bool Cercle::Appartient(int x1, int y1, int x2, int y2)
 // type Cercle::Méthode ( liste des paramètres )

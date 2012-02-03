@@ -25,6 +25,16 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+
+string Rectangle::Description()
+// Algorithme :
+//
+{
+	string description = "R " + doublePoints.Info();
+	return description;
+} //----- Fin de Méthode
+
+
 bool Rectangle::Appartient ( int x1, int y1, int x2, int y2 )
 // Algorithme :
 //

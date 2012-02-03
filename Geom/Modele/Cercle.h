@@ -38,6 +38,12 @@ public:
     // Contrat :
     //
 
+    virtual string Description();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 	int getRayon() const;
     // Mode d'emploi :
     //

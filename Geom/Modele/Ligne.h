@@ -39,6 +39,18 @@ public:
     // Contrat :
     //
 
+    virtual string Description();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    string Info();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 	Point getPoint1() const;
     // Mode d'emploi :
     //

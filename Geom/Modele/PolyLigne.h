@@ -40,6 +40,12 @@ public:
     // Contrat :
     //
 
+    virtual string Description();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 	vector<Point*> getListePoints() const;
     // Mode d'emploi :
     //
@@ -102,6 +108,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
 vector<Point*> listePoints;
+//string carac;
 
 };
 

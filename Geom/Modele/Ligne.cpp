@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "Ligne.h"
@@ -27,6 +28,32 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+
+
+string Ligne::Info()
+// Algorithme :
+//
+{
+	ostringstream osX1;
+	ostringstream osY1;
+	ostringstream osX2;
+	ostringstream osY2;
+	osX1 << point1.getX();
+	osY1 << point1.getY();
+	osX2 << point2.getX();
+	osY2 << point2.getY();
+	string info = osX1.str() + " " + osY1.str() + " " + osX2.str() + " " + osY2.str();
+	return info;
+} //----- Fin de Méthode
+
+
+string Ligne::Description()
+// Algorithme :
+//
+{
+	string description = "L " + Info();
+	return description;
+} //----- Fin de Méthode
 
 
 bool Ligne::Appartient(int x1, int y1, int x2, int y2)

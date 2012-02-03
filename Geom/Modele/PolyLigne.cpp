@@ -13,6 +13,7 @@
 using namespace std;
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "PolyLigne.h"
@@ -29,6 +30,26 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+
+
+string PolyLigne::Description()
+// Algorithme :
+//
+{
+	ostringstream osX;
+	ostringstream osY;
+	string description = "PL";
+	for(vector<Point*>::iterator it = listePoints.begin() ; it != listePoints.end() ; it++)
+	{
+		osX << (*it)->getX();
+		osY << (*it)->getY();
+		description.append(" " + osX.str() + " " + osY.str());
+		osX.str("");
+		osY.str("");
+	}
+	return description;
+} //----- Fin de Méthode
+
 
 bool PolyLigne::Appartient(int x1, int y1, int x2, int y2)
 // Algorithme :

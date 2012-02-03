@@ -37,6 +37,13 @@ public:
 	//
 	// Contrat :
 	//
+
+    virtual string Description();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 	Ligne getDoublePoints ( ) const;
 	// Mode d'emploi :
 	//

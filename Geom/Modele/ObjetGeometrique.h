@@ -12,7 +12,6 @@
 
 //---------------------------------------------------
 using namespace std;
-#include <vector>
 //--------------------------------------------------- Interfaces utilisées
 
 #include "EltGeometrique.h"
@@ -40,7 +39,19 @@ public:
     // Contrat :
     //
 
+    string DescriptionEltsSelect();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
+    string DescriptionEltsTotal();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+	int NbElts();
     // Mode d'emploi :
     //
     // Contrat :

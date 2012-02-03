@@ -25,6 +25,38 @@
 //} //----- Fin de Méthode
 
 
+string ObjetGeometrique::DescriptionEltsSelect()
+// Algorithme :
+//
+{
+	string description = NULL;
+	for(vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin() ; it!=listeEltsGeomSelect.end() ; it++)
+	{
+		description.append((*it)->Description());
+	}
+} //----- Fin de Méthode
+
+
+string ObjetGeometrique::DescriptionEltsTotal()
+// Algorithme :
+//
+{
+	string description = NULL;
+	for(vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin() ; it!=listeEltsGeomTotal.end() ; it++)
+	{
+		description.append((*it)->Description());
+	}
+} //----- Fin de Méthode
+
+
+int ObjetGeometrique::NbElts()
+// Algorithme :
+//
+{
+	return listeEltsGeomTotal.size();
+} //----- Fin de Méthode
+
+
 void ObjetGeometrique::SupprimerTousElts()
 // Algorithme :
 //
