@@ -47,7 +47,7 @@ using namespace std;
 //} //----- Fin de CommandeCreation (constructeur de copie)
 
 
-CommandeCreation::CommandeCreation (ObjetGeometrique *contexte) : Commande(contexte)
+CommandeCreation::CommandeCreation (ObjetGeometrique *contexte) : Commande(contexte), element(NULL)
 // Algorithme :
 //
 {

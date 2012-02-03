@@ -36,7 +36,11 @@ public:
     //
     // Contrat :
     //
+	void execute();
 
+	void undo();
+
+	void redo();
 
 //------------------------------------------------- Surcharge d'opérateurs
 //    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
@@ -72,7 +76,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     int x1;
-    int x2;
+    int y1;
     int rayon;
 
 };
