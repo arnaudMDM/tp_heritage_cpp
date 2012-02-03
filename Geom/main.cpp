@@ -18,34 +18,31 @@ using namespace std;
 int main(int args, char *argv[])
 {
 	cout<<"Test "<<endl;
-	deque <string> list;
-	list.push_back("C");
-	list.push_back("1");
-	list.push_back("1");
-	list.push_back("10");
+	queue <string> list;
+	list.push(string("C"));
+	list.push(string("1"));
+	list.push(string("1"));
+	list.push(string("10"));
 
 	Commande *laCommande = NULL;
 
-	ObjetGeometrique *contexte = new ObjetGeometrique();
+	ObjetGeometrique contexte;
+	contexte.AjouterEltGeom(new Cercle(10,10,1));
 	cout<<"Avant factory"<<endl;
 
-	if( CommandeFactory::GetCommande(list, &laCommande, contexte))
+	if( CommandeFactory::GetCommande (list, &laCommande, &contexte))
 	{
 		cout<<"retour getCommande ok"<<endl;
 	}
 	cout<<"Après Factory"<<endl;
 	if(laCommande == NULL)
-<<<<<<< .mine
-	{
-		cout<<"Erreur"<<endl;
-	}
-=======
-		{ cout<<"Erreur"<<endl;}
->>>>>>> .r30
+		{ cout<<"Erreur"<<endl;
+		}
 	laCommande->execute();
 	cout<<"Avant vector"<<endl;
-	vector<EltGeometrique *> elts = contexte->getListeEltsGeomTotal();
-	Cercle *cercle = (Cercle *)elts.back();
+//	vector<EltGeometrique *> elts = contexte->getListeEltsGeomTotal();
+//	Cercle *cercle = (Cercle *)elts.back();
 
-	cout<<"Valeur du cercle : "<<cercle->getRayon()<<endl;
+//	cout<<"Valeur du cercle : "<<cercle->getRayon()<<endl;
+	delete laCommande;
 }
