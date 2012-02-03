@@ -43,7 +43,7 @@ public:
     // Contrat :
     //
 
-    vector<EltGeometrique> getListeEltsGeom() const;
+    vector<EltGeometrique*> getListeEltsGeom() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -62,6 +62,12 @@ public:
     // Contrat :
     //
 
+    ObjetGeometrique (vector <EltGeometrique*> uneListeEltsGeom);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~ObjetGeometrique ( );
     // Mode d'emploi :
     //
@@ -74,7 +80,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector <EltGeometrique> listeEltsGeom;
+vector <EltGeometrique*> listeEltsGeom;
 };
 
 //--------------------------- Autres définitions dépendantes de <ObjetGeometrique>

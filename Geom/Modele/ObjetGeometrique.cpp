@@ -35,6 +35,8 @@ ObjetGeometrique & ObjetGeometrique::operator = ( const ObjetGeometrique & unObj
 // Algorithme :
 //
 {
+	listeEltsGeom.assign(unObjetGeometrique.getListeEltsGeom().begin(),unObjetGeometrique.getListeEltsGeom().end());
+	return *this;
 } //----- Fin de operator =
 
 
@@ -46,6 +48,7 @@ ObjetGeometrique::ObjetGeometrique ( const ObjetGeometrique & unObjetGeometrique
 #ifdef MAP
     cout << "Appel au constructeur de copie de <ObjetGeometrique>" << endl;
 #endif
+    listeEltsGeom.assign(unObjetGeometrique.getListeEltsGeom().begin(),unObjetGeometrique.getListeEltsGeom().end());
 } //----- Fin de ObjetGeometrique (constructeur de copie)
 
 
@@ -68,7 +71,19 @@ ObjetGeometrique::~ObjetGeometrique ( )
 #endif
 }
 
-vector<EltGeometrique> ObjetGeometrique::getListeEltsGeom() const
+
+ObjetGeometrique::ObjetGeometrique (vector <EltGeometrique*> uneListeEltsGeom)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <ObjetGeometrique>" << endl;
+#endif
+    listeEltsGeom.assign(uneListeEltsGeom.begin(),uneListeEltsGeom.end());
+}
+
+
+vector<EltGeometrique*> ObjetGeometrique::getListeEltsGeom() const
 {
     return listeEltsGeom;
 }

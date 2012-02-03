@@ -40,7 +40,7 @@ public:
     // Contrat :
     //
 
-	vector<Point> getListePoints() const;
+	vector<Point*> getListePoints() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -101,7 +101,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-vector<Point> listePoints;
+vector<Point*> listePoints;
 
 };
 

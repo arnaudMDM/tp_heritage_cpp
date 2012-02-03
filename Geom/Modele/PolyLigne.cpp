@@ -34,9 +34,9 @@ bool PolyLigne::Appartient(int x1, int y1, int x2, int y2)
 // Algorithme :
 //
 {
-	for(vector<Point>::iterator it = listePoints.begin() ; it != listePoints.end() ; it++)
+	for(vector<Point*>::iterator it = listePoints.begin() ; it != listePoints.end() ; it++)
 	{
-		if(!Contient(it->getX(),it->getY(),x1,y1,x2,y2))
+		if(!Contient((*it)->getX(),(*it)->getY(),x1,y1,x2,y2))
 		{
 			return false;
 		}
@@ -48,10 +48,10 @@ void PolyLigne::Translater(int deltaX, int deltaY)
 // Algorithme :
 //
 {
-	vector<Point>::iterator it;
+	vector<Point*>::iterator it;
 	for(it = listePoints.begin(); it != listePoints.end() ; it++)
 	{
-		it->Translater(deltaX, deltaY);
+		(*it)->Translater(deltaX, deltaY);
 	}
 } //----- Fin de Méthode
 
@@ -99,7 +99,9 @@ PolyLigne::PolyLigne (vector<int> unListeX, vector<int> unListeY)
     for(it1 = unListeX.begin() ; it1 != unListeX.end() ; it1++)
     {
     	it2++;
-    	listePoints.push_back(Point((*it1),(*it2)));
+    	Point *point = new Point(*it1,*it2);
+    	listePoints.push_back(point);
+    	delete(point);
     }
 } //----- Fin de PolyLigne
 
@@ -113,7 +115,7 @@ PolyLigne::~PolyLigne ( )
 #endif
 }
 
-vector<Point> PolyLigne::getListePoints() const
+vector<Point*> PolyLigne::getListePoints() const
 {
     return listePoints;
 }
