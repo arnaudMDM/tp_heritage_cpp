@@ -29,7 +29,7 @@ using namespace std;
 void CommandeCreationCercle::execute()
 {
 	element = new Cercle(x1,y1,rayon);
-	contexte->getListeEltsGeom().push_back(element);
+	contexte->getListeEltsGeomTotal().push_back(element);
 }
 
 void CommandeCreationCercle::undo()

@@ -25,6 +25,38 @@
 //} //----- Fin de Méthode
 
 
+void ObjetGeometrique::SupprimerTousElts()
+// Algorithme :
+//
+{
+	listeEltsGeomTotal.clear();
+	listeEltsGeomSelect.clear();
+} //----- Fin de Méthode
+
+
+void ObjetGeometrique::SupprimerElts()
+// Algorithme :
+//
+{
+	for(vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin() ; it!=listeEltsGeomSelect.end() ; it++)
+	{
+		listeEltsGeomTotal.erase(it);
+	}
+	listeEltsGeomSelect.clear();
+} //----- Fin de Méthode
+
+
+void ObjetGeometrique::Translater(int x, int y)
+// Algorithme :
+//
+{
+	for(vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin() ; it!=listeEltsGeomSelect.end() ; it++)
+	{
+		(*it)->Translater(x, y);
+	}
+} //----- Fin de Méthode
+
+
 void ObjetGeometrique::SelectionnerElts(int x1, int y1, int x2, int y2)
 // Algorithme :
 //

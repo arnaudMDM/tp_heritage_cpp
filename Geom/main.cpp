@@ -23,10 +23,10 @@ int main(int args, char *argv[])
 	CommandeFactory::GetCommande(argv,laCommande,contexte);
 	cout<<"Après Factory"<<endl;
 	if(laCommande == NULL)
-		{ cout<<"Erreur";}
+		{ cout<<"Erreur"<<endl;}
 	laCommande->execute();
 	cout<<"Avant vector"<<endl;
-	vector<EltGeometrique *> elts = contexte->getListeEltsGeom();
+	vector<EltGeometrique *> elts = contexte->getListeEltsGeomTotal();
 	Cercle *cercle = (Cercle *)elts.back();
 
 	cout<<"Valeur du cercle : "<<cercle->getRayon()<<endl;

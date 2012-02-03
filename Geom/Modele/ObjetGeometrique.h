@@ -40,6 +40,30 @@ public:
     // Contrat :
     //
 
+
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void SupprimerTousElts();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void SupprimerElts();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void Translater(int x, int y);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void SelectionnerElts(int x1, int y1, int x2, int y2);
     // Mode d'emploi :
     //
