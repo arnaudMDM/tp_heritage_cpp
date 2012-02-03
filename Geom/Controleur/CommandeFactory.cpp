@@ -8,8 +8,9 @@
 //---------- Réalisation de la classe <CommandeFactory> (fichier CommandeFactory.cpp) -------
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-#include "cstring"
-#include "exception"
+#include <iostream>
+#include <exception>
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "CommandeFactory.h"
 #include "CommandeCreationCercle.h"
@@ -28,7 +29,7 @@
 //{
 //} //----- Fin de Méthode
 
-bool CommandeFactory::GetCommande ( char * argv[], Commande* laCommande, ObjetGeometrique *contexte)
+bool CommandeFactory::GetCommande ( queue <string> para, Commande **laCommande, ObjetGeometrique *contexte)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
@@ -37,41 +38,45 @@ bool CommandeFactory::GetCommande ( char * argv[], Commande* laCommande, ObjetGe
 {
 	bool status = false;
 
-	if (strcmp(argv[0], "C") == 0)
+	string commande = para.front();
+	cout<<commande<<endl;
+	para.pop();
+
+	if (commande.find("C") == 0)
 	{
-
-			laCommande = new CommandeCreationCercle(argv[1],argv[2], argv[3], contexte);
-
+		cout<<"Construct"<<endl;
+		*laCommande = new CommandeCreationCercle(para, contexte);
+		status = true;
 	}
-	else if (strcmp(argv[0], "R") == 0)
-	{
-
-	}
-	else if (strcmp(argv[0], "L") == 0)
-	{
-
-	}
-	else if (strcmp(argv[0], "PL") == 0)
+	else if (commande.find("R") == 0)
 	{
 
 	}
-	else if (strcmp(argv[0], "LOAD") == 0)
+	else if (commande.find("L") == 0)
 	{
 
 	}
-	else if (strcmp(argv[0], "SAVE") == 0)
+	else if (commande.find("PL") == 0)
 	{
 
 	}
-	else if(strcmp(argv[0],"CLEAR") == 0)
+	else if (commande.find("LOAD") == 0)
 	{
 
 	}
-	else if(strcmp(argv[0],"DELETE") == 0)
+	else if (commande.find("SAVE") == 0)
 	{
 
 	}
-	else if(strcmp(argv[0],"MOVE") == 0)
+	else if(commande.find("CLEAR") == 0)
+	{
+
+	}
+	else if(commande.find("DELETE") == 0)
+	{
+
+	}
+	else if(commande.find("MOVE") == 0)
 	{
 
 	}

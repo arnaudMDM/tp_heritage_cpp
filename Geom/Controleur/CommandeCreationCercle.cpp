@@ -10,6 +10,7 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
+#include <iostream>
 using namespace std;
 #include <cstdlib>
 //------------------------------------------------------ Include personnel
@@ -28,8 +29,9 @@ using namespace std;
 
 void CommandeCreationCercle::execute()
 {
+	cout<<x1<<y1<<rayon<<endl;
 	element = new Cercle(x1,y1,rayon);
-	contexte->getListeEltsGeomTotal().push_back(element);
+	contexte->AjouterEltGeom(element);
 }
 
 void CommandeCreationCercle::undo()
@@ -60,16 +62,19 @@ void CommandeCreationCercle::redo()
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
 
-CommandeCreationCercle::CommandeCreationCercle (char *abs, char *ord, char *ray, ObjetGeometrique *leContexte) : CommandeCreation(leContexte)
+CommandeCreationCercle::CommandeCreationCercle (queue <string> para, ObjetGeometrique *leContexte) : CommandeCreation(leContexte)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
-    x1 = atoi(abs);
-    y1 = atoi(ord);
-    rayon = atoi(ray);
+    x1 = atoi(para.front().c_str());
+    para.pop();
+    y1 = atoi(para.front().c_str());
+    para.pop();
+    rayon = atoi(para.front().c_str());
+    para.pop();
 } //----- Fin de CommandeCreationCercle
 
 

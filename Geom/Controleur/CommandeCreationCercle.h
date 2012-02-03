@@ -12,7 +12,8 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-
+#include <string>
+#include <queue>
 //--------------------------------------------------- Interfaces utilisées
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes 
@@ -57,7 +58,7 @@ public:
 //    // Contrat :
 //    //
 
-    CommandeCreationCercle (char *x1, char *x2, char *rayon, ObjetGeometrique *contexte);
+    CommandeCreationCercle (queue <string> para, ObjetGeometrique *contexte);
     // Mode d'emploi :
     //
     // Contrat :
