@@ -24,6 +24,13 @@
 //{
 //} //----- Fin de Méthode
 
+void ObjetGeometrique::AjouterEltGeom(EltGeometrique *unEltGeometrique)
+// Algorithme :
+//
+{
+	listeEltsGeom.push_back(unEltGeometrique);
+} //----- Fin de Méthode
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 ObjetGeometrique & ObjetGeometrique::operator = ( const ObjetGeometrique & unObjetGeometrique )
@@ -76,6 +83,7 @@ ObjetGeometrique::ObjetGeometrique (vector <EltGeometrique*> uneListeEltsGeom)
 #endif
     listeEltsGeom.assign(uneListeEltsGeom.begin(),uneListeEltsGeom.end());
 }
+
 
 
 vector<EltGeometrique*> ObjetGeometrique::getListeEltsGeom() const

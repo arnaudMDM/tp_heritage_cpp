@@ -40,6 +40,12 @@ public:
     // Contrat :
     //
 
+    void AjouterEltGeom(EltGeometrique *unEltGeometrique);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     ObjetGeometrique & operator = ( const ObjetGeometrique & unObjetGeometrique );
