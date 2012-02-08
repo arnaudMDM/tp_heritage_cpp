@@ -1,0 +1,8 @@
+Test 
+Avant factory
+C
+Construct
+retour getCommande ok
+Après Factory
+1110
+Avant ajout au contexte
