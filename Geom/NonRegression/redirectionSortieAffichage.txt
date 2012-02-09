@@ -6,3 +6,5 @@ retour getCommande ok
 Après Factory
 1110
 Avant ajout au contexte
+Fin execute
+Avant vector
