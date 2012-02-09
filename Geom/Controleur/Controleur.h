@@ -12,7 +12,8 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-
+#include <string>
+#include <queue>
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
@@ -31,7 +32,7 @@ class Controleur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    void traitementCommande();
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,7 +72,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    bool quitter;
+    queue<string *> parametres;
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

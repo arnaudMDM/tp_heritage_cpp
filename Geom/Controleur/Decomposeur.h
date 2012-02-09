@@ -17,7 +17,7 @@
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //--------------------------------------------------- Interfaces utilisées
-#include <sstream>
+#include <string>
 #include <queue>
 //------------------------------------------------------------- Constantes 
 
@@ -26,6 +26,6 @@
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 
-queue <string*> * Decompose(stringstream &flux);
+void Decompose(queue<string *> &para, string &flux);
 
 #endif // DECOMPOSEUR_H_

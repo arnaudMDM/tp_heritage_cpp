@@ -10,7 +10,9 @@
 /////////////////////////////////////////////////////////////////  INCLUDE
 //-------------------------------------------------------- Include système
 #include <string>
+#include <sstream>
 using namespace std;
+#include <iostream>
 //------------------------------------------------------ Include personnel
 #include "Decomposeur.h"
 
@@ -35,21 +37,14 @@ static const char DELIM = ' ';
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-queue <string*> * Decompose(stringstream &flux)
+void Decompose(queue<string *> &parametres, string &temp)
 // Algorithme :
 //
 {
-	queue<string*> *parametres = new queue<string *>();
-	char *mot = new char[MAXSIZE];
-
-
-	while (flux.good())
+	char *mot;
+	mot = new char[MAXSIZE];
+	while (flux.get(mot, MAXSIZE, DELIM))
 	{
-		flux.get(mot, MAXSIZE, DELIM);
-		parametres->push(new string(mot));
+		parametres.push(new string(mot));
 	}
-
-
-	return parametres;
-
 } //----- fin de Nom
