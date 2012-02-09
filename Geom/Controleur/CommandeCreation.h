@@ -77,8 +77,6 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
     EltGeometrique *element;
-
-    ObjetGeometrique *contexte;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreation>

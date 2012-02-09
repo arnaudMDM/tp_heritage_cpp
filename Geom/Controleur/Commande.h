@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    Commande (ObjetGeometrique *contexte );
+    Commande (ObjetGeometrique *context );
     // Mode d'emploi :
     //
     // Contrat :

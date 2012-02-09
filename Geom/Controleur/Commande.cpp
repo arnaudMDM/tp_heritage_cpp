@@ -47,7 +47,7 @@ Commande::Commande ( const Commande & unCommande )
 } //----- Fin de Commande (constructeur de copie)
 
 
-Commande::Commande (ObjetGeometrique *contexte) : contexte(contexte)
+Commande::Commande (ObjetGeometrique *context) : contexte(context)
 // Algorithme :
 //
 {
