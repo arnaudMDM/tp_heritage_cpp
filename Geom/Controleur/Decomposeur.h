@@ -26,6 +26,6 @@
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 
-void Decompose(queue<string *> &para, string &flux);
+void LireCommande(queue<string *> &para);
 
 #endif // DECOMPOSEUR_H_

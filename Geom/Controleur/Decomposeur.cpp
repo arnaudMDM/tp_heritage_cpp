@@ -23,7 +23,7 @@ using namespace std;
 
 //---------------------------------------------------- Variables statiques
 static const int MAXSIZE = 100;
-static const char DELIM = ' ';
+static const char DELIM = '\n';
 //------------------------------------------------------ Fonctions privées
 //static type nom ( liste de paramètres )
 // Mode d'emploi :
@@ -37,14 +37,20 @@ static const char DELIM = ' ';
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-void Decompose(queue<string *> &parametres, string &temp)
+void LireCommande(queue<string *> &parametres)
 // Algorithme :
 //
 {
-	char *mot;
-	mot = new char[MAXSIZE];
-	while (flux.get(mot, MAXSIZE, DELIM))
+	stringstream flux;
+	char *buffer = new char[MAXSIZE];
+	cin.get(buffer, MAXSIZE, DELIM);
+	flux<<buffer;
+
+	while(flux>>buffer)
 	{
-		parametres.push(new string(mot));
+		parametres.push(new string(buffer));
 	}
+	cin.clear();
+	cin.seekg(0,ios::end);
+
 } //----- fin de Nom

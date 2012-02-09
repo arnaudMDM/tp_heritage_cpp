@@ -18,7 +18,12 @@ using namespace std;
 #include "Controleur.h"
 #include "Decomposeur.h"
 //------------------------------------------------------------- Constantes
-
+static const string COMMANDE_LISTE = "LIST";
+static const string COMMANDE_COUNT = "COUNT";
+static const string COMMANDE_EXIT = "EXIT";
+static const string COMMANDE_UNDO = "UNDO";
+static const string COMMANDE_REDO = "REDO";
+static const char COMMANDE_SEL = 'S';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -26,28 +31,40 @@ void Controleur::traitementCommande()
 // Algorithme :
 //
 {
+	cout<<"Bienvenue dans le programme Geom.\nVeuilliez saisir votre commande : "<<endl;
 
-
-	cout<<"Bienvenue dans le programme Geom.\nVeulliez saisir votre commande : "<<endl;
-
-	int i = 0;
 	while (!quitter)
 	{
-		string temp;
-		cin.clear();
-		cin.seekg(0,ios::end);
-		cin.clear();
-		cin>>temp;
-		Decompose(parametres, temp);
+		LireCommande(parametres);
 
-		while (!parametres.empty())
+		string nomCommande = *(parametres.front());
+		if(nomCommande.find(COMMANDE_LISTE) != string::npos)
 		{
-			cout<<"Mot : "<<*(parametres.front())<<endl;
+			cout<<"tentative de listage ! "<<endl;
+		} else if (nomCommande.find(COMMANDE_COUNT) != string::npos)
+		{
+			cout<<"Count"<<endl;
+		}else if (nomCommande.find(COMMANDE_EXIT) != string::npos)
+		{
+			cout<<"Quitter"<<endl;
+			quitter = true;
+		}else if (nomCommande.find(COMMANDE_UNDO) != string::npos)
+		{
+			cout<<"Un Undo"<<endl;
+		}else if (nomCommande.find(COMMANDE_REDO) != string::npos)
+		{
+			cout<<"Un Redo"<<endl;
+		}else if (nomCommande.at(0)==COMMANDE_SEL && nomCommande.size() == 1)
+		{
+			cout<<"Selection"<<endl;
+		}
+
+		while(!parametres.empty())
+		{
 			parametres.pop();
 		}
-		i++;
-		if (i==2) quitter = true;
 	}
+	cout<<"Sortie du prg"<<endl;
 
 } //----- Fin de Méthode
 
