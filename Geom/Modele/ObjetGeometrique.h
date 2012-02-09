@@ -69,6 +69,12 @@ public:
     // Contrat :
     //
 
+    void SupprimerEltParticulier(EltGeometrique *elt);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void Translater(int x, int y);
     // Mode d'emploi :
     //

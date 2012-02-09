@@ -24,37 +24,4 @@ int main(int args, char *argv[])
 
 	ctrl.traitementCommande();
 
-//	cout<<"Test "<<endl;
-//
-//	//Test de la commande
-//	//Préparation de la liste d'arguments
-//	queue <string> list;
-//	list.push(string("C"));
-//	list.push(string("1"));
-//	list.push(string("1"));
-//	list.push(string("10"));
-//
-//	Commande *laCommande = NULL;
-//
-//	//Le contexte contient les différents EltGeometriques sous forme de vector
-//	ObjetGeometrique* contexte = new ObjetGeometrique();
-//	cout<<"Avant factory"<<endl;
-//
-//	//Récupération de la commande prete a etre executée
-//	if( CommandeFactory::GetCommande (list, &laCommande, contexte))
-//	{
-//		cout<<"retour getCommande ok"<<endl;
-//	}
-//	cout<<"Après Factory"<<endl;
-//	if(laCommande == NULL)
-//		{ cout<<"Erreur"<<endl;
-//		}
-//	laCommande->execute();
-//	cout<<"Avant vector"<<endl;
-////	vector<EltGeometrique *> elts = contexte->getListeEltsGeomTotal();
-////	Cercle *cercle = (Cercle *)elts.back();
-//
-////	cout<<"Valeur du cercle : "<<cercle->getRayon()<<endl;
-//	delete laCommande;
-//	delete contexte;
 }

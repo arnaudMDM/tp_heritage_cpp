@@ -29,16 +29,14 @@ using namespace std;
 
 void CommandeCreationCercle::execute()
 {
-	cout<<x1<<y1<<rayon<<endl;
 	element = new Cercle(x1,y1,rayon);
-	cout<<"Avant ajout au contexte"<<endl;
 	contexte->AjouterEltGeom(element);
-	cout<<"Fin execute"<<endl;
 }
 
 void CommandeCreationCercle::undo()
 {
-
+	contexte->SupprimerEltParticulier(element);
+	cout<<"Cet élément : "<<element->Description()<<" vient d'etre dépilé"<<endl;
 }
 
 void CommandeCreationCercle::redo()
@@ -64,18 +62,18 @@ void CommandeCreationCercle::redo()
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
 
-CommandeCreationCercle::CommandeCreationCercle (queue <string> para, ObjetGeometrique *leContexte) : CommandeCreation(leContexte)
+CommandeCreationCercle::CommandeCreationCercle (queue < string *> para, ObjetGeometrique *leContexte) : CommandeCreation(leContexte)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
-    x1 = atoi(para.front().c_str());
+    x1 = atoi(para.front()->c_str());
     para.pop();
-    y1 = atoi(para.front().c_str());
+    y1 = atoi(para.front()->c_str());
     para.pop();
-    rayon = atoi(para.front().c_str());
+    rayon = atoi(para.front()->c_str());
     para.pop();
 } //----- Fin de CommandeCreationCercle
 

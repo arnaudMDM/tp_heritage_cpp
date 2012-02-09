@@ -1,14 +1,12 @@
 /*************************************************************************
-                           Controleur  -  description
-                             -------------------
-    début                : 27 janv. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ Controleur  -  description
+ -------------------
+ début                : 27 janv. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <Controleur> (fichier Controleur.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -17,6 +15,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
 #include "Decomposeur.h"
+#include "CommandeFactory.h"
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_LISTE = "LIST";
 static const string COMMANDE_COUNT = "COUNT";
@@ -27,47 +26,75 @@ static const char COMMANDE_SEL = 'S';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Controleur::traitementCommande()
+void Controleur::traitementCommande ( )
 // Algorithme :
 //
 {
-	cout<<"Bienvenue dans le programme Geom.\nVeuilliez saisir votre commande : "<<endl;
+	cout
+			<< "Bienvenue dans le programme Geom.\nVeuilliez saisir votre commande : "
+			<< endl;
 
 	while (!quitter)
 	{
 		LireCommande(parametres);
 
 		string nomCommande = *(parametres.front());
-		if(nomCommande.find(COMMANDE_LISTE) != string::npos)
+		Commande *laCommande;
+		if (nomCommande.find(COMMANDE_LISTE) != string::npos)
 		{
-			cout<<"tentative de listage ! "<<endl;
-		} else if (nomCommande.find(COMMANDE_COUNT) != string::npos)
+			cout << "tentative de listage ! " << endl;
+			string temp = contexte->DescriptionEltsTotal();
+			cout << temp << endl;
+		}
+		else if (nomCommande.find(COMMANDE_COUNT) != string::npos)
 		{
-			cout<<"Count"<<endl;
-		}else if (nomCommande.find(COMMANDE_EXIT) != string::npos)
+			cout << "Count" << endl;
+		}
+		else if (nomCommande.find(COMMANDE_EXIT) != string::npos)
 		{
-			cout<<"Quitter"<<endl;
+			cout << "Quitter" << endl;
 			quitter = true;
-		}else if (nomCommande.find(COMMANDE_UNDO) != string::npos)
+		}
+		else if (nomCommande.find(COMMANDE_UNDO) != string::npos)
 		{
-			cout<<"Un Undo"<<endl;
-		}else if (nomCommande.find(COMMANDE_REDO) != string::npos)
+			cout << "Tentative d'un unDo" << endl;
+			if (!commandesExec.empty())
+			{
+				laCommande = commandesExec.front();
+				commandesExec.pop();
+				laCommande->undo();
+				commandesHistorique.push(laCommande);
+			}
+		}
+		else if (nomCommande.find(COMMANDE_REDO) != string::npos)
 		{
-			cout<<"Un Redo"<<endl;
-		}else if (nomCommande.at(0)==COMMANDE_SEL && nomCommande.size() == 1)
+			cout << "Un Redo" << endl;
+			if (!commandesHistorique.empty())
+			{
+				laCommande = commandesHistorique.front();
+				commandesHistorique.pop();
+				laCommande->redo();
+				commandesExec.push(laCommande);
+			}
+		}
+		else if (nomCommande.at(0) == COMMANDE_SEL && nomCommande.size() == 1)
 		{
-			cout<<"Selection"<<endl;
+			cout << "Selection" << endl;
+		}
+		else
+		{
+			CommandeFactory::GetCommande(parametres, &laCommande, contexte);
+			laCommande->execute();
+			commandesExec.push(laCommande);
 		}
 
-		while(!parametres.empty())
+		while (!parametres.empty())
 		{
 			parametres.pop();
 		}
 	}
-	cout<<"Sortie du prg"<<endl;
 
 } //----- Fin de Méthode
-
 
 //------------------------------------------------- Surcharge d'opérateurs
 Controleur & Controleur::operator = ( const Controleur & unControleur )
@@ -76,38 +103,34 @@ Controleur & Controleur::operator = ( const Controleur & unControleur )
 {
 } //----- Fin de operator =
 
-
 //-------------------------------------------- Constructeurs - destructeur
 Controleur::Controleur ( const Controleur & unControleur )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Controleur>" << endl;
+	cout << "Appel au constructeur de copie de <Controleur>" << endl;
 #endif
 } //----- Fin de Controleur (constructeur de copie)
 
-
-Controleur::Controleur ( ):
-		quitter(false)
+Controleur::Controleur ( ) :
+		quitter(false), contexte(new ObjetGeometrique())
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Controleur>" << endl;
+	cout << "Appel au constructeur de <Controleur>" << endl;
 #endif
 } //----- Fin de Controleur
-
 
 Controleur::~Controleur ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Controleur>" << endl;
+	cout << "Appel au destructeur de <Controleur>" << endl;
 #endif
 } //----- Fin de ~Controleur
-
 
 //------------------------------------------------------------------ PRIVE
 

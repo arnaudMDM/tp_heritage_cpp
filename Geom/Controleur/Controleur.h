@@ -15,7 +15,8 @@
 #include <string>
 #include <queue>
 //--------------------------------------------------- Interfaces utilisées
-
+#include "../Modele/ObjetGeometrique.h"
+#include "Commande.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
@@ -73,7 +74,10 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     bool quitter;
-    queue<string *> parametres;
+    queue < string *> parametres;
+    ObjetGeometrique *contexte;
+    queue < Commande *> commandesExec;
+    queue < Commande *> commandesHistorique;
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>
