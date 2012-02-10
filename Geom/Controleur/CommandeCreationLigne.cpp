@@ -19,7 +19,20 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
+void CommandeCreationLigne::execute()
+{
 
+}
+
+void CommandeCreationLigne::undo()
+{
+
+}
+
+void CommandeCreationLigne::redo()
+{
+
+}
 //----------------------------------------------------- Méthodes publiques
 // type CommandeCreationLigne::Méthode ( liste des paramètres )
 // Algorithme :
@@ -37,17 +50,18 @@ CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreati
 
 
 //-------------------------------------------- Constructeurs - destructeur
-CommandeCreationLigne::CommandeCreationLigne ( const CommandeCreationLigne & unCommandeCreationLigne )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <CommandeCreationLigne>" << endl;
-#endif
-} //----- Fin de CommandeCreationLigne (constructeur de copie)
+//CommandeCreationLigne::CommandeCreationLigne ( const CommandeCreationLigne & unCommandeCreationLigne )
+//// Algorithme :
+////
+//{
+//#ifdef MAP
+//    cout << "Appel au constructeur de copie de <CommandeCreationLigne>" << endl;
+//#endif
+//} //----- Fin de CommandeCreationLigne (constructeur de copie)
 
 
-CommandeCreationLigne::CommandeCreationLigne ( )
+CommandeCreationLigne::CommandeCreationLigne (queue < string *> para, ObjetGeometrique *leContexte) :
+		CommandeCreation(leContexte)
 // Algorithme :
 //
 {

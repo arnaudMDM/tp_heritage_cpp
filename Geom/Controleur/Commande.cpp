@@ -17,16 +17,14 @@ using namespace std;
 #include "Commande.h"
 
 //------------------------------------------------------------- Constantes
-
+const string Commande::CHAINE_PARA_INVALIDE = "\n#invalid parameters";
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Commande::isHistorisable()
-// Algorithme :
-//
+bool Commande::IsOk()
 {
-	return historisable;
-} //----- Fin de Méthode
+	return status;
+}
 
 string Commande::getTexteCommande()
 {
@@ -53,7 +51,7 @@ Commande::Commande ( const Commande & unCommande )
 
 
 Commande::Commande (ObjetGeometrique *nouveauContexte, bool statusHistorique) :
-		contexte(nouveauContexte), status(true), historisable(statusHistorique)
+		contexte(nouveauContexte), status(true)
 // Algorithme :
 //
 {

@@ -29,20 +29,30 @@ using namespace std;
 
 void CommandeCreationCercle::execute()
 {
-	element = new Cercle(x1,y1,rayon);
-	contexte->AjouterEltGeom(element);
+	if(status)
+	{
+		element = new Cercle(x1,y1,rayon);
+		contexte->AjouterEltGeom(element);
+	}
 }
 
 void CommandeCreationCercle::undo()
 {
-	contexte->SupprimerEltParticulier(element);
-	cout<<"Cet élément : "<<element->Description()<<" vient d'etre dépilé"<<endl;
+	if(status)
+	{
+		contexte->SupprimerEltParticulier(element);
+		contexte->Deselectionner();
+		cout<<"Cet élément : "<<element->Description()<<" vient d'etre dépilé"<<endl;
+	}
 }
 
 void CommandeCreationCercle::redo()
 {
-	contexte->AjouterEltGeom(element);
-	contexte->Deselectionner();
+	if(status)
+	{
+		contexte->AjouterEltGeom(element);
+		contexte->Deselectionner();
+	}
 }
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )
@@ -77,14 +87,30 @@ CommandeCreationCercle::CommandeCreationCercle (queue < string *> para, ObjetGeo
 		texteCommande.append(*para.front());
 		texteCommande.append(" ");
 		para.pop();
+
 		y1 = atoi(para.front()->c_str());
 		texteCommande.append(*para.front());
 		texteCommande.append(" ");
 		para.pop();
-		rayon = atoi(para.front()->c_str());
+
+		int rayonTemporaire;
+		rayonTemporaire= atoi(para.front()->c_str());
 		texteCommande.append(*para.front());
 		texteCommande.append("\n");
 		para.pop();
+		// Le rayon ne peut pas etre négatif
+		if(rayonTemporaire >= 1)
+		{
+			rayon = rayonTemporaire;
+		}
+		else
+		{
+			string temp("ERR ");
+			temp.append(texteCommande);
+			temp.append(CHAINE_PARA_INVALIDE);
+			texteCommande = temp;
+			status = false;
+		}
     }
     else
     {
@@ -95,7 +121,7 @@ CommandeCreationCercle::CommandeCreationCercle (queue < string *> para, ObjetGeo
     		texteCommande.append(*para.front());
     		para.pop();
     	}
-    	texteCommande.append("\n#invalid parameters");
+    	texteCommande.append(CHAINE_PARA_INVALIDE);
         status = false;
     }
 

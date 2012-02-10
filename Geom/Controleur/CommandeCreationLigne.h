@@ -15,6 +15,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "CommandeCreation.h"
+#include <queue>
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
@@ -36,7 +37,11 @@ public:
     //
     // Contrat :
     //
+	void execute();
 
+	void undo();
+
+	void redo();
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeCreationLigne & operator = ( const CommandeCreationLigne & unCommandeCreationLigne );
@@ -53,7 +58,7 @@ public:
     // Contrat :
     //
 
-    CommandeCreationLigne ( );
+    CommandeCreationLigne (queue < string *> para, ObjetGeometrique *leContexte);
     // Mode d'emploi :
     //
     // Contrat :

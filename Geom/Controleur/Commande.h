@@ -31,8 +31,7 @@ class Commande
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    bool isHistorisable();
-    // Mode d'emploi :
+    bool IsOk();
     //
     // Contrat :
     //
@@ -80,8 +79,9 @@ protected:
 //----------------------------------------------------- Attributs protégés
     ObjetGeometrique *contexte;
     bool status;
-    bool historisable;
     string texteCommande;
+
+    static const string CHAINE_PARA_INVALIDE;
 };
 
 //--------------------------- Autres définitions dépendantes de <Commande>

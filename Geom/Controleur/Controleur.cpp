@@ -80,11 +80,10 @@ void Controleur::traitementCommande ( )
 
 			if (laCommande)
 			{
-				laCommande->execute();
-
-				//Historisation des commandes
-				if(laCommande->isHistorisable())
+				if(laCommande->IsOk())
 				{
+					laCommande->execute();
+
 					while(!commandesHistorique.empty())
 					{
 						commandesHistorique.pop();
