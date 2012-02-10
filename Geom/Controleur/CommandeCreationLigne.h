@@ -80,6 +80,8 @@ protected:
     int x2;
     int y1;
     int y2;
+private:
+    static const int TAILLE_COMMANDE_LIGNE = 5;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationLigne>

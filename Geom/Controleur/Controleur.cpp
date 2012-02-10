@@ -161,7 +161,8 @@ string Controleur::Defaire()
 	if (!commandesExec.empty())
 	{
 		Commande *laCommande = NULL;
-		laCommande = commandesExec.pop();
+		laCommande = commandesExec.top();
+		commandesHistorique.pop();
 		laCommande->undo();
 		commandesHistorique.push(laCommande);
 		msg = "OK UNDO";
@@ -180,7 +181,8 @@ string Controleur::Refaire()
 	if (!commandesHistorique.empty())
 	{
 		Commande *laCommande = NULL;
-		laCommande = commandesHistorique.pop();
+		laCommande = commandesHistorique.top();
+		commandesHistorique.pop();
 		laCommande->redo();
 		commandesExec.push(laCommande);
 		msg = "OK REDO";
