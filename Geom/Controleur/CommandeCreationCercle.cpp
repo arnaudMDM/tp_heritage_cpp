@@ -1,14 +1,12 @@
 /*************************************************************************
-                           CommandeCreationCercle  -  description
-                             -------------------
-    début                : 3 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeCreationCercle  -  description
+ -------------------
+ début                : 3 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <CommandeCreationCercle> (fichier CommandeCreationCercle.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
@@ -27,28 +25,29 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void CommandeCreationCercle::execute()
+void CommandeCreationCercle::execute ( )
 {
-	if(status)
+	if (status)
 	{
-		element = new Cercle(x1,y1,rayon);
+		element = new Cercle(x1, y1, rayon);
 		contexte->AjouterEltGeom(element);
 	}
 }
 
-void CommandeCreationCercle::undo()
+void CommandeCreationCercle::undo ( )
 {
-	if(status)
+	if (status)
 	{
 		contexte->SupprimerEltParticulier(element);
 		contexte->Deselectionner();
-		cout<<"Cet élément : "<<element->Description()<<" vient d'etre dépilé"<<endl;
+		cout << "Cet élément : " << element->Description()
+				<< " vient d'etre dépilé" << endl;
 	}
 }
 
-void CommandeCreationCercle::redo()
+void CommandeCreationCercle::redo ( )
 {
-	if(status)
+	if (status)
 	{
 		contexte->AjouterEltGeom(element);
 		contexte->Deselectionner();
@@ -72,71 +71,66 @@ void CommandeCreationCercle::redo()
 //#endif
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
-
-CommandeCreationCercle::CommandeCreationCercle (queue < string *> para, ObjetGeometrique *leContexte) : CommandeCreation(leContexte)
+CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
+		ObjetGeometrique *leContexte ) :
+		CommandeCreation(leContexte)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
+	cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
-    if(para.size() == 3)
-    {
-    	texteCommande.append("C ");
-		x1 = atoi(para.front()->c_str());
-		texteCommande.append(*para.front());
-		texteCommande.append(" ");
-		para.pop();
 
-		y1 = atoi(para.front()->c_str());
-		texteCommande.append(*para.front());
-		texteCommande.append(" ");
-		para.pop();
+	string tmp("C");
+	for (vector<string *>::iterator it = para.begin(); it == para.end(); it++)
+	{
+		tmp.append(" ");
+		tmp.append((*it)->c_str());
+	}
+
+	if (para.size() == 3)
+	{
+		x1 = atoi((para.at(0))->c_str());
+
+		y1 = atoi((para.at(1))->c_str());
 
 		int rayonTemporaire;
-		rayonTemporaire= atoi(para.front()->c_str());
-		texteCommande.append(*para.front());
-		texteCommande.append("\n");
-		para.pop();
+		rayonTemporaire = atoi((para.at(2))->c_str());
 		// Le rayon ne peut pas etre négatif
-		if(rayonTemporaire >= 1)
+		if (rayonTemporaire >= 1)
 		{
 			rayon = rayonTemporaire;
+			tmp.append(" OK");
+			tmp.append("\n");
 		}
 		else
 		{
-			string temp("ERR ");
-			temp.append(texteCommande);
-			temp.append(CHAINE_PARA_INVALIDE);
-			texteCommande = temp;
+			tmp.append("\n");
 			status = false;
 		}
-    }
-    else
-    {
-    	texteCommande.append("ERR C");
-    	while(!para.empty())
-    	{
-    		texteCommande.append(" ");
-    		texteCommande.append(*para.front());
-    		para.pop();
-    	}
-    	texteCommande.append(CHAINE_PARA_INVALIDE);
-        status = false;
-    }
+	}
+	else
+	{
+		status = false;
+	}
+
+	if (!status)
+	{
+		texteCommande.append("Err");
+		texteCommande.append(tmp);
+		texteCommande.append(CHAINE_PARA_INVALIDE);
+	}
 
 } //----- Fin de CommandeCreationCercle
-
 
 CommandeCreationCercle::~CommandeCreationCercle ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <CommandeCreationCercle>" << endl;
+	cout << "Appel au destructeur de <CommandeCreationCercle>" << endl;
 #endif
 } //----- Fin de ~CommandeCreationCercle
-
 
 //------------------------------------------------------------------ PRIVE
 

@@ -1,43 +1,26 @@
 Bienvenue dans le programme Geom.
 Veuilliez saisir votre commande : 
-C 1 1 10
 C 1 1 10 OK
-C 1 1
 ERR C 1 1
 #invalid parameters
-R 2 2 6 6
 R 2 2 6 6 OK
-L 2 3 4 6
 L 2 3 4 6 OK
-PL 4 4 5 5 8 8 9 9
 PL 4 4 5 5 8 8 9 9 OK
-SEL 0 0 100 100
 4
-MOVE 10 10
 OK MOVE 10 10
-LIST 
 C 11 11 20
 R 12 12 16 16
 L 12 13 14 16
 PL 14 14 15 15 18 18 19 19
-UNDO
 OK UNDO
-LIST
 C 1 1 10
 R 2 2 6 6
 L 2 3 4 6
 PL 4 4 5 5 8 8 9 9
-REDO
 OK REDO
-SAVE modele.txt
 OK SAVE modele.txt
-CLEAR
 OK CLEAR
-COUNT
 0
-LOAD modele.txt
 OK LOAD modele.txt
-COUNT
 4
-EXIT
 Exit non implémenté (nettoyage nécessaire) 

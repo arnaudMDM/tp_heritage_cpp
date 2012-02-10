@@ -60,7 +60,7 @@ CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreati
 //} //----- Fin de CommandeCreationLigne (constructeur de copie)
 
 
-CommandeCreationLigne::CommandeCreationLigne (queue < string *> para, ObjetGeometrique *leContexte) :
+CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
@@ -68,6 +68,7 @@ CommandeCreationLigne::CommandeCreationLigne (queue < string *> para, ObjetGeome
 #ifdef MAP
     cout << "Appel au constructeur de <CommandeCreationLigne>" << endl;
 #endif
+
 } //----- Fin de CommandeCreationLigne
 
 

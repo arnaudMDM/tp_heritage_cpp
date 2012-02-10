@@ -58,7 +58,7 @@ public:
 //    // Contrat :
 //    //
 
-    CommandeCreationCercle (queue < string *> para, ObjetGeometrique *unContexte);
+    CommandeCreationCercle (vector < string *> para, ObjetGeometrique *unContexte);
     // Mode d'emploi :
     //
     // Contrat :

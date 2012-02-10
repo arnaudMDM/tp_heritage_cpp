@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    CommandeCreationLigne (queue < string *> para, ObjetGeometrique *leContexte);
+    CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte);
     // Mode d'emploi :
     //
     // Contrat :
@@ -76,7 +76,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    int x1;
+    int x2;
+    int y1;
+    int y2;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationLigne>

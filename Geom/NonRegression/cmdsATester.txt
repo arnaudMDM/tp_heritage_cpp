@@ -1,0 +1,19 @@
+C 1 1 10
+
+C 1 1
+
+R 2 2 6 6
+L 2 3 4 6
+PL 4 4 5 5 8 8 9 9
+SEL 0 0 100 100
+MOVE 10 10
+LIST 
+UNDO
+LIST
+REDO
+SAVE modele.txt
+CLEAR
+COUNT
+LOAD modele.txt
+COUNT
+EXIT
