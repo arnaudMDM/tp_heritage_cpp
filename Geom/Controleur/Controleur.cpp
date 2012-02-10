@@ -101,7 +101,7 @@ void Controleur::traitementCommande ( )
 					}
 					commandesExec.push(laCommande);
 				}
-				cout<<laCommande->getTexteCommande();
+				cout<<laCommande->getTexteCommande()<<endl;
 			}
 			else
 			{
@@ -247,14 +247,14 @@ string Controleur::Save()
 		temp += " ";
 		temp += **it;
 	}
-	reponse += temp
+	reponse += temp;
 
 	if(parametres.size() != 2)
 	{
 		return reponse;
 	}
 
-	fstream fichier (parametres.at(1), fstream::in || fstream::app);
+	fstream fichier (parametres.at(1)->c_str(), fstream::in | fstream::app);
 
 	if(!fichier.is_open())
 	{
@@ -265,7 +265,7 @@ string Controleur::Save()
 
 	fichier.close();
 
-	if(fichier.fail)
+	if(fichier.fail())
 	{
 		return reponse;
 	}

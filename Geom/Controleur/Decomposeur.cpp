@@ -23,7 +23,6 @@ using namespace std;
 
 //---------------------------------------------------- Variables statiques
 static const int MAXSIZE = 10000;
-static const char DELIM = '\n';
 //------------------------------------------------------ Fonctions privées
 //static type nom ( liste de paramètres )
 // Mode d'emploi :
