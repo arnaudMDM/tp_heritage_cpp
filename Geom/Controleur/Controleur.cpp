@@ -12,6 +12,8 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <typeinfo>
+#include <ctype.h>
+#include <cstdlib>
 
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
@@ -196,6 +198,30 @@ string Controleur::Selectionner()
 // Algorithme :
 //
 {
+	vector<int> nombres = NULL;
+	bool valide = true;
+	int n = 0;
+	if(parametres.size() == 5)
+	{
+		parametres.pop();
+		while(parametres.size() > 0)
+		{
+
+			string temp = parametres.front ( );
+
+			while(n < temp.size() || valide == false)
+			{
+			if ( !isdigit ( temp.at(n) ) )
+				{
+					valide = false;
+				}
+			n +=1;
+			}
+			nombres.push_back(atoi(temp.c_str()));
+			parametres.pop();
+		}
+
+	}
 
 
 } //----- Fin de Méthode
