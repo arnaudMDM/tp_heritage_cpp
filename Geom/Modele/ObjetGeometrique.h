@@ -51,7 +51,7 @@ public:
     // Contrat :
     //
 
-	int NbElts();
+	int NbEltsTotals();
     // Mode d'emploi :
     //
     // Contrat :
