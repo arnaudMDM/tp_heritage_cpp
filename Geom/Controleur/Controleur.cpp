@@ -194,22 +194,26 @@ string Controleur::Refaire()
 	return msg;
 }
 
-string Controleur::Selectionner()
+int Controleur::Selectionner()
 // Algorithme :
 //
 {
 	vector<int> nombres = NULL;
 	bool valide = true;
 	int n = 0;
-	if(parametres.size() == 5)
+	string reponse = -1;
+
+	parametres.pop();
+
+	if(parametres.size() == 4)
 	{
-		parametres.pop();
-		while(parametres.size() > 0)
+
+		while(!parametres.empty() || !valide)
 		{
 
 			string temp = parametres.front ( );
 
-			while(n < temp.size() || valide == false)
+			while(n < temp.size() || !valide)
 			{
 			if ( !isdigit ( temp.at(n) ) )
 				{
@@ -220,7 +224,15 @@ string Controleur::Selectionner()
 			nombres.push_back(atoi(temp.c_str()));
 			parametres.pop();
 		}
+	}
 
+	if (!valide)
+	{
+		return reponse;
+	}
+	else
+	{
+		return contexte->SelectionnerElts(nombres.at(0),nombres.at(1),nombres.at(2),nombres.at(3));
 	}
 
 
