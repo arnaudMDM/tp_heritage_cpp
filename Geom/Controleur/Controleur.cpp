@@ -200,8 +200,6 @@ string Controleur::Selectionner()
 //
 {
 	vector<int> nombres;
-	bool valide = true;
-	int n = 0;
 	string reponse;
 	ostringstream os;
 	for(vector<string*>::iterator it = parametres.begin() ; it != parametres.end() ; it++)
@@ -214,26 +212,20 @@ string Controleur::Selectionner()
 	if(parametres.size() == 5)
 	{
 		vector<string*>::iterator it = parametres.begin();
-		while(it != parametres.end() || !valide)
+		while(it != parametres.end())
 		{
 			if(!IsDigit(**it))
 			{
-				valide = false;
+				return reponse;
 			}
 			nombres.push_back(atoi((*it)->c_str()));
 			it++;
 		}
 	}
 
-	if (!valide)
-	{
-		return reponse;
-	}
-	else
-	{
+
 		os << contexte->SelectionnerElts(nombres.at(0),nombres.at(1),nombres.at(2),nombres.at(3));
 		return os.str();
-	}
 
 
 } //----- Fin de Méthode
