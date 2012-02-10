@@ -42,7 +42,7 @@ void CommandeCreationCercle::undo()
 void CommandeCreationCercle::redo()
 {
 	contexte->AjouterEltGeom(element);
-	contexte->
+	contexte->Deselectionner();
 }
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )
