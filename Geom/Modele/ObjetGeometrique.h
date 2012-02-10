@@ -63,7 +63,13 @@ public:
     // Contrat :
     //
 
-    void SupprimerElts();
+    void SupprimerEltsSelectionnes();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void Deselectionner ( );
     // Mode d'emploi :
     //
     // Contrat :

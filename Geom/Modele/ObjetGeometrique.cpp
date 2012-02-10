@@ -66,17 +66,24 @@ void ObjetGeometrique::SupprimerTousElts ( )
 	listeEltsGeomSelect.clear ( );
 } //----- Fin de Méthode
 
-void ObjetGeometrique::SupprimerElts ( )
+void ObjetGeometrique::SupprimerEltsSelectionnes ( )
 // Algorithme : méthode qui enlèvent de la liste des élémentsGéométriques totals
 // et de la liste des élémentsGéométriques sélectionnés les élémentsGéométriques sélectionnés
 //
 {
-	cout << "Attention comportement louche ici" << endl;
 	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin ( );
 	        it != listeEltsGeomSelect.end ( ); it++ )
 	{
 		listeEltsGeomTotal.erase ( it );
 	}
+	listeEltsGeomSelect.clear ( );
+} //----- Fin de Méthode
+
+void ObjetGeometrique::Deselectionner ( )
+// Algorithme : méthode qui enlèvent de la liste des élémentsGéométriques totals
+// et de la liste des élémentsGéométriques sélectionnés les élémentsGéométriques sélectionnés
+//
+{
 	listeEltsGeomSelect.clear ( );
 } //----- Fin de Méthode
 
