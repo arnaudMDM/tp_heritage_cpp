@@ -91,6 +91,7 @@ void Controleur::traitementCommande ( )
 					}
 					commandesExec.push(laCommande);
 				}
+				cout<<laCommande->getTexteCommande();
 			}
 			else
 			{

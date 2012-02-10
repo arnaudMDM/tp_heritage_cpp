@@ -70,12 +70,35 @@ CommandeCreationCercle::CommandeCreationCercle (queue < string *> para, ObjetGeo
 #ifdef MAP
     cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
-    x1 = atoi(para.front()->c_str());
-    para.pop();
-    y1 = atoi(para.front()->c_str());
-    para.pop();
-    rayon = atoi(para.front()->c_str());
-    para.pop();
+    if(para.size() == 3)
+    {
+    	texteCommande.append("C ");
+		x1 = atoi(para.front()->c_str());
+		texteCommande.append(*para.front());
+		texteCommande.append(" ");
+		para.pop();
+		y1 = atoi(para.front()->c_str());
+		texteCommande.append(*para.front());
+		texteCommande.append(" ");
+		para.pop();
+		rayon = atoi(para.front()->c_str());
+		texteCommande.append(*para.front());
+		texteCommande.append("\n");
+		para.pop();
+    }
+    else
+    {
+    	texteCommande.append("ERR C");
+    	while(!para.empty())
+    	{
+    		texteCommande.append(" ");
+    		texteCommande.append(*para.front());
+    		para.pop();
+    	}
+    	texteCommande.append("\n#invalid parameters");
+        status = false;
+    }
+
 } //----- Fin de CommandeCreationCercle
 
 

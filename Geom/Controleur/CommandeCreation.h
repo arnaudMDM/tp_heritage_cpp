@@ -57,7 +57,7 @@ public:
 //    // Contrat :
 //    //
 
-    CommandeCreation (ObjetGeometrique *contexte);
+    CommandeCreation (ObjetGeometrique *unContexte);
     // Mode d'emploi :
     //
     // Contrat :

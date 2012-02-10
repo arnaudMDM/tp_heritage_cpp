@@ -37,6 +37,8 @@ public:
     // Contrat :
     //
 
+    string getTexteCommande();
+
 	virtual void execute() = 0;
 
 	virtual void undo() = 0;
@@ -58,7 +60,7 @@ public:
     // Contrat :
     //
 
-    Commande (ObjetGeometrique *context , bool statusHistorique);
+    Commande (ObjetGeometrique *nouveauContexte , bool statusHistorique);
     // Mode d'emploi :
     //
     // Contrat :
@@ -79,7 +81,7 @@ protected:
     ObjetGeometrique *contexte;
     bool status;
     bool historisable;
-    string commande;
+    string texteCommande;
 };
 
 //--------------------------- Autres définitions dépendantes de <Commande>

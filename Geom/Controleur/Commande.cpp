@@ -28,6 +28,10 @@ bool Commande::isHistorisable()
 	return historisable;
 } //----- Fin de Méthode
 
+string Commande::getTexteCommande()
+{
+	return texteCommande;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Commande & Commande::operator = ( const Commande & unCommande )
@@ -48,8 +52,8 @@ Commande::Commande ( const Commande & unCommande )
 } //----- Fin de Commande (constructeur de copie)
 
 
-Commande::Commande (ObjetGeometrique *context, bool statusHistorique) :
-		contexte(context), status(true), historisable(statusHistorique)
+Commande::Commande (ObjetGeometrique *nouveauContexte, bool statusHistorique) :
+		contexte(nouveauContexte), status(true), historisable(statusHistorique)
 // Algorithme :
 //
 {
