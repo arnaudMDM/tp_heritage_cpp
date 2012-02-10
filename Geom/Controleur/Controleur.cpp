@@ -12,13 +12,13 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <typeinfo>
-#include <cctype>
 #include <cstdlib>
 
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
 #include "Decomposeur.h"
 #include "CommandeFactory.h"
+#include "Modele\Service.h"
 
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes
@@ -199,34 +199,28 @@ string Controleur::Selectionner()
 // Algorithme :
 //
 {
-	vector<int> nombres = NULL;
+	vector<int> nombres;
 	bool valide = true;
 	int n = 0;
 	string reponse;
 	ostringstream os;
 	for(vector<string*>::iterator it = parametres.begin() ; it != parametres.end() ; it++)
 	{
-		reponse += (*it);
+		reponse += **it;
 		reponse += " ";
 	}
 
 
 	if(parametres.size() == 5)
 	{
-		vector<string*> it = parametres.begin()+1;
+		vector<string*>::iterator it = parametres.begin();
 		while(it != parametres.end() || !valide)
 		{
-			string temp = parametres.front ( );
-
-			while(n < temp.size() || !valide)
+			if(!IsDigit(**it))
 			{
-			if ( !isdigit ( temp.at(n) ) )
-				{
-					valide = false;
-				}
-			n +=1;
+				valide = false;
 			}
-			nombres.push_back(atoi(temp.c_str()));
+			nombres.push_back(atoi((*it)->c_str()));
 			it++;
 		}
 	}
