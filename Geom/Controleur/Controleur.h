@@ -14,6 +14,7 @@
 //-------------------------------------------------------- Include système
 #include <string>
 #include <stack>
+#include <vector>
 //--------------------------------------------------- Interfaces utilisées
 #include "../Modele/ObjetGeometrique.h"
 #include "Commande.h"
@@ -74,7 +75,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     bool quitter;
-    queue < string *> parametres;
+    vector < string *> parametres;
     ObjetGeometrique *contexte;
     stack < Commande *> commandesExec;
     stack < Commande *> commandesHistorique;
@@ -86,7 +87,7 @@ private:
 
     string Refaire();
 
-    int Selectionner();
+    string Selectionner();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

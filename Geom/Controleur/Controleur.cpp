@@ -151,8 +151,7 @@ Controleur::~Controleur ( )
 void Controleur::ViderParametres()
 {
     //Vidage des paramètres
-    while(!parametres.empty()){
-        parametres.pop();
+	parametres.clear();
     }
 }
 
@@ -194,16 +193,20 @@ string Controleur::Refaire()
 	return msg;
 }
 
-int Controleur::Selectionner()
+string Controleur::Selectionner()
 // Algorithme :
 //
 {
 	vector<int> nombres = NULL;
 	bool valide = true;
 	int n = 0;
-	string reponse = -1;
+	string reponse;
+	for(vector<string*>::iterator it = parametres.begin() ; it != parametres.end() ; it++)
+	{
+		reponse += (*it);
+		reponse += " ";
+	}
 
-	parametres.pop();
 
 	if(parametres.size() == 4)
 	{
@@ -222,7 +225,7 @@ int Controleur::Selectionner()
 			n +=1;
 			}
 			nombres.push_back(atoi(temp.c_str()));
-			parametres.pop();
+			parametres.pop_back();
 		}
 	}
 

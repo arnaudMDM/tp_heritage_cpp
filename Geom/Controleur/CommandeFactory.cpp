@@ -37,7 +37,7 @@ static const string COMMANDE_MOVE = "MOVE";
 //{
 //} //----- Fin de Méthode
 
-bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
+bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande,
 		ObjetGeometrique *contexte)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
@@ -47,7 +47,6 @@ bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
 	bool status = true;
 
 	string commande = *para.front();
-	para.pop();
 
 #ifdef MAP
 	cout << commande << endl;

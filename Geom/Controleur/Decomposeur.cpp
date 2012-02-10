@@ -37,7 +37,7 @@ static const char DELIM = '\n';
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-void LireCommande(queue<string *> &parametres)
+void LireCommande(vector<string *> &parametres)
 // Algorithme :
 //
 {
@@ -48,7 +48,7 @@ void LireCommande(queue<string *> &parametres)
 
 	while(flux>>buffer)
 	{
-		parametres.push(new string(buffer));
+		parametres.push_back(new string(buffer));
 	}
 	cin.clear();
 	cin.seekg(0,ios::end);
