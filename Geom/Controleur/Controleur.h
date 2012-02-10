@@ -82,9 +82,9 @@ protected:
 private:
     void viderParametres();
 
-    void undo();
+    void defaire();
 
-    void redo();
+    void refaire();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

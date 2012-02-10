@@ -48,8 +48,8 @@ void Controleur::traitementCommande ( )
 		}else if (commande->find(COMMANDE_LISTE) != string::npos)
 		{
 			cout << "tentative de listage non implémenté! " << endl;
-	//		string temp = contexte->DescriptionEltsTotal();
-	//		cout << temp << endl;
+			string temp = contexte->DescriptionEltsTotal();
+			cout << temp << endl;
 		}
 		else if (commande->find(COMMANDE_COUNT) != string::npos)
 		{
@@ -138,7 +138,7 @@ void Controleur::viderParametres()
     }
 }
 
-void Controleur::undo()
+void Controleur::defaire()
 {
 	cout<<"Undo"<<endl;
 	if (!commandesExec.empty())
@@ -151,7 +151,7 @@ void Controleur::undo()
 	}
 }
 
-void Controleur::redo()
+void Controleur::refaire()
 {
 	cout<<"Redo"<<endl;
 	if (!commandesHistorique.empty())
