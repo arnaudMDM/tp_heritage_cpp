@@ -12,7 +12,7 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <typeinfo>
-#include <ctype.h>
+#include <cctype>
 #include <cstdlib>
 
 //------------------------------------------------------ Include personnel
@@ -201,6 +201,7 @@ string Controleur::Selectionner()
 	bool valide = true;
 	int n = 0;
 	string reponse;
+	ostringstream os;
 	for(vector<string*>::iterator it = parametres.begin() ; it != parametres.end() ; it++)
 	{
 		reponse += (*it);
@@ -208,12 +209,11 @@ string Controleur::Selectionner()
 	}
 
 
-	if(parametres.size() == 4)
+	if(parametres.size() == 5)
 	{
-
-		while(!parametres.empty() || !valide)
+		vector<string*> it = parametres.begin()+1;
+		while(it != parametres.end() || !valide)
 		{
-
 			string temp = parametres.front ( );
 
 			while(n < temp.size() || !valide)
@@ -225,7 +225,7 @@ string Controleur::Selectionner()
 			n +=1;
 			}
 			nombres.push_back(atoi(temp.c_str()));
-			parametres.pop_back();
+			it++;
 		}
 	}
 
@@ -235,7 +235,8 @@ string Controleur::Selectionner()
 	}
 	else
 	{
-		return contexte->SelectionnerElts(nombres.at(0),nombres.at(1),nombres.at(2),nombres.at(3));
+		os << contexte->SelectionnerElts(nombres.at(0),nombres.at(1),nombres.at(2),nombres.at(3));
+		return os.str();
 	}
 
 
