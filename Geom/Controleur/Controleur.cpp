@@ -13,6 +13,7 @@ using namespace std;
 #include <sstream>
 #include <typeinfo>
 #include <cstdlib>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
@@ -201,10 +202,11 @@ string Controleur::Selectionner()
 	vector<int> nombres;
 	string reponse;
 	ostringstream os;
+	reponse ="ERR ";
 	for(vector<string*>::iterator it = parametres.begin() ; it != parametres.end() ; it++)
 	{
-		reponse += **it;
 		reponse += " ";
+		reponse += **it;
 	}
 
 
@@ -226,9 +228,50 @@ string Controleur::Selectionner()
 		os << contexte->SelectionnerElts(nombres.at(0),nombres.at(1),nombres.at(2),nombres.at(3));
 		return os.str();
 
-
 } //----- Fin de Méthode
 
+string Controleur::Save()
+// Algorithme :
+//
+{
+	string reponse;
+	reponse ="ERR";
+	string temp;
+	for(vector<string*>::iterator it = parametres.begin() ; it != parametres.end() ; it++)
+	{
+		temp += " ";
+		temp += **it;
+	}
+	reponse += temp
+
+	if(parametres.size() != 2)
+	{
+		return reponse;
+	}
+
+	fstream fichier (parametres.at(1), fstream::in || fstream::app);
+
+	if(!fichier.is_open())
+	{
+		return reponse;
+	}
+
+	fichier.write(contexte->DescriptionEltsTotal().c_str(),contexte->DescriptionEltsTotal().size());
+
+	fichier.close();
+
+	if(fichier.fail)
+	{
+		return reponse;
+	}
+
+	reponse = "OK";
+	reponse += temp;
+	return reponse;
+
+	contexte->Deselectionner();
+
+} //----- Fin de Méthode
 
 //----------------------------------------------------- Méthodes protégées
 

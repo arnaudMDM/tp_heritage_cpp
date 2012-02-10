@@ -88,6 +88,8 @@ private:
     string Refaire();
 
     string Selectionner();
+
+    string Save();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>
