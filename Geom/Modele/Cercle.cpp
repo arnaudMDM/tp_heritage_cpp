@@ -116,7 +116,7 @@ Cercle::Cercle ( )
 } //----- Fin de Cercle
 
 
-Cercle::Cercle (int x, int y, int unRayon): rayon(unRayon),centre(x,y)
+Cercle::Cercle (int x, int y, int unRayon):rayon(unRayon),centre(x,y)
 // Algorithme :
 //
 {

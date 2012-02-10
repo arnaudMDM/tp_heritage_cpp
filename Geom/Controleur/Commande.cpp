@@ -32,22 +32,22 @@ string Commande::getTexteCommande()
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-Commande & Commande::operator = ( const Commande & unCommande )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+//Commande & Commande::operator = ( const Commande & unCommande )
+//// Algorithme :
+////
+//{
+//} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Commande::Commande ( const Commande & unCommande )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Commande>" << endl;
-#endif
-} //----- Fin de Commande (constructeur de copie)
+//Commande::Commande ( const Commande & unCommande )
+//// Algorithme :
+////
+//{
+//#ifdef MAP
+//    cout << "Appel au constructeur de copie de <Commande>" << endl;
+//#endif
+//} //----- Fin de Commande (constructeur de copie)
 
 
 Commande::Commande (ObjetGeometrique *nouveauContexte, bool statusHistorique) :

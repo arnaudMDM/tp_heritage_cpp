@@ -95,12 +95,12 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 	return status;
 }
 //------------------------------------------------- Surcharge d'opérateurs
-CommandeFactory & CommandeFactory::operator = (
-		const CommandeFactory & unCommandeFactory )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+//CommandeFactory & CommandeFactory::operator = (
+//		const CommandeFactory & unCommandeFactory )
+//// Algorithme :
+////
+//{
+//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
 CommandeFactory::CommandeFactory ( const CommandeFactory & unCommandeFactory )

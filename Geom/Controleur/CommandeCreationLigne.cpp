@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include "cstdlib"
+#include <cstdlib>
 //------------------------------------------------------ Include personnel
 #include "CommandeCreationLigne.h"
 #include "../Modele/Service.h"
@@ -42,11 +42,11 @@ void CommandeCreationLigne::redo()
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreationLigne & unCommandeCreationLigne )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+//CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreationLigne & unCommandeCreationLigne )
+//// Algorithme :
+////
+//{
+//} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -59,7 +59,7 @@ CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreati
 //#endif
 //} //----- Fin de CommandeCreationLigne (constructeur de copie)
 
-bool IsDigit(string nom);
+
 CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte) :
 		CommandeCreation(leContexte)
 // Algorithme :
