@@ -87,7 +87,7 @@ CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeom
 		}
 	}
 
-	if(para.size() == TAILLE_COMMANDE_LIGNE && sontEntiers)
+	if((para.size() == TAILLE_COMMANDE_LIGNE) && sontEntiers)
 	{
 		x1 = atoi(para.at(1)->c_str());
 		x2 = atoi(para.at(2)->c_str());

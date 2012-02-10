@@ -71,8 +71,7 @@ void CommandeCreationCercle::redo ( )
 //#endif
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
-CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
-		ObjetGeometrique *leContexte ) :
+CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeometrique *leContexte ) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
@@ -82,20 +81,20 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
 #endif
 
 	string tmp("C");
-	for (vector<string *>::iterator it = para.begin(); it == para.end(); it++)
+
+	for (unsigned int i = 1; i < para.size(); i++)
 	{
 		tmp.append(" ");
-		tmp.append((*it)->c_str());
+		tmp.append(*(para.at(i)));
 	}
-
-	if (para.size() == 3)
+	if (para.size() == TAILLE_COMMANDE_CERCLE)
 	{
-		x1 = atoi((para.at(0))->c_str());
+		x1 = atoi((para.at(1))->c_str());
 
-		y1 = atoi((para.at(1))->c_str());
+		y1 = atoi((para.at(2))->c_str());
 
 		int rayonTemporaire;
-		rayonTemporaire = atoi((para.at(2))->c_str());
+		rayonTemporaire = atoi((para.at(3))->c_str());
 		// Le rayon ne peut pas etre négatif
 		if (rayonTemporaire >= 1)
 		{
@@ -116,9 +115,14 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
 
 	if (!status)
 	{
-		texteCommande.append("Err");
+		texteCommande.append("Err ");
 		texteCommande.append(tmp);
 		texteCommande.append(CHAINE_PARA_INVALIDE);
+		texteCommande.append("\n");
+	}
+	else
+	{
+		texteCommande.append(tmp);
 	}
 
 } //----- Fin de CommandeCreationCercle

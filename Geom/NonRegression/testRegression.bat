@@ -13,7 +13,7 @@ set res="resultatTestRegression.txt"
 
 cd ../Debug/
 
-Geom.exe >../NonRegression/%redirectionSortie% <../NonRegression/%redirectionEntree%
+Geom.exe  <../NonRegression/%redirectionEntree% >../NonRegression/%redirectionSortie%
 cd ../NonRegression/
 @echo off
 fc /C %redirectionSortie% %fichierAComparer% | findstr "aucune diff"

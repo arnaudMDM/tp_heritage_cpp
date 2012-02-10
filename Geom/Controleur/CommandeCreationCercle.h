@@ -79,6 +79,8 @@ protected:
     int x1;
     int y1;
     int rayon;
+private:
+    static const unsigned int TAILLE_COMMANDE_CERCLE = 4;
 
 };
 

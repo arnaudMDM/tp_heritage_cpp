@@ -22,7 +22,7 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //---------------------------------------------------- Variables statiques
-static const int MAXSIZE = 100;
+static const int MAXSIZE = 10000;
 static const char DELIM = '\n';
 //------------------------------------------------------ Fonctions privées
 //static type nom ( liste de paramètres )
@@ -43,14 +43,16 @@ void LireCommande(vector<string *> &parametres)
 {
 	stringstream flux;
 	char *buffer = new char[MAXSIZE];
-	cin.get(buffer, MAXSIZE, DELIM);
-	flux<<buffer;
+	string temp;
+	getline(cin,temp);
+
+	flux<<temp;
 
 	while(flux>>buffer)
 	{
 		parametres.push_back(new string(buffer));
 	}
-	cin.clear();
-	cin.seekg(0,ios::end);
+//	cin.clear();
+//	cin.seekg(0,ios::end);
 
 } //----- fin de Nom
