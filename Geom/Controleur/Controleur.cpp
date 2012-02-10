@@ -21,6 +21,11 @@ using namespace std;
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_EXIT = "EXIT";
+static const string COMMANDE_LISTE = "LIST";
+static const string COMMANDE_COUNT = "COUNT";
+static const string COMMANDE_UNDO = "UNDO";
+static const string COMMANDE_REDO = "REDO";
+static const char COMMANDE_SEL = 'S';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -33,17 +38,39 @@ void Controleur::traitementCommande ( )
 		LireCommande(parametres);
 
 		Commande *laCommande;
+		string *commande = parametres.front();
 
 		//Traitement particulier dans le cas du exit
-		if (parametres.front()->find(COMMANDE_EXIT) != string::npos)
+		if (commande->find(COMMANDE_EXIT) != string::npos)
 		{
 			cout<<"Exit non implémenté (nettoyage nécessaire) "<<endl;
 			quitter = true;
+		}else if (commande->find(COMMANDE_LISTE) != string::npos)
+		{
+			cout << "tentative de listage non implémenté! " << endl;
+	//		string temp = contexte->DescriptionEltsTotal();
+	//		cout << temp << endl;
+		}
+		else if (commande->find(COMMANDE_COUNT) != string::npos)
+		{
+			cout << "Count non implémenté" << endl;
+		}
+		else if (commande->find(COMMANDE_UNDO) != string::npos)
+		{
+			undo();
+		}
+		else if (commande->find(COMMANDE_REDO) != string::npos)
+		{
+			redo();
+		}
+		else if (commande->at(0) == COMMANDE_SEL && commande->size() == 1)
+		{
+			cout << "Selection non implémenté" << endl;
 		}
 		else
 		{
 			//Récupération de la bonne commande
-			CommandeFactory::GetCommande(parametres, &laCommande, contexte, this);
+			CommandeFactory::GetCommande(parametres, &laCommande, contexte);
 
 			laCommande->execute();
 
@@ -64,31 +91,7 @@ void Controleur::traitementCommande ( )
 
 } //----- Fin de Méthode
 
-void Controleur::undo()
-{
-	cout<<"Undo"<<endl;
-	if (!commandesExec.empty())
-	{
-		Commande *laCommande = NULL;
-		laCommande = commandesExec.front();
-		commandesExec.pop();
-		laCommande->undo();
-		commandesHistorique.push(laCommande);
-	}
-}
 
-void Controleur::redo()
-{
-	cout<<"Redo"<<endl;
-	if (!commandesHistorique.empty())
-	{
-		Commande *laCommande = NULL;
-		laCommande = commandesHistorique.front();
-		commandesHistorique.pop();
-		laCommande->redo();
-		commandesExec.push(laCommande);
-	}
-}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Controleur & Controleur::operator = ( const Controleur & unControleur )
@@ -133,6 +136,32 @@ void Controleur::viderParametres()
     while(!parametres.empty()){
         parametres.pop();
     }
+}
+
+void Controleur::undo()
+{
+	cout<<"Undo"<<endl;
+	if (!commandesExec.empty())
+	{
+		Commande *laCommande = NULL;
+		laCommande = commandesExec.front();
+		commandesExec.pop();
+		laCommande->undo();
+		commandesHistorique.push(laCommande);
+	}
+}
+
+void Controleur::redo()
+{
+	cout<<"Redo"<<endl;
+	if (!commandesHistorique.empty())
+	{
+		Commande *laCommande = NULL;
+		laCommande = commandesHistorique.front();
+		commandesHistorique.pop();
+		laCommande->redo();
+		commandesExec.push(laCommande);
+	}
 }
 //----------------------------------------------------- Méthodes protégées
 

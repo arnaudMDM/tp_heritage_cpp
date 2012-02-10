@@ -39,10 +39,6 @@ public:
     // Contrat :
     //
 
-    void undo();
-
-    void redo();
-
 
 //------------------------------------------------- Surcharge d'opérateurs
     Controleur & operator = ( const Controleur & unControleur );
@@ -85,6 +81,10 @@ protected:
 
 private:
     void viderParametres();
+
+    void undo();
+
+    void redo();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

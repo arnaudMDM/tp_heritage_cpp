@@ -17,19 +17,12 @@ using namespace std;
 #include "CommandeCreationLigne.h"
 #include "CommandeCreationRectangle.h"
 #include "CommandeCreationPoly.h"
-#include "CommandeDirect.h"
-#include "Controleur.h"
 
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_RECTANGLE = "R";
 static const string COMMANDE_CERCLE = "C";
 static const string COMMANDE_LIGNE = "L";
 static const string COMMANDE_POLY = "PL";
-static const string COMMANDE_LISTE = "LIST";
-static const string COMMANDE_COUNT = "COUNT";
-static const string COMMANDE_UNDO = "UNDO";
-static const string COMMANDE_REDO = "REDO";
-static const char COMMANDE_SEL = 'S';
 static const string COMMANDE_LOAD = "LOAD";
 static const string COMMANDE_SAVE = "SAVE";
 static const string COMMANDE_CLEAR = "CLEAR";
@@ -45,7 +38,7 @@ static const string COMMANDE_MOVE = "MOVE";
 //} //----- Fin de Méthode
 
 bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
-		ObjetGeometrique *contexte, Controleur *ctrl )
+		ObjetGeometrique *contexte)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
@@ -59,29 +52,6 @@ bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
 #ifdef MAP
 	cout << commande << endl;
 #endif
-
-	if (commande.find(COMMANDE_LISTE) != string::npos)
-	{
-		cout << "tentative de listage non implémenté! " << endl;
-//		string temp = contexte->DescriptionEltsTotal();
-//		cout << temp << endl;
-	}
-	else if (commande.find(COMMANDE_COUNT) != string::npos)
-	{
-		cout << "Count non implémenté" << endl;
-	}
-	else if (commande.find(COMMANDE_UNDO) != string::npos)
-	{
-		ctrl->undo();
-	}
-	else if (commande.find(COMMANDE_REDO) != string::npos)
-	{
-		ctrl->redo();
-	}
-	else if (commande.at(0) == COMMANDE_SEL && commande.size() == 1)
-	{
-		cout << "Selection non implémenté" << endl;
-	}
 	if (commande.find(COMMANDE_LOAD) != string::npos)
 	{
 		cout << "Load non implémenté" << endl;
