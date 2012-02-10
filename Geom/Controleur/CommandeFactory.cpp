@@ -18,7 +18,7 @@ using namespace std;
 #include "CommandeCreationRectangle.h"
 #include "CommandeCreationPoly.h"
 #include "CommandeDirect.h"
-
+#include "Controleur.h"
 
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_RECTANGLE = "R";
@@ -72,11 +72,11 @@ bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
 	}
 	else if (commande.find(COMMANDE_UNDO) != string::npos)
 	{
-		cout << "undo non implémenté" << endl;
+		ctrl->undo();
 	}
 	else if (commande.find(COMMANDE_REDO) != string::npos)
 	{
-		cout << "redo non implémenté" << endl;
+		ctrl->redo();
 	}
 	else if (commande.at(0) == COMMANDE_SEL && commande.size() == 1)
 	{
