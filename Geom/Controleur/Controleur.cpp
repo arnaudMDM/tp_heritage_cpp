@@ -29,6 +29,7 @@ static const string COMMANDE_COUNT = "COUNT";
 static const string COMMANDE_UNDO = "UNDO";
 static const string COMMANDE_REDO = "REDO";
 static const char COMMANDE_SEL = 'S';
+static const string COMMANDE_SAVE = "SAVE";
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -71,6 +72,10 @@ void Controleur::traitementCommande ( )
 		else if (commande->find(COMMANDE_REDO) != string::npos)
 		{
 			cout<<Refaire()<<endl;
+		}
+		else if (commande->find(COMMANDE_SAVE) != string::npos)
+		{
+			cout<<Save()<<endl;
 		}
 		else if (commande->at(0) == COMMANDE_SEL && commande->size() == 1)
 		{
