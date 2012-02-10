@@ -44,7 +44,7 @@ bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
 //
 // Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
 {
-	bool status = false;
+	bool status = true;
 
 	string commande = *para.front();
 	para.pop();
@@ -75,7 +75,6 @@ bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
 	else if (commande.find(COMMANDE_CERCLE) != string::npos)
 	{
 		*laCommande = new CommandeCreationCercle(para, contexte);
-		status = true;
 	}
 	else if (commande.find(COMMANDE_RECTANGLE) != string::npos)
 	{
@@ -88,6 +87,10 @@ bool CommandeFactory::GetCommande ( queue<string *> para, Commande **laCommande,
 	else if (commande.find(COMMANDE_POLY) != string::npos)
 	{
 		cout << "Poly non implémenté" << endl;
+	}
+	else
+	{
+		status = false;
 	}
 
 	return status;

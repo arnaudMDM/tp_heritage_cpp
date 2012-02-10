@@ -82,9 +82,9 @@ protected:
 private:
     void viderParametres();
 
-    void defaire();
+    string defaire();
 
-    void refaire();
+    string refaire();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

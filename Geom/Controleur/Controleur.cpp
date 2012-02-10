@@ -37,7 +37,13 @@ void Controleur::traitementCommande ( )
 	{
 		LireCommande(parametres);
 
-		Commande *laCommande;
+		Commande *laCommande = NULL;
+
+		//Cas où l'utilisateur a juste fait entrée
+		if(parametres.empty())
+		{
+			continue;
+		}
 		string *commande = parametres.front();
 
 		//Traitement particulier dans le cas du exit
@@ -57,11 +63,11 @@ void Controleur::traitementCommande ( )
 		}
 		else if (commande->find(COMMANDE_UNDO) != string::npos)
 		{
-			undo();
+			cout<<defaire()<<endl;
 		}
 		else if (commande->find(COMMANDE_REDO) != string::npos)
 		{
-			redo();
+			cout<<refaire()<<endl;
 		}
 		else if (commande->at(0) == COMMANDE_SEL && commande->size() == 1)
 		{
@@ -72,16 +78,23 @@ void Controleur::traitementCommande ( )
 			//Récupération de la bonne commande
 			CommandeFactory::GetCommande(parametres, &laCommande, contexte);
 
-			laCommande->execute();
-
-			//Historisation des commandes
-			if(laCommande->isHistorisable())
+			if (laCommande)
 			{
-				while(!commandesHistorique.empty())
+				laCommande->execute();
+
+				//Historisation des commandes
+				if(laCommande->isHistorisable())
 				{
-					commandesHistorique.pop();
+					while(!commandesHistorique.empty())
+					{
+						commandesHistorique.pop();
+					}
+					commandesExec.push(laCommande);
 				}
-				commandesExec.push(laCommande);
+			}
+			else
+			{
+				cout<<"Commande inconnue"<<endl;
 			}
 		}
 
@@ -138,9 +151,9 @@ void Controleur::viderParametres()
     }
 }
 
-void Controleur::defaire()
+string Controleur::defaire()
 {
-	cout<<"Undo"<<endl;
+	string msg;
 	if (!commandesExec.empty())
 	{
 		Commande *laCommande = NULL;
@@ -148,12 +161,19 @@ void Controleur::defaire()
 		commandesExec.pop();
 		laCommande->undo();
 		commandesHistorique.push(laCommande);
+		msg = "OK UNDO";
 	}
+	else
+	{
+		msg = "ERR UNDO";
+	}
+
+	return msg;
 }
 
-void Controleur::refaire()
+string Controleur::refaire()
 {
-	cout<<"Redo"<<endl;
+	string msg;
 	if (!commandesHistorique.empty())
 	{
 		Commande *laCommande = NULL;
@@ -161,7 +181,14 @@ void Controleur::refaire()
 		commandesHistorique.pop();
 		laCommande->redo();
 		commandesExec.push(laCommande);
+		msg = "OK REDO";
 	}
+	else
+	{
+		msg = "ERR REDO";
+	}
+
+	return msg;
 }
 //----------------------------------------------------- Méthodes protégées
 
