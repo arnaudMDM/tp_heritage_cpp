@@ -1,4 +1,5 @@
 #include"Service.h"
+#include <cctype>
 
 
 bool Contient(int x1, int y1, int x2, int y2, int x3, int y3)
@@ -11,7 +12,19 @@ bool Contient(int x1, int y1, int x2, int y2, int x3, int y3)
 	return false;
 }
 
-
+bool IsDigit(string nom)
+{
+	int n = 1;
+	while(n < nom.size())
+	{
+	if ( !isdigit ( nom.at(n) ) )
+		{
+			return false;
+		}
+	n +=1;
+	}
+	return true;
+}
 
 
 

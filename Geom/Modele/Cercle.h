@@ -15,7 +15,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "EltGeometrique.h"
-#include "point.h"
+#include "Point.h"
 
 //------------------------------------------------------------- Constantes 
 

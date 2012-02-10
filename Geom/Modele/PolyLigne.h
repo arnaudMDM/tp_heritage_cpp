@@ -13,6 +13,7 @@
 
 //-------------------------------------------------------- Include système
 #include<vector>
+#include<string>
 
 //--------------------------------------------------- Interfaces utilisées
 #include "EltGeometrique.h"

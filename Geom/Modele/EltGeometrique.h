@@ -57,7 +57,7 @@ public:
     // Contrat :
     //
 
-	virtual ~EltGeometrique();
+	//virtual ~EltGeometrique();
 
 //------------------------------------------------------------------ PRIVE 
 

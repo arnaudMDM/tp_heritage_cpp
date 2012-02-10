@@ -18,7 +18,7 @@ using namespace std;
 #include "Controleur.h"
 #include "Decomposeur.h"
 #include "CommandeFactory.h"
-#include "Modele\Service.h"
+#include "..\Modele\Service.h"
 
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes
@@ -153,7 +153,6 @@ void Controleur::ViderParametres()
     //Vidage des paramètres
 	parametres.clear();
     }
-}
 
 string Controleur::Defaire()
 {
