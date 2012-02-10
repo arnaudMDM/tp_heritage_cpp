@@ -21,11 +21,12 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Commande::Méthode ( liste des paramètres )
+bool Commande::isHistorisable()
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+	return historisable;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -47,7 +48,8 @@ Commande::Commande ( const Commande & unCommande )
 } //----- Fin de Commande (constructeur de copie)
 
 
-Commande::Commande (ObjetGeometrique *context) : contexte(context)
+Commande::Commande (ObjetGeometrique *context, bool statusHistorique) :
+		contexte(context), status(true), historisable(statusHistorique)
 // Algorithme :
 //
 {

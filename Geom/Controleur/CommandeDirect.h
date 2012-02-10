@@ -1,31 +1,31 @@
 /*************************************************************************
-                           CommandeSelection  -  description
+                           CommandeDirect  -  description
                              -------------------
-    début                : 27 janv. 2012
+    début                : 10 févr. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Interface de la classe <CommandeSelection> (fichier CommandeSelection.h) ------
-#if ! defined ( COMMANDESELECTION_H_ )
-#define COMMANDESELECTION_H_
+//---------- Interface de la classe <CommandeDirect> (fichier CommandeDirect.h) ------
+#if ! defined ( COMMANDEDIRECT_H_ )
+#define COMMANDEDIRECT_H_
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Commande.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <CommandeSelection>
+// Rôle de la classe <CommandeDirect>
 //
 //
 //------------------------------------------------------------------------ 
 
-class CommandeSelection
+class CommandeDirect : public Commande
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,10 +36,14 @@ public:
     //
     // Contrat :
     //
+	void execute();
 
+	void undo();
+
+	void redo();
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeSelection & operator = ( const CommandeSelection & unCommandeSelection );
+    CommandeDirect & operator = ( const CommandeDirect & unCommandeDirect );
     // Mode d'emploi :
     //
     // Contrat :
@@ -47,19 +51,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    CommandeSelection ( const CommandeSelection & unCommandeSelection );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+//    CommandeDirect ( const CommandeDirect & unCommandeDirect );
+//    // Mode d'emploi (constructeur de copie) :
+//    //
+//    // Contrat :
+//    //
 
-    CommandeSelection ( );
+    CommandeDirect (ObjetGeometrique * nouveauContexte, void (*)() );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~CommandeSelection ( );
+    virtual ~CommandeDirect ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,9 +75,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    void (*fct_commande)();
 };
 
-//--------------------------- Autres définitions dépendantes de <CommandeSelection>
+//--------------------------- Autres définitions dépendantes de <CommandeDirect>
 
-#endif // COMMANDESELECTION_H_
+#endif // COMMANDEDIRECT_H_

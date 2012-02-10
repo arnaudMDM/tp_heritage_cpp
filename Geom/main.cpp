@@ -18,8 +18,12 @@ using namespace std;
 
 #include "Controleur/Decomposeur.h"
 
-int main(int args, char *argv[])
+int main ( int args, char *argv[] )
 {
+	cout
+			<< "Bienvenue dans le programme Geom.\nVeuilliez saisir votre commande : "
+			<< endl;
+
 	Controleur ctrl;
 
 	ctrl.traitementCommande();

@@ -11,18 +11,16 @@
 using namespace std;
 #include <iostream>
 #include <sstream>
+#include <typeinfo>
 
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
 #include "Decomposeur.h"
 #include "CommandeFactory.h"
+
+#include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes
-static const string COMMANDE_LISTE = "LIST";
-static const string COMMANDE_COUNT = "COUNT";
 static const string COMMANDE_EXIT = "EXIT";
-static const string COMMANDE_UNDO = "UNDO";
-static const string COMMANDE_REDO = "REDO";
-static const char COMMANDE_SEL = 'S';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -30,71 +28,67 @@ void Controleur::traitementCommande ( )
 // Algorithme :
 //
 {
-	cout
-			<< "Bienvenue dans le programme Geom.\nVeuilliez saisir votre commande : "
-			<< endl;
-
 	while (!quitter)
 	{
 		LireCommande(parametres);
 
-		string nomCommande = *(parametres.front());
 		Commande *laCommande;
-		if (nomCommande.find(COMMANDE_LISTE) != string::npos)
+
+		//Traitement particulier dans le cas du exit
+		if (parametres.front()->find(COMMANDE_EXIT) != string::npos)
 		{
-			cout << "tentative de listage ! " << endl;
-			string temp = contexte->DescriptionEltsTotal();
-			cout << temp << endl;
-		}
-		else if (nomCommande.find(COMMANDE_COUNT) != string::npos)
-		{
-			cout << "Count" << endl;
-		}
-		else if (nomCommande.find(COMMANDE_EXIT) != string::npos)
-		{
-			cout << "Quitter" << endl;
+			cout<<"Exit non implémenté (nettoyage nécessaire) "<<endl;
 			quitter = true;
-		}
-		else if (nomCommande.find(COMMANDE_UNDO) != string::npos)
-		{
-			cout << "Tentative d'un unDo" << endl;
-			if (!commandesExec.empty())
-			{
-				laCommande = commandesExec.front();
-				commandesExec.pop();
-				laCommande->undo();
-				commandesHistorique.push(laCommande);
-			}
-		}
-		else if (nomCommande.find(COMMANDE_REDO) != string::npos)
-		{
-			cout << "Un Redo" << endl;
-			if (!commandesHistorique.empty())
-			{
-				laCommande = commandesHistorique.front();
-				commandesHistorique.pop();
-				laCommande->redo();
-				commandesExec.push(laCommande);
-			}
-		}
-		else if (nomCommande.at(0) == COMMANDE_SEL && nomCommande.size() == 1)
-		{
-			cout << "Selection" << endl;
 		}
 		else
 		{
-			CommandeFactory::GetCommande(parametres, &laCommande, contexte);
+			//Récupération de la bonne commande
+			CommandeFactory::GetCommande(parametres, &laCommande, contexte, this);
+
 			laCommande->execute();
-			commandesExec.push(laCommande);
+
+			//Historisation des commandes
+			if(laCommande->isHistorisable())
+			{
+				while(!commandesHistorique.empty())
+				{
+					commandesHistorique.pop();
+				}
+				commandesExec.push(laCommande);
+			}
 		}
 
-		while (!parametres.empty())
-		{
-			parametres.pop();
-		}
+		//Vidage des paramètres
+	    viderParametres();
 	}
 
 } //----- Fin de Méthode
+
+void Controleur::undo()
+{
+	cout<<"Undo"<<endl;
+	if (!commandesExec.empty())
+	{
+		Commande *laCommande = NULL;
+		laCommande = commandesExec.front();
+		commandesExec.pop();
+		laCommande->undo();
+		commandesHistorique.push(laCommande);
+	}
+}
+
+void Controleur::redo()
+{
+	cout<<"Redo"<<endl;
+	if (!commandesHistorique.empty())
+	{
+		Commande *laCommande = NULL;
+		laCommande = commandesHistorique.front();
+		commandesHistorique.pop();
+		laCommande->redo();
+		commandesExec.push(laCommande);
+	}
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Controleur & Controleur::operator = ( const Controleur & unControleur )
@@ -133,6 +127,12 @@ Controleur::~Controleur ( )
 } //----- Fin de ~Controleur
 
 //------------------------------------------------------------------ PRIVE
-
+void Controleur::viderParametres()
+{
+    //Vidage des paramètres
+    while(!parametres.empty()){
+        parametres.pop();
+    }
+}
 //----------------------------------------------------- Méthodes protégées
 

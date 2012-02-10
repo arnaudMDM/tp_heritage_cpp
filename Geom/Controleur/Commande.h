@@ -31,7 +31,7 @@ class Commande
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    bool isHistorisable();
     // Mode d'emploi :
     //
     // Contrat :
@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    Commande (ObjetGeometrique *context );
+    Commande (ObjetGeometrique *context , bool statusHistorique);
     // Mode d'emploi :
     //
     // Contrat :
@@ -77,6 +77,9 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     ObjetGeometrique *contexte;
+    bool status;
+    bool historisable;
+    string commande;
 };
 
 //--------------------------- Autres définitions dépendantes de <Commande>
