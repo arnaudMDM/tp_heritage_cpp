@@ -13,7 +13,7 @@
 
 //-------------------------------------------------------- Include système
 #include <string>
-#include <queue>
+#include <stack>
 //--------------------------------------------------- Interfaces utilisées
 #include "../Modele/ObjetGeometrique.h"
 #include "Commande.h"
@@ -76,15 +76,17 @@ protected:
     bool quitter;
     queue < string *> parametres;
     ObjetGeometrique *contexte;
-    queue < Commande *> commandesExec;
-    queue < Commande *> commandesHistorique;
+    stack < Commande *> commandesExec;
+    stack < Commande *> commandesHistorique;
 
 private:
-    void viderParametres();
+    void ViderParametres();
 
-    string defaire();
+    string Defaire();
 
-    string refaire();
+    string Refaire();
+
+    string Selectionner();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

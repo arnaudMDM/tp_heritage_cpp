@@ -112,7 +112,7 @@ void ObjetGeometrique::Translater ( int x, int y )
 	}
 } //----- Fin de Méthode
 
-void ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
+int ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 // Algorithme : recherche quels sont les éléments se trouvant à l'intérieur de
 // ce rectangle définit par les deux points de la diagonales. Les éléments qui sont
 // dans ce rectangle devient la nouvelle liste des élémentsGéométriques sélectionnés
@@ -127,6 +127,7 @@ void ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 			listeEltsGeomSelect.push_back ( *it );
 		}
 	}
+	return listeEltsGeomSelect.size();
 } //----- Fin de Méthode
 
 void ObjetGeometrique::AjouterEltGeom ( EltGeometrique *unEltGeometrique )

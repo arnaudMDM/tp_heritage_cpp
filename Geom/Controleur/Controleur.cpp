@@ -53,25 +53,26 @@ void Controleur::traitementCommande ( )
 			quitter = true;
 		}else if (commande->find(COMMANDE_LISTE) != string::npos)
 		{
-			cout << "tentative de listage non implémenté! " << endl;
+			//cout << "tentative de listage non implémenté! " << endl;
 			string temp = contexte->DescriptionEltsTotal();
 			cout << temp << endl;
 		}
 		else if (commande->find(COMMANDE_COUNT) != string::npos)
 		{
-			cout << "Count non implémenté" << endl;
+			cout << contexte->NbEltsTotals() << endl;
 		}
 		else if (commande->find(COMMANDE_UNDO) != string::npos)
 		{
-			cout<<defaire()<<endl;
+			cout<<Defaire()<<endl;
 		}
 		else if (commande->find(COMMANDE_REDO) != string::npos)
 		{
-			cout<<refaire()<<endl;
+			cout<<Refaire()<<endl;
 		}
 		else if (commande->at(0) == COMMANDE_SEL && commande->size() == 1)
 		{
-			cout << "Selection non implémenté" << endl;
+			//cout << "Selection non implémenté" << endl;
+			cout << Selectionner() << endl;
 		}
 		else
 		{
@@ -80,6 +81,8 @@ void Controleur::traitementCommande ( )
 
 			if (laCommande)
 			{
+				//Historisation des commandes
+
 				if(laCommande->IsOk())
 				{
 					laCommande->execute();
@@ -99,7 +102,7 @@ void Controleur::traitementCommande ( )
 		}
 
 		//Vidage des paramètres
-	    viderParametres();
+	    ViderParametres();
 	}
 
 } //----- Fin de Méthode
@@ -143,7 +146,7 @@ Controleur::~Controleur ( )
 } //----- Fin de ~Controleur
 
 //------------------------------------------------------------------ PRIVE
-void Controleur::viderParametres()
+void Controleur::ViderParametres()
 {
     //Vidage des paramètres
     while(!parametres.empty()){
@@ -151,14 +154,13 @@ void Controleur::viderParametres()
     }
 }
 
-string Controleur::defaire()
+string Controleur::Defaire()
 {
 	string msg;
 	if (!commandesExec.empty())
 	{
 		Commande *laCommande = NULL;
-		laCommande = commandesExec.front();
-		commandesExec.pop();
+		laCommande = commandesExec.pop();
 		laCommande->undo();
 		commandesHistorique.push(laCommande);
 		msg = "OK UNDO";
@@ -171,14 +173,13 @@ string Controleur::defaire()
 	return msg;
 }
 
-string Controleur::refaire()
+string Controleur::Refaire()
 {
 	string msg;
 	if (!commandesHistorique.empty())
 	{
 		Commande *laCommande = NULL;
-		laCommande = commandesHistorique.front();
-		commandesHistorique.pop();
+		laCommande = commandesHistorique.pop();
 		laCommande->redo();
 		commandesExec.push(laCommande);
 		msg = "OK REDO";
@@ -190,5 +191,15 @@ string Controleur::refaire()
 
 	return msg;
 }
+
+string Controleur::Selectionner()
+// Algorithme :
+//
+{
+
+
+} //----- Fin de Méthode
+
+
 //----------------------------------------------------- Méthodes protégées
 
