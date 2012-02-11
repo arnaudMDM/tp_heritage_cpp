@@ -18,9 +18,12 @@ bool IsInteger(string nom)
 	unsigned int n = 0;
 	while(n < nom.size())
 	{
-	if ( !isdigit (nom.at(n)) || !(n==0 && nom.at(n) == '-'))
+	if ( (isdigit (nom.at(n)) == 0))
 		{
-			return false;
+			if((n>0)||(n==0 && nom.at(n) != '-' ))
+			{
+				return false;
+			}
 		}
 	n +=1;
 	}
