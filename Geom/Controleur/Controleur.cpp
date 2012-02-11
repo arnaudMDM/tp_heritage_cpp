@@ -34,7 +34,6 @@ static const string COMMANDE_SEL = "S";
 static const string COMMANDE_SAVE = "SAVE";
 
 static const unsigned int NB_PARAM_SELECT = 5;
-
 static const unsigned int NB_PARAM_LIST = 1;
 static const unsigned int NB_PARAM_UNDO = 1;
 static const unsigned int NB_PARAM_REDO = 1;
