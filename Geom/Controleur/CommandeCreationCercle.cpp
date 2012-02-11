@@ -11,9 +11,11 @@
 #include <iostream>
 using namespace std;
 #include <cstdlib>
+#include <vector>
 //------------------------------------------------------ Include personnel
 #include "CommandeCreationCercle.h"
 #include "../Modele/Cercle.h"
+
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -71,7 +73,7 @@ void CommandeCreationCercle::redo ( )
 //#endif
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
-CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeometrique *leContexte ) :
+CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeometrique *leContexte, string *requete ) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
@@ -80,15 +82,16 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 	cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
 
-	string tmp("C");
 
-	for (unsigned int i = 1; i < para.size(); i++)
+	if (para.size() == NB_PARAM_CREAT_CERCLE)
 	{
-		tmp.append(" ");
-		tmp.append(*(para.at(i)));
-	}
-	if (para.size() == TAILLE_COMMANDE_CERCLE)
-	{
+		for(vector<string*>::iterator it = para.begin() ; it != para.end() ; it++)
+		{
+			if(!IsDigit(**it))
+			{
+				status = false;
+			}
+		}
 		x1 = atoi((para.at(1))->c_str());
 
 		y1 = atoi((para.at(2))->c_str());
@@ -96,17 +99,9 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 		int rayonTemporaire;
 		rayonTemporaire = atoi((para.at(3))->c_str());
 		// Le rayon ne peut pas etre négatif
-		if (rayonTemporaire >= 1)
-		{
-			rayon = rayonTemporaire;
-			tmp.append(" OK");
-			tmp.append("\n");
-		}
-		else
-		{
-			tmp.append("\n");
-			status = false;
-		}
+
+		rayon = atoi((para.at(3)->c_str()));
+
 	}
 	else
 	{
@@ -115,14 +110,11 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 
 	if (!status)
 	{
-		texteCommande.append("Err ");
-		texteCommande.append(tmp);
-		texteCommande.append(CHAINE_PARA_INVALIDE);
-		texteCommande.append("\n");
+		texteCommande = ERREUR + *requete;
 	}
 	else
 	{
-		texteCommande.append(tmp);
+		texteCommande = OK + *requete;
 	}
 
 } //----- Fin de CommandeCreationCercle

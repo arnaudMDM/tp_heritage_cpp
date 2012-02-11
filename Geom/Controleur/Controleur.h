@@ -75,6 +75,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     bool quitter;
+    string requete;
     vector < string *> parametres;
     ObjetGeometrique *contexte;
     stack < Commande *> commandesExec;

@@ -26,6 +26,6 @@
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 
-void LireCommande(vector <string *> &para);
+void LireCommande(vector <string *> &para, string *requete);
 
 #endif // DECOMPOSEUR_H_

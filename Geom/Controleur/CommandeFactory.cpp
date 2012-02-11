@@ -24,10 +24,17 @@ static const string COMMANDE_CERCLE = "C";
 static const string COMMANDE_LIGNE = "L";
 static const string COMMANDE_POLY = "PL";
 static const string COMMANDE_LOAD = "LOAD";
-static const string COMMANDE_SAVE = "SAVE";
 static const string COMMANDE_CLEAR = "CLEAR";
 static const string COMMANDE_DELETE = "DELETE";
 static const string COMMANDE_MOVE = "MOVE";
+static const unsigned int NB_PARAM_CLEAR = 1;
+static const unsigned int NB_PARAM_DELETE = 1;
+static const unsigned int NB_PARAM_MOVE = 3;
+static const unsigned int NB_PARAM_LOAD = 2;
+
+static const unsigned int NB_PARAM_CREAT_RECT = 5;
+static const unsigned int NB_PARAM_CREAT_LIGNE = 5;
+static const unsigned int NB_MODULO_PARAM_CREAT_POLYLIGNE = 1;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -38,7 +45,7 @@ static const string COMMANDE_MOVE = "MOVE";
 //} //----- Fin de Méthode
 
 bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande,
-		ObjetGeometrique *contexte)
+		ObjetGeometrique *contexte, string *requete)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
@@ -51,39 +58,35 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 #ifdef MAP
 	cout << commande << endl;
 #endif
-	if (commande.find(COMMANDE_LOAD) != string::npos)
+	if (commande.compare(COMMANDE_LOAD) == 0)
 	{
 		cout << "Load non implémenté" << endl;
 	}
-	else if (commande.find(COMMANDE_SAVE) != string::npos)
-	{
-		cout << "Save non implémenté" << endl;
-	}
-	else if (commande.find(COMMANDE_MOVE) != string::npos)
+	else if (commande.compare(COMMANDE_MOVE) == 0)
 	{
 		cout << "Move non implémenté" << endl;
 	}
-	else if (commande.find(COMMANDE_CLEAR) != string::npos)
+	else if (commande.compare(COMMANDE_CLEAR) == 0)
 	{
 		cout << "Clear non implémenté" << endl;
 	}
-	else if (commande.find(COMMANDE_DELETE) != string::npos)
+	else if (commande.compare(COMMANDE_DELETE) == 0)
 	{
 		cout << "Delete non implémenté" << endl;
 	}
-	else if (commande.find(COMMANDE_CERCLE) != string::npos)
+	else if (commande.find(COMMANDE_CERCLE) == 0)
 	{
-		*laCommande = new CommandeCreationCercle(para, contexte);
+		*laCommande = new CommandeCreationCercle(para, contexte, requete);
 	}
-	else if (commande.find(COMMANDE_RECTANGLE) != string::npos)
+	else if (commande.compare(COMMANDE_RECTANGLE) == 0)
 	{
 		cout << "Rect non implémenté" << endl;
 	}
-	else if (commande.find(COMMANDE_LIGNE) != string::npos)
+	else if (commande.compare(COMMANDE_LIGNE) == 0)
 	{
 		cout << "Ligne non implémenté" << endl;
 	}
-	else if (commande.find(COMMANDE_POLY) != string::npos)
+	else if (commande.compare(COMMANDE_POLY) == 0)
 	{
 		cout << "Poly non implémenté" << endl;
 	}

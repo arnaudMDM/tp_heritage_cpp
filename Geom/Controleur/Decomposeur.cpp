@@ -36,16 +36,15 @@ static const int MAXSIZE = 10000;
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-void LireCommande(vector<string *> &parametres)
+void LireCommande(vector<string *> &parametres, string *requete)
 // Algorithme :
 //
 {
 	stringstream flux;
 	char *buffer = new char[MAXSIZE];
-	string temp;
-	getline(cin,temp);
+	getline(cin,*requete);
 
-	flux<<temp;
+	flux<<*requete;
 
 	while(flux>>buffer)
 	{

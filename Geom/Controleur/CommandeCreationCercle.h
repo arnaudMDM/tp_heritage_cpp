@@ -58,7 +58,7 @@ public:
 //    // Contrat :
 //    //
 
-    CommandeCreationCercle (vector < string *> para, ObjetGeometrique *unContexte);
+    CommandeCreationCercle (vector < string *> para, ObjetGeometrique *unContexte, string *requete);
     // Mode d'emploi :
     //
     // Contrat :
@@ -80,7 +80,7 @@ protected:
     int y1;
     int rayon;
 private:
-    static const unsigned int TAILLE_COMMANDE_CERCLE = 4;
+    static const unsigned int NB_PARAM_CREAT_CERCLE = 4;
 
 };
 
