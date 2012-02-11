@@ -51,19 +51,21 @@ void Controleur::traitementCommande ( )
 // Algorithme :
 //
 {
+	Commande *laCommande;
 	string reponse;
+	string *commande;
 	while (!quitter)
 	{
 		LireCommande(parametres, &requete);
 
-		Commande *laCommande = NULL;
 
+		laCommande = NULL;
 		//Cas où l'utilisateur a juste fait entrée
 		if(parametres.empty())
 		{
 			continue;
 		}
-		string *commande = parametres.front();
+		commande = parametres.front();
 
 		//Traitement particulier dans le cas du exit
 		if (commande->compare(COMMANDE_EXIT) == 0)
@@ -146,11 +148,11 @@ void Controleur::traitementCommande ( )
 					cout<<"Commande inconnue"<<endl;
 				}
 			}
-
-		}
-
 		//Vidage des paramètres
 	    ViderParametres();
+		}
+
+
 } //----- Fin de Méthode
 
 
@@ -251,6 +253,7 @@ string Controleur::Selectionner()
 	if(parametres.size() == NB_PARAM_SELECT)
 	{
 		vector<string*>::iterator it = parametres.begin();
+		it++;
 		while(it != parametres.end())
 		{
 			if(!IsInteger(**it))
