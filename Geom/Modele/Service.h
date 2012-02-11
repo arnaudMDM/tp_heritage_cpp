@@ -13,6 +13,6 @@ using namespace std;
 
 bool Contient(int x1, int y1, int x2, int y2, int x3, int y3);
 
-bool IsDigit(string nom);
+bool IsInteger(string nom);
 
 #endif /* SERVICE_H_ */

@@ -1,5 +1,5 @@
 @echo off
-set repertoire="C:\Users\Pitou\workspace\Geom"
+set repertoire="C:\Users\arnaud\workspace_Cpp\Geom"
 ::Chemin d'accès au répertoire Geom
 set /A compteurs="0"
 

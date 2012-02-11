@@ -253,7 +253,7 @@ string Controleur::Selectionner()
 		vector<string*>::iterator it = parametres.begin();
 		while(it != parametres.end())
 		{
-			if(!IsDigit(**it))
+			if(!IsInteger(**it))
 			{
 				reponse = ERREUR + requete;
 				return reponse;

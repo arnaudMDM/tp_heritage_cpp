@@ -13,9 +13,9 @@ bool Contient(int x1, int y1, int x2, int y2, int x3, int y3)
 	return false;
 }
 
-bool IsDigit(string nom)
+bool IsInteger(string nom)
 {
-	int n = 0;
+	unsigned int n = 0;
 	while(n < nom.size())
 	{
 	if ( !isdigit (nom.at(n)) || !(n==0 && nom.at(n) == '-'))

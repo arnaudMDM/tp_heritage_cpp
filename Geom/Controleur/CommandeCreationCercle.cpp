@@ -87,7 +87,7 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 	{
 		for(vector<string*>::iterator it = para.begin() ; it != para.end() ; it++)
 		{
-			if(!IsDigit(**it))
+			if(!IsInteger(**it))
 			{
 				status = false;
 			}

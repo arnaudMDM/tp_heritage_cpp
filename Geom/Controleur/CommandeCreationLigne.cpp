@@ -81,7 +81,7 @@ CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeom
 
 		tmp +=" ";
 		tmp +=(*it)->c_str();
-		if(!IsDigit((*it)->c_str()))
+		if(!IsInteger((*it)->c_str()))
 		{
 			sontEntiers = false;
 		}
