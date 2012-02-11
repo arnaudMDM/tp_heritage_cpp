@@ -37,7 +37,7 @@ public:
     // Contrat :
     //
 
-	static bool GetCommande(vector <string *> para, Commande **laCommande, ObjetGeometrique *contexte, string *requete);
+	static bool GetCommande(vector <string *> para, Commande **laCommande, ObjetGeometrique *contexte, const string *requete);
     // Mode d'emploi : Retourne l'instance d'une commande
 	// correspondant aux arguments passés en paramètre.
     //

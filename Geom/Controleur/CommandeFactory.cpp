@@ -45,7 +45,7 @@ static const unsigned int NB_MODULO_PARAM_CREAT_POLYLIGNE = 1;
 //} //----- Fin de Méthode
 
 bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande,
-		ObjetGeometrique *contexte, string *requete)
+		ObjetGeometrique *contexte, const string *requete)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //

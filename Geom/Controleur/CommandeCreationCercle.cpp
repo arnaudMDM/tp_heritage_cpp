@@ -73,7 +73,7 @@ void CommandeCreationCercle::redo ( )
 //#endif
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
-CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeometrique *leContexte, string *requete ) :
+CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeometrique *leContexte, const string *requete ) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
@@ -85,22 +85,22 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 
 	if (para.size() == NB_PARAM_CREAT_CERCLE)
 	{
-		for(vector<string*>::iterator it = para.begin() ; it != para.end() ; it++)
+		vector<string*>::iterator it = para.begin();
+		it++;
+		while( it != para.end())
 		{
 			if(!IsInteger(**it))
 			{
 				status = false;
 			}
+			it++;
 		}
 		x1 = atoi((para.at(1))->c_str());
 
 		y1 = atoi((para.at(2))->c_str());
-
-		int rayonTemporaire;
-		rayonTemporaire = atoi((para.at(3))->c_str());
 		// Le rayon ne peut pas etre négatif
 
-		rayon = atoi((para.at(3)->c_str()));
+		rayon = atoi((para.at(3))->c_str());
 
 	}
 	else
