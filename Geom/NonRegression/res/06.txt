@@ -1,0 +1,17 @@
+Bienvenue dans le programme Geom.
+Veuillez saisir votre commande : 
+C 1 1 10 OK
+
+Rect non implémenté
+Commande inconnue
+Ligne non implémenté
+Commande inconnue
+Ligne non implémenté
+Commande inconnue
+Ligne non implémenté
+Commande inconnue
+Move non implémenté
+Commande inconnue
+Move non implémenté
+Commande inconnue
+Exit non implémenté (nettoyage nécessaire) 

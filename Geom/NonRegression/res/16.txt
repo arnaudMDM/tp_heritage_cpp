@@ -1,0 +1,14 @@
+Bienvenue dans le programme Geom.
+Veuillez saisir votre commande : 
+Load non implémenté
+Commande inconnue
+Ligne non implémenté
+Commande inconnue
+Delete non implémenté
+Commande inconnue
+
+ERR UNDO
+
+ERR REDO
+
+Exit non implémenté (nettoyage nécessaire) 

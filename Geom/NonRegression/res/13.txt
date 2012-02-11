@@ -1,0 +1,8 @@
+Bienvenue dans le programme Geom.
+Veuillez saisir votre commande : 
+Load non implémenté
+Commande inconnue
+Clear non implémenté
+Commande inconnue
+0
+Exit non implémenté (nettoyage nécessaire) 

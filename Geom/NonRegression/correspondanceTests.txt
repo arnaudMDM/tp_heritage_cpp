@@ -1,0 +1,1 @@
+Création CercleCréation RectangleCréation LigneCréation PolySélectionDéplacementListeUndoSelection - déplacement - listeSauvegardeChargement - listeChargement - décompteChargement - Nettoyage - décompteSuppression sur videChargement - Selection - suppressionRedo

@@ -1,0 +1,11 @@
+Bienvenue dans le programme Geom.
+Veuilliez saisir votre commande :
+C 1 1 10 OK
+OK UNDO
+R 2 2 6 6 OK
+L 2 3 4 6 OK
+PL 4 4 5 5 8 8 9 9 OK
+R 2 2 6 6
+L 2 3 4 6
+PL 4 4 5 5 8 8 9 9
+Exit non implémenté (nettoyage nécessaire)

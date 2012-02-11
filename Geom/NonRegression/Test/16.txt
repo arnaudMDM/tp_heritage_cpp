@@ -1,0 +1,9 @@
+LOAD modele.txt
+SEL 1 1 7 7
+DELETE
+LIST
+UNDO
+LIST
+REDO
+LIST
+EXIT

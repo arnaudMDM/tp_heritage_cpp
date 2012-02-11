@@ -1,0 +1,4 @@
+LOAD modele.txt
+CLEAR
+COUNT
+EXIT

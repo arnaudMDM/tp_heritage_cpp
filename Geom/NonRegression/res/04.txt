@@ -1,0 +1,5 @@
+Bienvenue dans le programme Geom.
+Veuillez saisir votre commande : 
+Ligne non implémenté
+Commande inconnue
+Exit non implémenté (nettoyage nécessaire) 

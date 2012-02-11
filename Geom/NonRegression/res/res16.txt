@@ -1,0 +1,16 @@
+Bienvenue dans le programme Geom.
+Veuilliez saisir votre commande :
+LOAD modele.txt OK
+2
+2
+C 1 1 10
+PL 4 4 5 5 8 8 9 9
+UNDO OK
+C 1 1 10
+R 2 2 6 6
+L 2 3 4 6
+PL 4 4 5 5 8 8 9 9
+REDO OK
+C 1 1 10
+PL 4 4 5 5 8 8 9 9
+Exit non implémenté (nettoyage nécessaire)

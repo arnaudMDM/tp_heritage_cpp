@@ -1,0 +1,4 @@
+Bienvenue dans le programme Geom.
+Veuilliez saisir votre commande : 
+PL 4 4 5 5 8 8 9 9 OK
+Exit non implémenté (nettoyage nécessaire)

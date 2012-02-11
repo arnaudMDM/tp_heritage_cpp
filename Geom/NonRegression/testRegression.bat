@@ -1,22 +1,25 @@
-
-:: batch permettant d'automatiser les tests de non regression du prg Geom
-set redirectionSortie="redirectionSortieAffichage.txt"
-:: Cette variable va contenir tout le texte obtenu lors de l'éxécution du prg
-
-set redirectionEntree="cmdsATester.txt"
-:: le fichier contenant les différentes commandes à faire executer par le prg
-
-set fichierAComparer="testRegression.txt"
-:: le fichier contenant l'affichage attendu
-
-set res="resultatTestRegression.txt"
-
-cd ../Debug/
-
-Geom.exe  <../NonRegression/%redirectionEntree% >../NonRegression/%redirectionSortie%
-cd ../NonRegression/
 @echo off
-fc /C %redirectionSortie% %fichierAComparer% | findstr "aucune diff"
-if errorlevel 1 echo Le test a echoue
+set repertoire="C:\Users\Pitou\workspace\Geom"
+::Chemin d'accès au répertoire Geom
+set /A compteurs="0"
 
+if %repertoire%==[] goto end
+cd %repertoire%
+for /F %%a in ('dir /B "NonRegression/Test"') do (
+	"Debug/geom.exe" <"NonRegression/Test/%%a" >"NonRegression/res/%%a"
+)
+
+cd NonRegression/res/
+for /F %%a in ('dir /B "../Test"') do (
+	
+	fc /C "%%a" "res%%a" | findstr "aucune diff" 
+	if errorlevel 1 (
+	echo Le test %%a a echoue
+    set /A compteurs+=1 ) )
+
+cd ../..
+
+@echo %compteurs% test(s) echoue(s)
+
+:end
 pause
