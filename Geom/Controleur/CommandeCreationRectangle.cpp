@@ -68,7 +68,7 @@ CommandeCreationRectangle::CommandeCreationRectangle ( vector<string *> para,
 
 		vector<string*>::iterator it = para.begin() + 1;
 
-		while (it != para.end() && !correct)
+		while (it != para.end() && correct)
 		{
 			if (!IsInteger(**it))
 			{

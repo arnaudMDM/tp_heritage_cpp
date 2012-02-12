@@ -33,9 +33,6 @@ static const unsigned int NB_PARAM_DELETE = 1;
 static const unsigned int NB_PARAM_MOVE = 3;
 static const unsigned int NB_PARAM_LOAD = 2;
 
-static const unsigned int NB_PARAM_CREAT_RECT = 5;
-static const unsigned int NB_PARAM_CREAT_LIGNE = 5;
-static const unsigned int NB_MODULO_PARAM_CREAT_POLYLIGNE = 1;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -52,9 +49,9 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 //
 // Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
 {
-	bool status = true;
+	bool status(true);
 
-	string commande = *para.front();
+	string commande(*para.front());
 
 #ifdef MAP
 	cout << commande << endl;
@@ -81,7 +78,7 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 	}
 	else if (commande.compare(COMMANDE_RECTANGLE) == 0)
 	{
-		cout << "Rect non implémenté" << endl;
+		*laCommande = new CommandeCreationRectangle(para, contexte, requete);
 	}
 	else if (commande.compare(COMMANDE_LIGNE) == 0)
 	{
@@ -89,7 +86,7 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 	}
 	else if (commande.compare(COMMANDE_POLY) == 0)
 	{
-		cout << "Poly non implémenté" << endl;
+		*laCommande = new CommandeCreationPoly(para, contexte, requete);
 	}
 	else
 	{

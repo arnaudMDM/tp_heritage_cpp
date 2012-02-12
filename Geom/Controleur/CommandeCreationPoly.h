@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeCreationPoly  -  description
-                             -------------------
-    début                : 3 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeCreationPoly  -  description
+ -------------------
+ début                : 3 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeCreationPoly> (fichier CommandeCreationPoly.h) ------
 #if ! defined ( COMMANDECREATIONPOLY_H_ )
@@ -25,53 +25,32 @@
 //
 //------------------------------------------------------------------------ 
 
-class CommandeCreationPoly : public CommandeCreation
+class CommandeCreationPoly: public CommandeCreation
 {
-//----------------------------------------------------------------- PUBLIC
-
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
+	void execute();
+
+	CommandeCreationPoly & operator = (
+			const CommandeCreationPoly & unCommandeCreationPoly );
 
 
-//------------------------------------------------- Surcharge d'opérateurs
-    CommandeCreationPoly & operator = ( const CommandeCreationPoly & unCommandeCreationPoly );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	CommandeCreationPoly (
+			const CommandeCreationPoly & unCommandeCreationPoly );
 
 
-//-------------------------------------------- Constructeurs - destructeur
-    CommandeCreationPoly ( const CommandeCreationPoly & unCommandeCreationPoly );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+	CommandeCreationPoly ( vector<string*> para, ObjetGeometrique *unContexte,
+			const string *requete );
 
-    CommandeCreationPoly ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	virtual ~CommandeCreationPoly ( );
 
-    virtual ~CommandeCreationPoly ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-//------------------------------------------------------------------ PRIVE 
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+	vector<int> coordonneesX;
+	vector<int> coordonneesY;
 
-//----------------------------------------------------- Attributs protégés
-
+	static const unsigned int NB_PARA_INVARIANT = 1;
+	static const unsigned int NB_PARA_PAR_POINT = 2;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationPoly>
