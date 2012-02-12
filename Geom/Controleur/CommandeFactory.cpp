@@ -17,6 +17,8 @@ using namespace std;
 #include "CommandeCreationLigne.h"
 #include "CommandeCreationRectangle.h"
 #include "CommandeCreationPoly.h"
+#include "CommandeSuppression.h"
+#include "CommandeDeplac.h"
 
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_RECTANGLE = "R";
@@ -28,10 +30,10 @@ static const string COMMANDE_CLEAR = "CLEAR";
 static const string COMMANDE_DELETE = "DELETE";
 static const string COMMANDE_MOVE = "MOVE";
 
-static const unsigned int NB_PARAM_CLEAR = 1;
-static const unsigned int NB_PARAM_DELETE = 1;
 static const unsigned int NB_PARAM_MOVE = 3;
 static const unsigned int NB_PARAM_LOAD = 2;
+static const unsigned int NB_PARAM_CLEAR = 1;
+static const unsigned int NB_PARAM_DELETE = 1;
 
 //----------------------------------------------------------------- PUBLIC
 
@@ -42,12 +44,12 @@ static const unsigned int NB_PARAM_LOAD = 2;
 //{
 //} //----- Fin de Méthode
 
-bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande,
-		ObjetGeometrique *contexte, const string *requete)
+bool CommandeFactory::GetCommande ( vector<string *> para,
+		Commande **laCommande,
+		ObjetGeometrique *contexte, const string *requete )
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
-// Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
 {
 	bool status(true);
 
@@ -62,15 +64,31 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 	}
 	else if (commande.compare(COMMANDE_MOVE) == 0)
 	{
-		cout << "Move non implémenté" << endl;
+		status = traitementMove(para, laCommande, contexte);
 	}
 	else if (commande.compare(COMMANDE_CLEAR) == 0)
 	{
-		cout << "Clear non implémenté" << endl;
+		if (para.size() == NB_PARAM_CLEAR)
+		{
+			*laCommande = new CommandeSuppression(contexte,
+					CommandeSuppression::CLEAR);
+		}
+		else
+		{
+			status = false;
+		}
 	}
 	else if (commande.compare(COMMANDE_DELETE) == 0)
 	{
-		cout << "Delete non implémenté" << endl;
+		if (para.size() == NB_PARAM_DELETE)
+		{
+			*laCommande = new CommandeSuppression(contexte,
+					CommandeSuppression::DELETE);
+		}
+		else
+		{
+			status = false;
+		}
 	}
 	else if (commande.find(COMMANDE_CERCLE) == 0)
 	{
@@ -111,7 +129,7 @@ CommandeFactory::CommandeFactory ( const CommandeFactory & unCommandeFactory )
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <CommandeFactory>" << endl;
 #endif
-} //----- Fin de CommandeFactory (constructeur de copie)
+}    //----- Fin de CommandeFactory (constructeur de copie)
 
 CommandeFactory::CommandeFactory ( )
 // Algorithme :
@@ -120,7 +138,7 @@ CommandeFactory::CommandeFactory ( )
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeFactory>" << endl;
 #endif
-} //----- Fin de CommandeFactory
+}    //----- Fin de CommandeFactory
 
 CommandeFactory::~CommandeFactory ( )
 // Algorithme :
@@ -129,9 +147,38 @@ CommandeFactory::~CommandeFactory ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeFactory>" << endl;
 #endif
-} //----- Fin de ~CommandeFactory
+}    //----- Fin de ~CommandeFactory
 
 //------------------------------------------------------------------ PRIVE
+bool CommandeFactory::traitementMove ( vector<string *> para,
+		Commande ** laCommande, ObjetGeometrique * contexte )
+{
+	bool etat(true);
 
+	if (para.size() == NB_PARAM_MOVE)
+	{
+		vector<string*>::iterator it = para.begin() + 1;
+
+		while (it != para.end() && !etat)
+		{
+			if (!IsInteger(**it))
+			{
+				etat = false;
+			}
+			it++;
+		}
+
+		if (etat)
+		{
+			*laCommande = new CommandeDeplac(para, contexte);
+		}
+	}
+	else
+	{
+		etat = false;
+	}
+
+	return etat;
+}
 //----------------------------------------------------- Méthodes protégées
 

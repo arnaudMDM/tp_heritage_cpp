@@ -81,6 +81,12 @@ public:
     // Contrat :
     //
 
+    void SupprimerElts(vector <EltGeometrique *> elts);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void Translater(int x, int y);
     // Mode d'emploi :
     //
@@ -93,7 +99,19 @@ public:
     // Contrat :
     //
 
+    int SelectionnerElts(vector <EltGeometrique *> elementsASelectionner);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void AjouterEltGeom(EltGeometrique *unEltGeometrique);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void AjouterEltGeom(vector < EltGeometrique *> elts);
     // Mode d'emploi :
     //
     // Contrat :

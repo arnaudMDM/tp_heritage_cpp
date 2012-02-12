@@ -105,6 +105,16 @@ void ObjetGeometrique::SupprimerEltParticulier ( EltGeometrique *elt )
 
 }    //----- Fin de Méthode
 
+void ObjetGeometrique::SupprimerElts(vector <EltGeometrique *> elts)
+{
+	for(vector<EltGeometrique *>::iterator it = elts.begin()
+			;it != elts.end(); it++)
+	{
+		SupprimerEltParticulier(*it);
+	}
+}	 //----- Fin de Méthode
+
+
 void ObjetGeometrique::Translater ( int x, int y )
 // Algorithme :translate tous les élémentsGéométriques sélectionnés de x et y
 //
@@ -125,7 +135,7 @@ int ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 	listeEltsGeomSelect.clear();
 	for (vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin();
 			it != listeEltsGeomTotal.end(); it++)
-	{
+			{
 		if ((*it)->Appartient(x1, y1, x2, y2))
 		{
 			listeEltsGeomSelect.push_back(*it);
@@ -134,12 +144,30 @@ int ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 	return listeEltsGeomSelect.size();
 }    //----- Fin de Méthode
 
+int ObjetGeometrique::SelectionnerElts(vector <EltGeometrique *> elts)
+{
+	listeEltsGeomSelect.clear();
+	listeEltsGeomSelect = elts;
+
+	return listeEltsGeomSelect.size();
+}
+
 void ObjetGeometrique::AjouterEltGeom ( EltGeometrique *unEltGeometrique )
 // Algorithme : ajoute un élément à la liste des élémentsGéométriques totals
 //
 {
 	listeEltsGeomTotal.push_back(unEltGeometrique);
 }    //----- Fin de Méthode
+
+
+void ObjetGeometrique::AjouterEltGeom(vector < EltGeometrique *> elts)
+{
+	for(vector<EltGeometrique *>::iterator it = elts.begin()
+			;it != elts.end(); it++)
+	{
+		AjouterEltGeom(*it);
+	}
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 ObjetGeometrique & ObjetGeometrique::operator = (

@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeFactory  -  description
-                             -------------------
-    début                : 27 janv. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeFactory  -  description
+ -------------------
+ début                : 27 janv. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeFactory> (fichier CommandeFactory.h) ------
 #if ! defined ( COMMANDEFACTORY_H_ )
@@ -13,7 +13,7 @@
 
 //-------------------------------------------------------- Include système
 #include <string>
-#include <queue>
+#include <vector>
 //--------------------------------------------------- Interfaces utilisées
 #include "Commande.h"
 //------------------------------------------------------------- Constantes 
@@ -31,53 +31,54 @@ class CommandeFactory
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	// type Méthode ( liste des paramètres );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
-	static bool GetCommande(vector <string *> para, Commande **laCommande, ObjetGeometrique *contexte, const string *requete);
-    // Mode d'emploi : Retourne l'instance d'une commande
+	static bool GetCommande ( vector<string *> para, Commande **laCommande,
+			ObjetGeometrique *contexte, const string *requete );
+	// Mode d'emploi : Retourne l'instance d'une commande
 	// correspondant aux arguments passés en paramètre.
-    //
-    // Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
+	//
+	// Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
 	// sont traités en amont par le controleur.
-    //
+	//
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeFactory & operator = ( const CommandeFactory & unCommandeFactory );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+	CommandeFactory & operator = ( const CommandeFactory & unCommandeFactory );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 //-------------------------------------------- Constructeurs - destructeur
-    CommandeFactory ( const CommandeFactory & unCommandeFactory );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+	CommandeFactory ( const CommandeFactory & unCommandeFactory );
+	// Mode d'emploi (constructeur de copie) :
+	//
+	// Contrat :
+	//
 
-    CommandeFactory ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	CommandeFactory ( );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
-    virtual ~CommandeFactory ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	virtual ~CommandeFactory ( );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 //------------------------------------------------------------------ PRIVE 
 
 protected:
-//----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+private:
+	static bool traitementMove ( vector<string *> para, Commande ** laCommande,
+			ObjetGeometrique * contexte );
 
 };
 

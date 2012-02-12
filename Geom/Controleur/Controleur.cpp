@@ -41,8 +41,6 @@ static const unsigned int NB_PARAM_SAVE = 2;
 static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
 
-
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -57,10 +55,9 @@ void Controleur::traitementCommande ( )
 	{
 		LireCommande(parametres, &requete);
 
-
 		laCommande = NULL;
 		//Cas où l'utilisateur a juste fait entrée
-		if(parametres.empty())
+		if (parametres.empty())
 		{
 			continue;
 		}
@@ -69,7 +66,7 @@ void Controleur::traitementCommande ( )
 		//Traitement particulier dans le cas du exit
 		if (commande->compare(COMMANDE_EXIT) == 0)
 		{
-			if(parametres.size() == NB_PARAM_EXIT)
+			if (parametres.size() == NB_PARAM_EXIT)
 			{
 				reponse = "Exit non implémenté (nettoyage nécessaire)";
 				quitter = true;
@@ -78,12 +75,13 @@ void Controleur::traitementCommande ( )
 			{
 				reponse = ERREUR + requete;
 			}
-			cout<<reponse<<endl;
+			cout << reponse << endl;
 
-		}else if (commande->compare(COMMANDE_LIST) == 0)
+		}
+		else if (commande->compare(COMMANDE_LIST) == 0)
 		{
 			//cout << "tentative de listage non implémenté! " << endl;
-			if(parametres.size() == NB_PARAM_LIST)
+			if (parametres.size() == NB_PARAM_LIST)
 			{
 				reponse = contexte->DescriptionEltsSelect();
 			}
@@ -95,7 +93,7 @@ void Controleur::traitementCommande ( )
 		}
 		else if (commande->compare(COMMANDE_COUNT) == 0)
 		{
-			if(parametres.size() == NB_PARAM_COUNT)
+			if (parametres.size() == NB_PARAM_COUNT)
 			{
 				stringstream convertisseur;
 				convertisseur << contexte->NbEltsTotals();
@@ -109,15 +107,15 @@ void Controleur::traitementCommande ( )
 		}
 		else if (commande->compare(COMMANDE_UNDO) == 0)
 		{
-			cout<<Defaire()<<endl;
+			cout << Defaire() << endl;
 		}
 		else if (commande->compare(COMMANDE_REDO) == 0)
 		{
-			cout<<Refaire()<<endl;
+			cout << Refaire() << endl;
 		}
 		else if (commande->compare(COMMANDE_SAVE) == 0)
 		{
-			cout<<Save()<<endl;
+			cout << Save() << endl;
 		}
 		else if (commande->compare(COMMANDE_SEL) == 0)
 		{
@@ -126,53 +124,53 @@ void Controleur::traitementCommande ( )
 		else
 		{
 			//Récupération de la bonne commande
-			CommandeFactory::GetCommande(parametres, &laCommande, contexte, &requete);
-				if (laCommande)
-				{
-					//Historisation des commandes
+			bool statusCommande;
+			statusCommande = CommandeFactory::GetCommande(parametres,
+					&laCommande, contexte, &requete);
 
-					if(laCommande->IsOk())
+			if (statusCommande)
+			{
+				//Historisation des commandes
+
+				if (laCommande->IsOk())
+				{
+					laCommande->execute();
+
+					while (!commandesHistorique.empty())
 					{
-						laCommande->execute();
-
-						while(!commandesHistorique.empty())
-						{
-							commandesHistorique.pop();
-						}
-						commandesExec.push(laCommande);
+						commandesHistorique.pop();
 					}
-					cout<<laCommande->getTexteCommande()<<endl;
+					commandesExec.push(laCommande);
 				}
-				else
-				{
-					cout<<"Commande inconnue"<<endl;
-				}
+				cout << laCommande->getTexteCommande() << endl;
 			}
-		//Vidage des paramètres
-	    ViderParametres();
+			else
+			{
+				cout << ERREUR << requete << endl;
+			}
 		}
+		//Vidage des paramètres
+		ViderParametres();
+	}
 
-
-} //----- Fin de Méthode
-
-
+}    //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
-Controleur & Controleur::operator = ( const Controleur & unControleur )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+//Controleur & Controleur::operator = ( const Controleur & unControleur )
+//// Algorithme :
+////
+//{
+//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-Controleur::Controleur ( const Controleur & unControleur )
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de copie de <Controleur>" << endl;
-#endif
-} //----- Fin de Controleur (constructeur de copie)
+//Controleur::Controleur ( const Controleur & unControleur )
+//// Algorithme :
+////
+//{
+//#ifdef MAP
+//	cout << "Appel au constructeur de copie de <Controleur>" << endl;
+//#endif
+//} //----- Fin de Controleur (constructeur de copie)
 
 Controleur::Controleur ( ) :
 		quitter(false), contexte(new ObjetGeometrique())
@@ -182,7 +180,7 @@ Controleur::Controleur ( ) :
 #ifdef MAP
 	cout << "Appel au constructeur de <Controleur>" << endl;
 #endif
-} //----- Fin de Controleur
+}    //----- Fin de Controleur
 
 Controleur::~Controleur ( )
 // Algorithme :
@@ -191,19 +189,19 @@ Controleur::~Controleur ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <Controleur>" << endl;
 #endif
-} //----- Fin de ~Controleur
+}    //----- Fin de ~Controleur
 
 //------------------------------------------------------------------ PRIVE
-void Controleur::ViderParametres()
+void Controleur::ViderParametres ( )
 {
-    //Vidage des paramètres
+	//Vidage des paramètres
 	parametres.clear();
-    }
+}
 
-string Controleur::Defaire()
+string Controleur::Defaire ( )
 {
 	string reponse;
-	if(parametres.size() == NB_PARAM_UNDO)
+	if (parametres.size() == NB_PARAM_UNDO)
 	{
 		if (!commandesExec.empty())
 		{
@@ -221,10 +219,10 @@ string Controleur::Defaire()
 	return reponse;
 }
 
-string Controleur::Refaire()
+string Controleur::Refaire ( )
 {
 	string reponse;
-	if(parametres.size() == NB_PARAM_REDO)
+	if (parametres.size() == NB_PARAM_REDO)
 	{
 		if (!commandesHistorique.empty())
 		{
@@ -237,11 +235,11 @@ string Controleur::Refaire()
 			return reponse;
 		}
 	}
-reponse = ERREUR + requete;
-return reponse;
+	reponse = ERREUR + requete;
+	return reponse;
 }
 
-string Controleur::Selectionner()
+string Controleur::Selectionner ( )
 // Algorithme :
 //
 {
@@ -249,14 +247,13 @@ string Controleur::Selectionner()
 	string reponse;
 	ostringstream os;
 
-
-	if(parametres.size() == NB_PARAM_SELECT)
+	if (parametres.size() == NB_PARAM_SELECT)
 	{
 		vector<string*>::iterator it = parametres.begin();
 		it++;
-		while(it != parametres.end())
+		while (it != parametres.end())
 		{
-			if(!IsInteger(**it))
+			if (!IsInteger(**it))
 			{
 				reponse = ERREUR + requete;
 				return reponse;
@@ -266,45 +263,44 @@ string Controleur::Selectionner()
 		}
 	}
 
+	os
+			<< contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
+					nombres.at(2), nombres.at(3));
+	return os.str();
 
-		os << contexte->SelectionnerElts(nombres.at(0),nombres.at(1),nombres.at(2),nombres.at(3));
-		return os.str();
+}    //----- Fin de Méthode
 
-} //----- Fin de Méthode
-
-string Controleur::Save()
+string Controleur::Save ( )
 // Algorithme :
 //
 {
 	string reponse = ERREUR + requete;
 
-	if(parametres.size() != NB_PARAM_SAVE)
+	if (parametres.size() != NB_PARAM_SAVE)
 	{
 		return reponse;
 	}
 
-	fstream fichier (parametres.at(1)->c_str(), fstream::out);
+	fstream fichier(parametres.at(1)->c_str(), fstream::out);
 
-	if(!fichier.is_open())
+	if (!fichier.is_open())
 	{
 		return reponse;
 	}
 
 	string lesDescripteurs(contexte->DescriptionEltsTotal());
-	fichier.write(lesDescripteurs.c_str(),lesDescripteurs.size());
+	fichier.write(lesDescripteurs.c_str(), lesDescripteurs.size());
 
 	fichier.close();
 
-	if(fichier.fail())
+	if (fichier.fail())
 	{
 		return reponse;
 	}
 	reponse = OK + requete;
 	return reponse;
 
-
-
-} //----- Fin de Méthode
+}    //----- Fin de Méthode
 
 //----------------------------------------------------- Méthodes protégées
 
