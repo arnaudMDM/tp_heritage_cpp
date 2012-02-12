@@ -97,7 +97,9 @@ void Controleur::traitementCommande ( )
 		{
 			if(parametres.size() == NB_PARAM_COUNT)
 			{
-				reponse = contexte->NbEltsTotals();
+				stringstream convertisseur;
+				convertisseur << contexte->NbEltsTotals();
+				reponse = convertisseur.str();
 			}
 			else
 			{
@@ -119,7 +121,6 @@ void Controleur::traitementCommande ( )
 		}
 		else if (commande->compare(COMMANDE_SEL) == 0)
 		{
-			//cout << "Selection non implémenté" << endl;
 			cout << Selectionner() << endl;
 		}
 		else
@@ -282,14 +283,15 @@ string Controleur::Save()
 		return reponse;
 	}
 
-	fstream fichier (parametres.at(1)->c_str(), fstream::in | fstream::app);
+	fstream fichier (parametres.at(1)->c_str(), fstream::out);
 
 	if(!fichier.is_open())
 	{
 		return reponse;
 	}
 
-	fichier.write(contexte->DescriptionEltsTotal().c_str(),contexte->DescriptionEltsTotal().size());
+	string lesDescripteurs(contexte->DescriptionEltsTotal());
+	fichier.write(lesDescripteurs.c_str(),lesDescripteurs.size());
 
 	fichier.close();
 

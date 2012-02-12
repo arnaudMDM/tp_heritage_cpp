@@ -26,6 +26,25 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+void CommandeCreation::undo()
+{
+	if (status)
+	{
+		contexte->SupprimerEltParticulier(element);
+		contexte->Deselectionner();
+	}
+}
+
+
+void CommandeCreation::redo()
+{
+	if (status)
+	{
+		contexte->AjouterEltGeom(element);
+		contexte->Deselectionner();
+	}
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreation & CommandeCreation::operator = ( const CommandeCreation & unCommandeCreation )

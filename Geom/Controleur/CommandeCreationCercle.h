@@ -39,10 +39,6 @@ public:
     //
 	void execute();
 
-	void undo();
-
-	void redo();
-
 //------------------------------------------------- Surcharge d'opérateurs
 //    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
 //    // Mode d'emploi :

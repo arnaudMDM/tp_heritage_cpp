@@ -35,26 +35,6 @@ void CommandeCreationCercle::execute ( )
 		contexte->AjouterEltGeom(element);
 	}
 }
-
-void CommandeCreationCercle::undo ( )
-{
-	if (status)
-	{
-		contexte->SupprimerEltParticulier(element);
-		contexte->Deselectionner();
-		cout << "Cet élément : " << element->Description()
-				<< " vient d'etre dépilé" << endl;
-	}
-}
-
-void CommandeCreationCercle::redo ( )
-{
-	if (status)
-	{
-		contexte->AjouterEltGeom(element);
-		contexte->Deselectionner();
-	}
-}
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )
 //// Algorithme :
@@ -85,8 +65,7 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 
 	if (para.size() == NB_PARAM_CREAT_CERCLE)
 	{
-		vector<string*>::iterator it = para.begin();
-		it++;
+		vector<string*>::iterator it = para.begin() + 1;
 		while( it != para.end())
 		{
 			if(!IsInteger(**it))
@@ -95,6 +74,7 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 			}
 			it++;
 		}
+
 		x1 = atoi((para.at(1))->c_str());
 
 		y1 = atoi((para.at(2))->c_str());

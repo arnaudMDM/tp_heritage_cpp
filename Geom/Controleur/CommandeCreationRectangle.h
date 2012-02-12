@@ -37,6 +37,7 @@ public:
     // Contrat :
     //
 
+	void execute();
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeCreationRectangle & operator = ( const CommandeCreationRectangle & unCommandeCreationRectangle );
@@ -53,7 +54,7 @@ public:
     // Contrat :
     //
 
-    CommandeCreationRectangle ( );
+    CommandeCreationRectangle (vector < string *> para, ObjetGeometrique *unContexte, const string *requete );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,7 +72,13 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    int x1;
+    int y1;
+    int x2;
+    int y2;
 
+private:
+    static const unsigned int NB_PARAM_CREAT_RECT = 5;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationRectangle>

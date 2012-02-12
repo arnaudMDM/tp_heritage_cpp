@@ -16,22 +16,17 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "CommandeCreationLigne.h"
 #include "../Modele/Service.h"
+#include "../Modele/Ligne.h"
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 void CommandeCreationLigne::execute()
 {
-
-}
-
-void CommandeCreationLigne::undo()
-{
-
-}
-
-void CommandeCreationLigne::redo()
-{
-
+	if (status)
+	{
+		element = new Ligne(x1, y1, x2, y2);
+		contexte->AjouterEltGeom(element);
+	}
 }
 //----------------------------------------------------- Méthodes publiques
 // type CommandeCreationLigne::Méthode ( liste des paramètres )
@@ -60,7 +55,7 @@ void CommandeCreationLigne::redo()
 //} //----- Fin de CommandeCreationLigne (constructeur de copie)
 
 
-CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte) :
+CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte, const string *requete) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
@@ -72,19 +67,15 @@ CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeom
     string tmp;
 	bool sontEntiers(true);
 
-	vector<string *>::iterator it = para.begin();
-	tmp += (*it)->c_str();
-	it++;
+	vector<string *>::iterator it = para.begin() + 1;
 
-	for(; it == para.end(); it++)
+	while(it != para.end() && sontEntiers)
 	{
-
-		tmp +=" ";
-		tmp +=(*it)->c_str();
 		if(!IsInteger((*it)->c_str()))
 		{
 			sontEntiers = false;
 		}
+		it++;
 	}
 
 	if((para.size() == TAILLE_COMMANDE_LIGNE) && sontEntiers)
@@ -93,16 +84,14 @@ CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeom
 		x2 = atoi(para.at(2)->c_str());
 		y1 = atoi(para.at(3)->c_str());
 		y2 = atoi(para.at(4)->c_str());
-		tmp +=" OK\n";
+
+		texteCommande = OK + *requete;
 	}
 	else
 	{
-		tmp += "\n";
-		tmp += CHAINE_PARA_INVALIDE;
-		texteCommande += "Err ";
+		texteCommande =ERREUR + *requete + CHAINE_PARA_INVALIDE;
+		status = false;
 	}
-
-	texteCommande += tmp;
 
 } //----- Fin de CommandeCreationLigne
 

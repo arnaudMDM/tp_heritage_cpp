@@ -39,10 +39,6 @@ public:
     //
 	void execute();
 
-	void undo();
-
-	void redo();
-
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeCreationLigne & operator = ( const CommandeCreationLigne & unCommandeCreationLigne );
     // Mode d'emploi :
@@ -58,7 +54,7 @@ public:
     // Contrat :
     //
 
-    CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte);
+    CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte, const string *requete);
     // Mode d'emploi :
     //
     // Contrat :
@@ -81,7 +77,7 @@ protected:
     int y1;
     int y2;
 private:
-    static const int TAILLE_COMMANDE_LIGNE = 5;
+    static const unsigned int TAILLE_COMMANDE_LIGNE = 5;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationLigne>

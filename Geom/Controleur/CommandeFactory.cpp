@@ -27,6 +27,7 @@ static const string COMMANDE_LOAD = "LOAD";
 static const string COMMANDE_CLEAR = "CLEAR";
 static const string COMMANDE_DELETE = "DELETE";
 static const string COMMANDE_MOVE = "MOVE";
+
 static const unsigned int NB_PARAM_CLEAR = 1;
 static const unsigned int NB_PARAM_DELETE = 1;
 static const unsigned int NB_PARAM_MOVE = 3;
@@ -84,7 +85,7 @@ bool CommandeFactory::GetCommande ( vector<string *> para, Commande **laCommande
 	}
 	else if (commande.compare(COMMANDE_LIGNE) == 0)
 	{
-		cout << "Ligne non implémenté" << endl;
+		*laCommande = new CommandeCreationLigne(para, contexte, requete);
 	}
 	else if (commande.compare(COMMANDE_POLY) == 0)
 	{
