@@ -32,6 +32,7 @@ static const string COMMANDE_UNDO = "UNDO";
 static const string COMMANDE_REDO = "REDO";
 static const string COMMANDE_SEL = "S";
 static const string COMMANDE_SAVE = "SAVE";
+static const string CHAINE_PARA_INVALIDE = "\n#invalid parameters";
 
 static const unsigned int NB_PARAM_SELECT = 5;
 static const unsigned int NB_PARAM_LIST = 1;
@@ -42,6 +43,7 @@ static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
 
 static const string EXTENSION_FICHIER;    // Définie dans CommandeFactory.cpp
+
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -127,28 +129,7 @@ void Controleur::traitementCommande ( )
 		else
 		{
 			//Récupération de la bonne commande
-			bool statusCommande;
-			statusCommande = CommandeFactory::GetCommande(parametres,
-					&laCommande, contexte, &requete);
-
-			if (statusCommande)
-			{
-				//Historisation des commandes
-
-				laCommande->Execute();
-
-				while (!commandesHistorique.empty())
-				{
-					commandesHistorique.pop();
-				}
-				commandesExec.push(laCommande);
-
-				cout << laCommande->getTexteCommande() << endl;
-			}
-			else
-			{
-				cout << ERREUR << requete << endl;
-			}
+			traitementCommande(laCommande);
 		}
 		//Vidage des paramètres
 		ViderParametres();
@@ -305,6 +286,31 @@ string Controleur::Save ( )
 	return OK + requete;
 
 }    //----- Fin de Méthode
+
+void Controleur::traitementCommande ( Commande *laCommande )
+{
+	//Récupération de la bonne commande
+	bool statusCommande;
+
+	statusCommande = CommandeFactory::GetCommande(parametres, &laCommande,
+			contexte, &requete);
+
+	if (statusCommande)
+	{
+		//Historisation des commandes
+		laCommande->Execute();
+		while (!commandesHistorique.empty())
+		{
+			commandesHistorique.pop();
+		}
+		commandesExec.push(laCommande);
+		cout << laCommande->getTexteCommande() << endl;
+	}
+	else
+	{
+		cout << ERREUR << requete << CHAINE_PARA_INVALIDE << endl;
+	}
+}
 
 //----------------------------------------------------- Méthodes protégées
 

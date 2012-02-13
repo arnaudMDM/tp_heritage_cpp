@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeSuppression  -  description
-                             -------------------
-    début                : 12 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeSuppression  -  description
+ -------------------
+ début                : 12 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeSuppression> (fichier CommandeSuppression.h) ------
 #if ! defined ( COMMANDESUPPRESSION_H_ )
@@ -25,51 +25,55 @@
 //
 //------------------------------------------------------------------------ 
 
-class CommandeSuppression : public Commande
+class CommandeSuppression: public Commande
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-	enum typeEtatSuppression {DELETE, CLEAR};
+	// type Méthode ( liste des paramètres );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	enum typeEtatSuppression
+	{
+		DELETE, CLEAR
+	};
 
-	void Execute();
+	void Execute ( );
 
-	void Redo();
+	void Redo ( );
 
-	void Undo();
+	void Undo ( );
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeSuppression & operator = ( const CommandeSuppression & unCommandeSuppression );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+	CommandeSuppression & operator = (
+			const CommandeSuppression & unCommandeSuppression );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 //-------------------------------------------- Constructeurs - destructeur
-    CommandeSuppression ( const CommandeSuppression & unCommandeSuppression );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+	CommandeSuppression ( const CommandeSuppression & unCommandeSuppression );
+	// Mode d'emploi (constructeur de copie) :
+	//
+	// Contrat :
+	//
 
-    CommandeSuppression (ObjetGeometrique *nouveauContexte,typeEtatSuppression, bool statusHistorique = true );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	CommandeSuppression ( ObjetGeometrique *nouveauContexte,
+			typeEtatSuppression );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
-    virtual ~CommandeSuppression ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	virtual ~CommandeSuppression ( );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -77,9 +81,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    vector<EltGeometrique *> elementsSupprimes;
+	vector<EltGeometrique *> elementsSupprimes;
 
-    typeEtatSuppression etatSuppression;
+	typeEtatSuppression etatSuppression;
 
 };
 

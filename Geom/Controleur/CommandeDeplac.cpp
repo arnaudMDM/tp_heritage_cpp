@@ -64,8 +64,8 @@ void CommandeDeplac::Undo()
 //} //----- Fin de CommandeDeplac (constructeur de copie)
 
 
-CommandeDeplac::CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte, bool unStatus):
-		Commande (unContexte, unStatus)
+CommandeDeplac::CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte):
+		Commande (unContexte)
 // Algorithme :
 //
 {

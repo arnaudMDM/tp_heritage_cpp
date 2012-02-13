@@ -27,11 +27,8 @@ using namespace std;
 
 void CommandeCreationRectangle::Execute ( )
 {
-	if (status)
-	{
-		element = new Rectangle(x1, y1, x2, y2);
-		contexte->AjouterEltGeom(element);
-	}
+	element = new Rectangle(x1, y1, x2, y2);
+	contexte->AjouterEltGeom(element);
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

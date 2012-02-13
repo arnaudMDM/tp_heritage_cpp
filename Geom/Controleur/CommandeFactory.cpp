@@ -53,7 +53,7 @@ static const unsigned int TAILLE_COMMANDE_LIGNE = 5;
 
 bool CommandeFactory::GetCommande ( vector<string *> para,
 		Commande **laCommande,
-		ObjetGeometrique *contexte, const string *requete )
+		ObjetGeometrique *contexte, string *requete )
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
@@ -194,8 +194,10 @@ bool CommandeFactory::traitementLoad ( vector<string *> para,
 	if (para.size() == NB_PARAM_LOAD
 			&& para.at(1)->find(EXTENSION_FICHIER) != string::npos)
 	{
-		*laCommande = new CommandeLoad(*(para.at(1)), contexte);
-		return (*laCommande)->IsOk();
+		CommandeLoad *ptrLoad = new CommandeLoad(*(para.at(1)), contexte);
+		*laCommande = ptrLoad;
+		return ((CommandeLoad *)(*laCommande))->IsOk();
+		return ptrLoad->IsOk();
 	}
 	else
 	{
@@ -343,6 +345,5 @@ bool CommandeFactory::traitementLigne ( vector<string *> para,
 
 	return correct;
 }
-
 //----------------------------------------------------- Méthodes protégées
 

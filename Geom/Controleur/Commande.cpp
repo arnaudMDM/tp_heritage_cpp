@@ -17,15 +17,10 @@ using namespace std;
 #include "Commande.h"
 
 //------------------------------------------------------------- Constantes
-const string Commande::CHAINE_PARA_INVALIDE = "\n#invalid parameters";
+
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Commande::IsOk()
-{
-	return status;
-}
-
 string Commande::getTexteCommande()
 {
 	return texteCommande;
@@ -50,8 +45,8 @@ string Commande::getTexteCommande()
 //} //----- Fin de Commande (constructeur de copie)
 
 
-Commande::Commande (ObjetGeometrique *nouveauContexte, bool statusHistorique) :
-		contexte(nouveauContexte), status(true)
+Commande::Commande (ObjetGeometrique *nouveauContexte) :
+		contexte(nouveauContexte)
 // Algorithme :
 //
 {

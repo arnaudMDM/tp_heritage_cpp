@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte, bool unStatus = true );
+    CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte);
     // Mode d'emploi :
     //
     // Contrat :

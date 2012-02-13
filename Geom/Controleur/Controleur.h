@@ -77,7 +77,7 @@ protected:
     bool quitter;
     string requete;
     vector < string *> parametres;
-    ObjetGeometrique *contexte;
+    ObjetGeometrique * contexte;
     stack < Commande *> commandesExec;
     stack < Commande *> commandesHistorique;
 
@@ -91,6 +91,7 @@ private:
     string Selectionner();
 
     string Save();
+    void traitementCommande(Commande *laCommande);
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

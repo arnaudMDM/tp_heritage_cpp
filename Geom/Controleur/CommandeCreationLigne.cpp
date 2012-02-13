@@ -1,14 +1,12 @@
 /*************************************************************************
-                           CommandeCreationLigne  -  description
-                             -------------------
-    début                : 10 févr. 2012
-    copyright            : (C) 2012 par arnaud
-*************************************************************************/
+ CommandeCreationLigne  -  description
+ -------------------
+ début                : 10 févr. 2012
+ copyright            : (C) 2012 par arnaud
+ *************************************************************************/
 
 //---------- Réalisation de la classe <CommandeCreationLigne> (fichier CommandeCreationLigne.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -20,13 +18,10 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
-void CommandeCreationLigne::Execute()
+void CommandeCreationLigne::Execute ( )
 {
-	if (status)
-	{
-		element = new Ligne(x1, y1, x2, y2);
-		contexte->AjouterEltGeom(element);
-	}
+	element = new Ligne(x1, y1, x2, y2);
+	contexte->AjouterEltGeom(element);
 }
 //----------------------------------------------------- Méthodes publiques
 // type CommandeCreationLigne::Méthode ( liste des paramètres )
@@ -35,14 +30,12 @@ void CommandeCreationLigne::Execute()
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreationLigne & unCommandeCreationLigne )
 //// Algorithme :
 ////
 //{
 //} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
 //CommandeCreationLigne::CommandeCreationLigne ( const CommandeCreationLigne & unCommandeCreationLigne )
@@ -54,14 +47,14 @@ void CommandeCreationLigne::Execute()
 //#endif
 //} //----- Fin de CommandeCreationLigne (constructeur de copie)
 
-
-CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte, const string *requete) :
+CommandeCreationLigne::CommandeCreationLigne ( vector<string *> para,
+		ObjetGeometrique *leContexte, const string *requete ) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <CommandeCreationLigne>" << endl;
+	cout << "Appel au constructeur de <CommandeCreationLigne>" << endl;
 #endif
 
 	x1 = atoi(para.at(1)->c_str());
@@ -71,18 +64,16 @@ CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeom
 
 	texteCommande = OK + *requete;
 
-} //----- Fin de CommandeCreationLigne
-
+}    //----- Fin de CommandeCreationLigne
 
 CommandeCreationLigne::~CommandeCreationLigne ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <CommandeCreationLigne>" << endl;
+	cout << "Appel au destructeur de <CommandeCreationLigne>" << endl;
 #endif
-} //----- Fin de ~CommandeCreationLigne
-
+}    //----- Fin de ~CommandeCreationLigne
 
 //------------------------------------------------------------------ PRIVE
 

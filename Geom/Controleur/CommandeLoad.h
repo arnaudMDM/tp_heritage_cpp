@@ -37,6 +37,9 @@ public:
 	//
 	// Contrat :
 	//
+
+	bool IsOk();
+
 	void Execute();
 
 	void Undo();
@@ -56,7 +59,7 @@ public:
 	// Contrat :
 	//
 
-	CommandeLoad (const string &unNomFichier, ObjetGeometrique *unContexte, bool statusHistorique = true );
+	CommandeLoad (const string &unNomFichier, ObjetGeometrique *unContexte);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -75,6 +78,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	string nomFichier;
+
+	bool statusLecture;
 
 	vector <Commande *> commandesCreation;
 };

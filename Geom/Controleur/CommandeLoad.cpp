@@ -27,6 +27,12 @@ static const unsigned int MAXSIZE = 20;
 //
 //{
 //} //----- Fin de Méthode
+
+bool CommandeLoad::IsOk()
+{
+	return statusLecture;
+}
+
 void CommandeLoad::Execute ( )
 {
 	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
@@ -70,8 +76,8 @@ void CommandeLoad::Redo ( )
 //} //----- Fin de CommandeLoad (constructeur de copie)
 
 CommandeLoad::CommandeLoad ( const string &unNomFichier,
-		ObjetGeometrique *unContexte, bool statusHistorique ) :
-		Commande(unContexte, statusHistorique), nomFichier(unNomFichier)
+		ObjetGeometrique *unContexte) :
+		Commande(unContexte), nomFichier(unNomFichier), statusLecture(true)
 // Algorithme :
 //
 {
@@ -90,11 +96,9 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 
 	try
 	{
-		bool statusCommande(true);
-
 		fichier.open(nomFichier.c_str());
 
-		while (fichier.getline(bufferDesc, MAXSIZE) && statusCommande)
+		while (fichier.getline(bufferDesc, MAXSIZE) && statusLecture)
 		{
 			if (*bufferDesc != Controleur::CAR_COMMENTAIRE)
 			{
@@ -102,7 +106,7 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 
 				DecomposerCommande(lesRequetes, uneRequete);
 
-				statusCommande = CommandeFactory::GetCommande(lesRequetes,
+				statusLecture = CommandeFactory::GetCommande(lesRequetes,
 						laCommande, contexte, uneRequete);
 
 
@@ -112,7 +116,7 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 		}
 		fichier.close();
 
-		if(statusCommande)
+		if(statusLecture)
 		{
 			commandesCreation = lesCommandesCrees;
 			texteCommande = OK + LOAD + nomFichier;
@@ -120,13 +124,12 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 		else
 		{
 			texteCommande = ERREUR + LOAD + nomFichier;
-			status = false;
 		}
 	}
 	catch (ifstream::failure &e)
 	{
 		texteCommande = ERREUR + LOAD + nomFichier;
-		status = false;
+		statusLecture = false;
 	}
 
 }    //----- Fin de CommandeLoad

@@ -27,11 +27,8 @@ using namespace std;
 
 void CommandeCreationPoly::Execute ( )
 {
-	if (status)
-	{
-		element = new PolyLigne(coordonneesX, coordonneesY);
-		contexte->AjouterEltGeom(element);
-	}
+	element = new PolyLigne(coordonneesX, coordonneesY);
+	contexte->AjouterEltGeom(element);
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

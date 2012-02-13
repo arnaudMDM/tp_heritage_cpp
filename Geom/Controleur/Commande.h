@@ -34,7 +34,6 @@ class Commande
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    bool IsOk();
     //
     // Contrat :
     //
@@ -62,7 +61,7 @@ public:
     // Contrat :
     //
 
-    Commande (ObjetGeometrique *nouveauContexte , bool statusHistorique);
+    Commande (ObjetGeometrique *nouveauContexte);
     // Mode d'emploi :
     //
     // Contrat :
@@ -81,10 +80,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     ObjetGeometrique *contexte;
-    bool status;
     string texteCommande;
-
-    static const string CHAINE_PARA_INVALIDE;
 };
 
 //--------------------------- Autres définitions dépendantes de <Commande>

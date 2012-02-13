@@ -29,11 +29,8 @@ using namespace std;
 
 void CommandeCreationCercle::Execute ( )
 {
-	if (status)
-	{
-		element = new Cercle(x1, y1, rayon);
-		contexte->AjouterEltGeom(element);
-	}
+	element = new Cercle(x1, y1, rayon);
+	contexte->AjouterEltGeom(element);
 }
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )
@@ -53,7 +50,8 @@ void CommandeCreationCercle::Execute ( )
 //#endif
 //} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
-CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeometrique *leContexte, const string *requete ) :
+CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
+		ObjetGeometrique *leContexte, const string *requete ) :
 		CommandeCreation(leContexte)
 // Algorithme :
 //
@@ -70,7 +68,7 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 
 	texteCommande = OK + *requete;
 
-} //----- Fin de CommandeCreationCercle
+}    //----- Fin de CommandeCreationCercle
 
 CommandeCreationCercle::~CommandeCreationCercle ( )
 // Algorithme :
@@ -79,7 +77,7 @@ CommandeCreationCercle::~CommandeCreationCercle ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeCreationCercle>" << endl;
 #endif
-} //----- Fin de ~CommandeCreationCercle
+}    //----- Fin de ~CommandeCreationCercle
 
 //------------------------------------------------------------------ PRIVE
 

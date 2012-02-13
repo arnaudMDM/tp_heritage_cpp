@@ -58,8 +58,8 @@ void CommandeSuppression::Undo()
 //} //----- Fin de CommandeSuppression (constructeur de copie)
 
 CommandeSuppression::CommandeSuppression (ObjetGeometrique *nouveauContexte,
-		typeEtatSuppression etat, bool statusHistorique ) :
-		Commande(nouveauContexte, statusHistorique), etatSuppression(etat)
+		typeEtatSuppression etat) :
+		Commande(nouveauContexte), etatSuppression(etat)
 // Algorithme :
 //
 {

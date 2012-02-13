@@ -38,7 +38,7 @@ public:
 	//
 
 	static bool GetCommande ( vector<string *> para, Commande **laCommande,
-			ObjetGeometrique *contexte, const string *requete );
+			ObjetGeometrique *contexte, string *requete );
 	// Mode d'emploi : Retourne l'instance d'une commande
 	// correspondant aux arguments passés en paramètre.
 	//
@@ -94,6 +94,7 @@ private:
 
 	static bool traitementLigne ( vector<string *> para, Commande ** laCommande,
 			ObjetGeometrique * contexte, const string *requete );
+
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeFactory>
