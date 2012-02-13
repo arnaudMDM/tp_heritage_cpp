@@ -27,7 +27,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void CommandeCreationCercle::execute ( )
+void CommandeCreationCercle::Execute ( )
 {
 	if (status)
 	{
@@ -62,40 +62,13 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para, ObjetGeo
 	cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
 
+	x1 = atoi((para.at(1))->c_str());
 
-	if (para.size() == NB_PARAM_CREAT_CERCLE)
-	{
-		vector<string*>::iterator it = para.begin() + 1;
-		while( it != para.end())
-		{
-			if(!IsInteger(**it))
-			{
-				status = false;
-			}
-			it++;
-		}
+	y1 = atoi((para.at(2))->c_str());
 
-		x1 = atoi((para.at(1))->c_str());
+	rayon = atoi((para.at(3))->c_str());
 
-		y1 = atoi((para.at(2))->c_str());
-		// Le rayon ne peut pas etre négatif
-
-		rayon = atoi((para.at(3))->c_str());
-
-	}
-	else
-	{
-		status = false;
-	}
-
-	if (!status)
-	{
-		texteCommande = ERREUR + *requete;
-	}
-	else
-	{
-		texteCommande = OK + *requete;
-	}
+	texteCommande = OK + *requete;
 
 } //----- Fin de CommandeCreationCercle
 

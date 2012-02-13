@@ -28,18 +28,18 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void CommandeDeplac::execute()
+void CommandeDeplac::Execute()
 {
 	contexte->Translater(deltaX, deltaY);
 }
 
-void CommandeDeplac::redo()
+void CommandeDeplac::Redo()
 {
 	contexte->SelectionnerElts(elementsDeplaces);
 	contexte->Translater(deltaX, deltaY);
 }
 
-void CommandeDeplac::undo()
+void CommandeDeplac::Undo()
 {
 	contexte->SelectionnerElts(elementsDeplaces);
 	contexte->Translater(-deltaX, -deltaY);

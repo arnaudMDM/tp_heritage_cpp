@@ -20,7 +20,7 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
-void CommandeCreationLigne::execute()
+void CommandeCreationLigne::Execute()
 {
 	if (status)
 	{
@@ -64,34 +64,12 @@ CommandeCreationLigne::CommandeCreationLigne (vector < string *> para, ObjetGeom
     cout << "Appel au constructeur de <CommandeCreationLigne>" << endl;
 #endif
 
-    string tmp;
-	bool sontEntiers(true);
+	x1 = atoi(para.at(1)->c_str());
+	x2 = atoi(para.at(2)->c_str());
+	y1 = atoi(para.at(3)->c_str());
+	y2 = atoi(para.at(4)->c_str());
 
-	vector<string *>::iterator it = para.begin() + 1;
-
-	while(it != para.end() && sontEntiers)
-	{
-		if(!IsInteger((*it)->c_str()))
-		{
-			sontEntiers = false;
-		}
-		it++;
-	}
-
-	if((para.size() == TAILLE_COMMANDE_LIGNE) && sontEntiers)
-	{
-		x1 = atoi(para.at(1)->c_str());
-		x2 = atoi(para.at(2)->c_str());
-		y1 = atoi(para.at(3)->c_str());
-		y2 = atoi(para.at(4)->c_str());
-
-		texteCommande = OK + *requete;
-	}
-	else
-	{
-		texteCommande =ERREUR + *requete + CHAINE_PARA_INVALIDE;
-		status = false;
-	}
+	texteCommande = OK + *requete;
 
 } //----- Fin de CommandeCreationLigne
 

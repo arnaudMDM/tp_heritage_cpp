@@ -25,7 +25,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void CommandeCreationRectangle::execute ( )
+void CommandeCreationRectangle::Execute ( )
 {
 	if (status)
 	{
@@ -61,40 +61,17 @@ CommandeCreationRectangle::CommandeCreationRectangle ( vector<string *> para,
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeCreationRectangle>" << endl;
 #endif
-	bool correct(true);
 
-	if (para.size() == NB_PARAM_CREAT_RECT)
-	{
+	x1 = atoi((para.at(1))->c_str());
 
-		vector<string*>::iterator it = para.begin() + 1;
+	y1 = atoi((para.at(2))->c_str());
 
-		while (it != para.end() && correct)
-		{
-			if (!IsInteger(**it))
-			{
-				correct = false;
-			}
-			it++;
-		}
-	}
+	x2 = atoi((para.at(3))->c_str());
 
-	if(correct)
-	{
-		x1 = atoi((para.at(1))->c_str());
+	y2 = atoi((para.at(4))->c_str());
 
-		y1 = atoi((para.at(2))->c_str());
+	texteCommande = OK + *requete;
 
-		x2 = atoi((para.at(3))->c_str());
-
-		y2 = atoi((para.at(4))->c_str());
-
-		texteCommande = OK + *requete;
-	}
-	else
-	{
-		texteCommande = ERREUR + *requete;
-		status = false;
-	}
 }    //----- Fin de CommandeCreationRectangle
 
 CommandeCreationRectangle::~CommandeCreationRectangle ( )

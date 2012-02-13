@@ -37,11 +37,11 @@ public:
     // Contrat :
     //
 
-	void execute();
+	void Execute();
 
-	void redo();
+	void Redo();
 
-	void undo();
+	void Undo();
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeDeplac & operator = ( const CommandeDeplac & unCommandeDeplac );

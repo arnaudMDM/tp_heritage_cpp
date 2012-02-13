@@ -37,7 +37,7 @@ public:
     //
     // Contrat :
     //
-	void execute();
+	void Execute();
 
 //------------------------------------------------- Surcharge d'opérateurs
 //    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
@@ -75,9 +75,6 @@ protected:
     int x1;
     int y1;
     int rayon;
-private:
-    static const unsigned int NB_PARAM_CREAT_CERCLE = 4;
-
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationCercle>

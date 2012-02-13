@@ -16,10 +16,9 @@ using namespace std;
 #include "CommandeLoad.h"
 #include "Decomposeur.h"
 #include "CommandeFactory.h"
-
+#include "Controleur.h"
 //------------------------------------------------------------- Constantes
 static const unsigned int MAXSIZE = 20;
-static const char CAR_COMMENTAIRE = '#';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -28,27 +27,27 @@ static const char CAR_COMMENTAIRE = '#';
 //
 //{
 //} //----- Fin de Méthode
-void CommandeLoad::execute ( )
+void CommandeLoad::Execute ( )
 {
 	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
 	{
-		(*it)->execute();
+		(*it)->Execute();
 	}
 }
 
-void CommandeLoad::undo ( )
+void CommandeLoad::Undo ( )
 {
 	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
 	{
-		(*it)->undo();
+		(*it)->Undo();
 	}
 }
 
-void CommandeLoad::redo ( )
+void CommandeLoad::Redo ( )
 {
 	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
 	{
-		(*it)->redo();
+		(*it)->Redo();
 	}
 }
 
@@ -97,7 +96,7 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 
 		while (fichier.getline(bufferDesc, MAXSIZE) && statusCommande)
 		{
-			if (*bufferDesc != CAR_COMMENTAIRE)
+			if (*bufferDesc != Controleur::CAR_COMMENTAIRE)
 			{
 				uneRequete = new string(bufferDesc);
 
@@ -116,17 +115,17 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 		if(statusCommande)
 		{
 			commandesCreation = lesCommandesCrees;
-			texteCommande = OK + LOAD;
+			texteCommande = OK + LOAD + nomFichier;
 		}
 		else
 		{
-			texteCommande = ERREUR + LOAD;
+			texteCommande = ERREUR + LOAD + nomFichier;
 			status = false;
 		}
 	}
 	catch (ifstream::failure &e)
 	{
-		texteCommande = ERREUR + LOAD;
+		texteCommande = ERREUR + LOAD + nomFichier;
 		status = false;
 	}
 

@@ -26,7 +26,7 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-void CommandeCreation::undo()
+void CommandeCreation::Undo()
 {
 	if (status)
 	{
@@ -36,7 +36,7 @@ void CommandeCreation::undo()
 }
 
 
-void CommandeCreation::redo()
+void CommandeCreation::Redo()
 {
 	if (status)
 	{

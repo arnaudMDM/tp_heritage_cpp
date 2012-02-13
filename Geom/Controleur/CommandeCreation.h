@@ -38,11 +38,11 @@ public:
     //
     // Contrat :
     //
-	virtual void execute() = 0;
+	virtual void Execute() = 0;
 
-	virtual void undo();
+	virtual void Undo();
 
-	virtual void redo();
+	virtual void Redo();
 //------------------------------------------------- Surcharge d'opérateurs
 //    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
 //    // Mode d'emploi :

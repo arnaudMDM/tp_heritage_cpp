@@ -41,7 +41,7 @@ static const unsigned int NB_PARAM_SAVE = 2;
 static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
 
-static const string EXTENSION_FICHIER; // Définie dans CommandeFactory.cpp
+static const string EXTENSION_FICHIER;    // Définie dans CommandeFactory.cpp
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -64,8 +64,11 @@ void Controleur::traitementCommande ( )
 		}
 		commande = parametres.front();
 
-		//Traitement particulier dans le cas du exit
-		if (commande->compare(COMMANDE_EXIT) == 0)
+		if(commande->at(0) == CAR_COMMENTAIRE)
+		{
+			continue;
+		}
+		else if(commande->compare(COMMANDE_EXIT) == 0)
 		{
 			if (parametres.size() == NB_PARAM_EXIT)
 			{
@@ -87,9 +90,9 @@ void Controleur::traitementCommande ( )
 			}
 			else
 			{
-				reponse = ERREUR + requete;
+				reponse = ERREUR + requete + "\n";
 			}
-			cout << reponse << endl;
+			cout << reponse<<flush;
 		}
 		else if (commande->compare(COMMANDE_COUNT) == 0)
 		{
@@ -134,7 +137,7 @@ void Controleur::traitementCommande ( )
 
 				if (laCommande->IsOk())
 				{
-					laCommande->execute();
+					laCommande->Execute();
 
 					while (!commandesHistorique.empty())
 					{
@@ -207,7 +210,7 @@ string Controleur::Defaire ( )
 		{
 			Commande *laCommande = NULL;
 			laCommande = commandesExec.top();
-			laCommande->undo();
+			laCommande->Undo();
 			commandesHistorique.push(laCommande);
 			commandesExec.pop();
 			reponse = OK + requete;
@@ -228,7 +231,7 @@ string Controleur::Refaire ( )
 		{
 			Commande *laCommande = NULL;
 			laCommande = commandesHistorique.top();
-			laCommande->redo();
+			laCommande->Redo();
 			commandesExec.push(laCommande);
 			commandesHistorique.pop();
 			reponse = OK + requete;
@@ -264,8 +267,8 @@ string Controleur::Selectionner ( )
 	}
 
 	os
-			<< contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
-					nombres.at(2), nombres.at(3));
+	<< contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
+			nombres.at(2), nombres.at(3));
 	return os.str();
 
 }    //----- Fin de Méthode
@@ -276,7 +279,8 @@ string Controleur::Save ( )
 {
 	string reponse = ERREUR + requete;
 
-	if (parametres.size() != NB_PARAM_SAVE || parametres.at(1)->find(EXTENSION_FICHIER) == string::npos)
+	if (parametres.size() != NB_PARAM_SAVE
+			|| parametres.at(1)->find(EXTENSION_FICHIER) == string::npos)
 	{
 		return reponse;
 	}

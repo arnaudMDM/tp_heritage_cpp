@@ -24,18 +24,18 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-void CommandeSuppression::execute()
+void CommandeSuppression::Execute()
 {
 	contexte->Deselectionner();
 	contexte->SupprimerElts(elementsSupprimes);
 }
 
-void CommandeSuppression::redo()
+void CommandeSuppression::Redo()
 {
-	execute();
+	Execute();
 }
 
-void CommandeSuppression::undo()
+void CommandeSuppression::Undo()
 {
 	contexte->AjouterEltGeom(elementsSupprimes);
 }

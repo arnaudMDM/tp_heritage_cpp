@@ -17,7 +17,7 @@
 #include "Commande.h"
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes 
-static const string LOAD = "LOAD";
+static const string LOAD = "LOAD ";
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
@@ -37,11 +37,11 @@ public:
 	//
 	// Contrat :
 	//
-	void execute();
+	void Execute();
 
-	void undo();
+	void Undo();
 
-	void redo();
+	void Redo();
 //------------------------------------------------- Surcharge d'opérateurs
 	CommandeLoad & operator = ( const CommandeLoad & unCommandeLoad );
 	// Mode d'emploi :

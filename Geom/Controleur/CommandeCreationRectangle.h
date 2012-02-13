@@ -37,7 +37,7 @@ public:
     // Contrat :
     //
 
-	void execute();
+	void Execute();
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeCreationRectangle & operator = ( const CommandeCreationRectangle & unCommandeCreationRectangle );
@@ -78,7 +78,7 @@ protected:
     int y2;
 
 private:
-    static const unsigned int NB_PARAM_CREAT_RECT = 5;
+
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationRectangle>

@@ -39,7 +39,7 @@ public:
     //
     // Contrat :
     //
-
+    static const char CAR_COMMENTAIRE = '#';
 
 //------------------------------------------------- Surcharge d'opérateurs
     Controleur & operator = ( const Controleur & unControleur );

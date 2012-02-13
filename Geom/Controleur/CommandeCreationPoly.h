@@ -29,7 +29,7 @@ class CommandeCreationPoly: public CommandeCreation
 {
 public:
 
-	void execute();
+	void Execute();
 
 	CommandeCreationPoly & operator = (
 			const CommandeCreationPoly & unCommandeCreationPoly );
@@ -39,7 +39,7 @@ public:
 			const CommandeCreationPoly & unCommandeCreationPoly );
 
 
-	CommandeCreationPoly ( vector<string*> para, ObjetGeometrique *unContexte,
+	CommandeCreationPoly (vector < int> abscisses, vector <int> ordonnees, ObjetGeometrique *unContexte,
 			const string *requete );
 
 	virtual ~CommandeCreationPoly ( );
@@ -49,8 +49,6 @@ protected:
 	vector<int> coordonneesX;
 	vector<int> coordonneesY;
 
-	static const unsigned int NB_PARA_INVARIANT = 1;
-	static const unsigned int NB_PARA_PAR_POINT = 2;
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationPoly>

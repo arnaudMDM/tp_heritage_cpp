@@ -10,6 +10,7 @@
 //-------------------------------------------------------- Include système
 #include <iostream>
 #include <exception>
+#include <cstdlib>
 using namespace std;
 //------------------------------------------------------ Include personnel
 #include "CommandeFactory.h"
@@ -31,11 +32,16 @@ static const string COMMANDE_CLEAR = "CLEAR";
 static const string COMMANDE_DELETE = "DELETE";
 static const string COMMANDE_MOVE = "MOVE";
 static const string EXTENSION_FICHIER = ".txt";
+
 static const unsigned int NB_PARAM_MOVE = 3;
 static const unsigned int NB_PARAM_LOAD = 2;
 static const unsigned int NB_PARAM_CLEAR = 1;
 static const unsigned int NB_PARAM_DELETE = 1;
-
+static const unsigned int NB_PARAM_CREAT_RECT = 5;
+static const unsigned int NB_PARA_INVARIANT_PL = 1;
+static const unsigned int NB_PARA_PAR_POINT = 2;
+static const unsigned int NB_PARAM_CREAT_CERCLE = 4;
+static const unsigned int TAILLE_COMMANDE_LIGNE = 5;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -93,19 +99,19 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 	}
 	else if (commande.find(COMMANDE_CERCLE) == 0)
 	{
-		*laCommande = new CommandeCreationCercle(para, contexte, requete);
+		status = traitementCercle(para, laCommande, contexte, requete);
 	}
 	else if (commande.compare(COMMANDE_RECTANGLE) == 0)
 	{
-		*laCommande = new CommandeCreationRectangle(para, contexte, requete);
+		status = traitementRect(para, laCommande, contexte, requete);
 	}
 	else if (commande.compare(COMMANDE_LIGNE) == 0)
 	{
-		*laCommande = new CommandeCreationLigne(para, contexte, requete);
+		status = traitementLigne(para, laCommande, contexte, requete);
 	}
 	else if (commande.compare(COMMANDE_POLY) == 0)
 	{
-		*laCommande = new CommandeCreationPoly(para, contexte, requete);
+		status = traitementPoly(para, laCommande, contexte, requete);
 	}
 	else
 	{
@@ -182,10 +188,11 @@ bool CommandeFactory::traitementMove ( vector<string *> para,
 	return etat;
 }
 
-bool CommandeFactory::traitementLoad( vector<string *> para,
+bool CommandeFactory::traitementLoad ( vector<string *> para,
 		Commande ** laCommande, ObjetGeometrique * contexte )
 {
-	if(para.size() == NB_PARAM_LOAD && para.at(1)->find(EXTENSION_FICHIER) != string::npos)
+	if (para.size() == NB_PARAM_LOAD
+			&& para.at(1)->find(EXTENSION_FICHIER) != string::npos)
 	{
 		*laCommande = new CommandeLoad(*(para.at(1)), contexte);
 		return (*laCommande)->IsOk();
@@ -195,5 +202,147 @@ bool CommandeFactory::traitementLoad( vector<string *> para,
 		return false;
 	}
 }
+
+bool CommandeFactory::traitementRect ( vector<string *> para,
+		Commande ** laCommande,
+		ObjetGeometrique * contexte, const string *requete )
+{
+	bool correct(false);
+
+	if (para.size() == NB_PARAM_CREAT_RECT)
+	{
+		correct = true;
+
+		vector<string*>::iterator it = para.begin() + 1;
+
+		while (it != para.end() && correct)
+		{
+			if (!IsInteger(**it))
+			{
+				correct = false;
+			}
+			it++;
+		}
+
+		if (correct)
+		{
+			*laCommande = new CommandeCreationRectangle(para, contexte,
+					requete);
+		}
+	}
+	return correct;
+}
+
+bool CommandeFactory::traitementPoly ( vector<string *> para,
+		Commande ** laCommande,
+		ObjetGeometrique * contexte, const string *requete )
+{
+	vector<int> tempX;
+	vector<int> tempY;
+
+	bool correct(true);
+
+	if ((para.size() - NB_PARA_INVARIANT_PL) % NB_PARA_PAR_POINT != 0)
+	{
+		correct = false;
+	}
+	else
+	{
+		vector<string *>::iterator itX = para.begin() + 1;
+		vector<string *>::iterator itY = para.begin() + 2;
+
+		while (itX != para.end() && correct)
+		{
+			if (!IsInteger((*itY)->c_str()) || !IsInteger((*itX)->c_str()))
+			{
+				correct = false;
+			}
+			else
+			{
+				tempX.push_back(atoi((*itX)->c_str()));
+				tempY.push_back(atoi((*itY)->c_str()));
+			}
+
+			itX += NB_PARA_PAR_POINT;
+			itY += NB_PARA_PAR_POINT;
+		}
+	}
+
+	if (correct)
+	{
+		*laCommande = new CommandeCreationPoly(tempX, tempY, contexte, requete);
+	}
+	return correct;
+}
+
+bool CommandeFactory::traitementCercle ( vector<string *> para,
+		Commande ** laCommande,
+		ObjetGeometrique * contexte, const string *requete )
+{
+	bool correct(true);
+
+	if (para.size() == NB_PARAM_CREAT_CERCLE)
+	{
+		vector<string*>::iterator it = para.begin() + 1;
+		while (it != para.end() && correct)
+		{
+			if (!IsInteger(**it))
+			{
+				correct = false;
+			}
+			it++;
+		}
+
+		if (correct && atoi((para.at(3))->c_str()) > 0)
+		{
+			*laCommande = new CommandeCreationCercle(para, contexte, requete);
+		}
+		else
+		{
+			correct = false;
+		}
+	}
+	else
+	{
+		correct = false;
+	}
+
+	return correct;
+}
+
+bool CommandeFactory::traitementLigne ( vector<string *> para,
+		Commande ** laCommande,
+		ObjetGeometrique * contexte, const string *requete )
+{
+
+	string tmp;
+	bool correct(true);
+
+	if (para.size() == TAILLE_COMMANDE_LIGNE)
+	{
+		vector<string *>::iterator it = para.begin() + 1;
+
+		while (it != para.end() && correct)
+		{
+			if (!IsInteger((*it)->c_str()))
+			{
+				correct = false;
+			}
+			it++;
+		}
+
+		if (correct)
+		{
+			*laCommande = new CommandeCreationLigne(para, contexte, requete);
+		}
+	}
+	else
+	{
+		correct = false;
+	}
+
+	return correct;
+}
+
 //----------------------------------------------------- Méthodes protégées
 

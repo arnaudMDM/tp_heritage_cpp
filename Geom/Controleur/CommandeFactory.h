@@ -82,6 +82,18 @@ private:
 
 	static bool traitementLoad ( vector<string *> para, Commande ** laCommande,
 			ObjetGeometrique * contexte );
+
+	static bool traitementRect ( vector<string *> para, Commande ** laCommande,
+			ObjetGeometrique * contexte, const string *requete );
+
+	static bool traitementPoly ( vector<string *> para, Commande ** laCommande,
+			ObjetGeometrique * contexte, const string *requete );
+
+	static bool traitementCercle ( vector<string *> para, Commande ** laCommande,
+			ObjetGeometrique * contexte, const string *requete );
+
+	static bool traitementLigne ( vector<string *> para, Commande ** laCommande,
+			ObjetGeometrique * contexte, const string *requete );
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeFactory>

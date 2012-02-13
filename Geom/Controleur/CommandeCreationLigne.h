@@ -37,7 +37,7 @@ public:
     //
     // Contrat :
     //
-	void execute();
+	void Execute();
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeCreationLigne & operator = ( const CommandeCreationLigne & unCommandeCreationLigne );
@@ -76,8 +76,7 @@ protected:
     int x2;
     int y1;
     int y2;
-private:
-    static const unsigned int TAILLE_COMMANDE_LIGNE = 5;
+
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationLigne>
