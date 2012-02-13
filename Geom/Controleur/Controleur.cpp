@@ -64,11 +64,11 @@ void Controleur::traitementCommande ( )
 		}
 		commande = parametres.front();
 
-		if(commande->at(0) == CAR_COMMENTAIRE)
+		if (commande->at(0) == CAR_COMMENTAIRE)
 		{
 			continue;
 		}
-		else if(commande->compare(COMMANDE_EXIT) == 0)
+		else if (commande->compare(COMMANDE_EXIT) == 0)
 		{
 			if (parametres.size() == NB_PARAM_EXIT)
 			{
@@ -92,7 +92,7 @@ void Controleur::traitementCommande ( )
 			{
 				reponse = ERREUR + requete + "\n";
 			}
-			cout << reponse<<flush;
+			cout << reponse << flush;
 		}
 		else if (commande->compare(COMMANDE_COUNT) == 0)
 		{
@@ -135,16 +135,14 @@ void Controleur::traitementCommande ( )
 			{
 				//Historisation des commandes
 
-				if (laCommande->IsOk())
-				{
-					laCommande->Execute();
+				laCommande->Execute();
 
-					while (!commandesHistorique.empty())
-					{
-						commandesHistorique.pop();
-					}
-					commandesExec.push(laCommande);
+				while (!commandesHistorique.empty())
+				{
+					commandesHistorique.pop();
 				}
+				commandesExec.push(laCommande);
+
 				cout << laCommande->getTexteCommande() << endl;
 			}
 			else
