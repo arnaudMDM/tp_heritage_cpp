@@ -51,7 +51,7 @@ string Ligne::Description()
 // Algorithme :
 //
 {
-	string description = "L " + Info();
+	string description = "L " + Info() + "\n";
 	return description;
 } //----- Fin de Méthode
 

@@ -19,6 +19,7 @@ using namespace std;
 #include "CommandeCreationPoly.h"
 #include "CommandeSuppression.h"
 #include "CommandeDeplac.h"
+#include "CommandeLoad.h"
 
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_RECTANGLE = "R";
@@ -29,7 +30,7 @@ static const string COMMANDE_LOAD = "LOAD";
 static const string COMMANDE_CLEAR = "CLEAR";
 static const string COMMANDE_DELETE = "DELETE";
 static const string COMMANDE_MOVE = "MOVE";
-
+static const string EXTENSION_FICHIER = ".txt";
 static const unsigned int NB_PARAM_MOVE = 3;
 static const unsigned int NB_PARAM_LOAD = 2;
 static const unsigned int NB_PARAM_CLEAR = 1;
@@ -60,7 +61,7 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 #endif
 	if (commande.compare(COMMANDE_LOAD) == 0)
 	{
-		cout << "Load non implémenté" << endl;
+		status = traitementLoad(para, laCommande, contexte);
 	}
 	else if (commande.compare(COMMANDE_MOVE) == 0)
 	{
@@ -179,6 +180,20 @@ bool CommandeFactory::traitementMove ( vector<string *> para,
 	}
 
 	return etat;
+}
+
+bool CommandeFactory::traitementLoad( vector<string *> para,
+		Commande ** laCommande, ObjetGeometrique * contexte )
+{
+	if(para.size() == NB_PARAM_LOAD && para.at(1)->find(EXTENSION_FICHIER) != string::npos)
+	{
+		*laCommande = new CommandeLoad(*(para.at(1)), contexte);
+		return (*laCommande)->IsOk();
+	}
+	else
+	{
+		return false;
+	}
 }
 //----------------------------------------------------- Méthodes protégées
 

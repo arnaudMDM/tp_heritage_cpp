@@ -41,6 +41,7 @@ string Cercle::Description()
 	osY << centre.getY();
 	osRayon << rayon;
 	string description = "C " + osX.str() + " " + osY.str() + " " + osRayon.str();
+	description += "\n";
 	return description;
 } //----- Fin de Méthode
 

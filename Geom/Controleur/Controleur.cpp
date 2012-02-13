@@ -41,6 +41,7 @@ static const unsigned int NB_PARAM_SAVE = 2;
 static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
 
+static const string EXTENSION_FICHIER; // Définie dans CommandeFactory.cpp
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -80,7 +81,6 @@ void Controleur::traitementCommande ( )
 		}
 		else if (commande->compare(COMMANDE_LIST) == 0)
 		{
-			//cout << "tentative de listage non implémenté! " << endl;
 			if (parametres.size() == NB_PARAM_LIST)
 			{
 				reponse = contexte->DescriptionEltsSelect();
@@ -276,7 +276,7 @@ string Controleur::Save ( )
 {
 	string reponse = ERREUR + requete;
 
-	if (parametres.size() != NB_PARAM_SAVE)
+	if (parametres.size() != NB_PARAM_SAVE || parametres.at(1)->find(EXTENSION_FICHIER) == string::npos)
 	{
 		return reponse;
 	}
@@ -289,16 +289,18 @@ string Controleur::Save ( )
 	}
 
 	string lesDescripteurs(contexte->DescriptionEltsTotal());
-	fichier.write(lesDescripteurs.c_str(), lesDescripteurs.size());
 
+	fichier.write(lesDescripteurs.c_str(), lesDescripteurs.size());
+	string texte("#fin du fichier de création");
+	fichier.write(texte.c_str(), texte.size());
 	fichier.close();
 
 	if (fichier.fail())
 	{
 		return reponse;
 	}
-	reponse = OK + requete;
-	return reponse;
+
+	return OK + requete;
 
 }    //----- Fin de Méthode
 

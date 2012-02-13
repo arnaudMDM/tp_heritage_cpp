@@ -50,7 +50,19 @@ void LireCommande(vector<string *> &parametres, string *requete)
 	{
 		parametres.push_back(new string(buffer));
 	}
-//	cin.clear();
-//	cin.seekg(0,ios::end);
+} //----- fin de LireCommande
 
-} //----- fin de Nom
+void DecomposerCommande(vector<string *> &parametres, string *requete)
+// Algorithme :
+//
+{
+	stringstream flux;
+	char *buffer = new char[MAXSIZE];
+
+	flux<<*requete;
+
+	while(flux>>buffer)
+	{
+		parametres.push_back(new string(buffer));
+	}
+} //----- fin de LireCommande

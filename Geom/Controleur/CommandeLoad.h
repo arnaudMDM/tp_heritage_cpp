@@ -1,31 +1,32 @@
 /*************************************************************************
- CommandeFactory  -  description
+ CommandeLoad  -  description
  -------------------
- début                : 27 janv. 2012
+ début                : 13 févr. 2012
  copyright            : (C) 2012 par Pitou
  *************************************************************************/
 
-//---------- Interface de la classe <CommandeFactory> (fichier CommandeFactory.h) ------
-#if ! defined ( COMMANDEFACTORY_H_ )
-#define COMMANDEFACTORY_H_
+//---------- Interface de la classe <CommandeLoad> (fichier CommandeLoad.h) ------
+#if ! defined ( COMMANDELOAD_H_ )
+#define COMMANDELOAD_H_
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-#include <string>
-#include <vector>
+
 //--------------------------------------------------- Interfaces utilisées
 #include "Commande.h"
+#include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes 
-
+static const string LOAD = "LOAD";
 //------------------------------------------------------------------ Types 
+
 //------------------------------------------------------------------------ 
-// Rôle de la classe <CommandeFactory>
+// Rôle de la classe <CommandeLoad>
 //
 //
 //------------------------------------------------------------------------ 
 
-class CommandeFactory
+class CommandeLoad : public Commande
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,37 +37,32 @@ public:
 	//
 	// Contrat :
 	//
+	void execute();
 
-	static bool GetCommande ( vector<string *> para, Commande **laCommande,
-			ObjetGeometrique *contexte, const string *requete );
-	// Mode d'emploi : Retourne l'instance d'une commande
-	// correspondant aux arguments passés en paramètre.
-	//
-	// Contrat : Les cas de LIST, COUNT, UNDO, REDO, S X1, Y1, X2, Y2
-	// sont traités en amont par le controleur.
-	//
+	void undo();
 
+	void redo();
 //------------------------------------------------- Surcharge d'opérateurs
-	CommandeFactory & operator = ( const CommandeFactory & unCommandeFactory );
+	CommandeLoad & operator = ( const CommandeLoad & unCommandeLoad );
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
 //-------------------------------------------- Constructeurs - destructeur
-	CommandeFactory ( const CommandeFactory & unCommandeFactory );
+	CommandeLoad ( const CommandeLoad & unCommandeLoad );
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :
 	//
 
-	CommandeFactory ( );
+	CommandeLoad (const string &unNomFichier, ObjetGeometrique *unContexte, bool statusHistorique = true );
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	virtual ~CommandeFactory ( );
+	virtual ~CommandeLoad ( );
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -75,15 +71,14 @@ public:
 //------------------------------------------------------------------ PRIVE 
 
 protected:
+//----------------------------------------------------- Méthodes protégées
 
-private:
-	static bool traitementMove ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte );
+//----------------------------------------------------- Attributs protégés
+	string nomFichier;
 
-	static bool traitementLoad ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte );
+	vector <Commande *> commandesCreation;
 };
 
-//--------------------------- Autres définitions dépendantes de <CommandeFactory>
+//--------------------------- Autres définitions dépendantes de <CommandeLoad>
 
-#endif // COMMANDEFACTORY_H_
+#endif // COMMANDELOAD_H_

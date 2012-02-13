@@ -47,6 +47,7 @@ string PolyLigne::Description()
 		osX.str("");
 		osY.str("");
 	}
+	description += "\n";
 	return description;
 } //----- Fin de Méthode
 
@@ -119,9 +120,8 @@ PolyLigne::PolyLigne (vector<int> unListeX, vector<int> unListeY)
     vector<int>::iterator it2 = unListeY.begin();
     for(it1 = unListeX.begin() ; it1 != unListeX.end() ; it1++)
     {
-    	it2++;
-
     	listePoints.push_back(new Point(*it1,*it2));
+    	it2++;
     }
 } //----- Fin de PolyLigne
 

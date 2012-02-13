@@ -31,6 +31,7 @@ string Rectangle::Description()
 //
 {
 	string description = "R " + doublePoints.Info();
+	description += "\n";
 	return description;
 } //----- Fin de Méthode
 
