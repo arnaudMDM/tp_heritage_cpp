@@ -1,5 +1,5 @@
 @echo off
-set repertoire="C:\Users\arnaud\workspace_Cpp\Geom"
+set repertoire="C:\Users\Pitou\workspace\Geom\"
 ::Chemin d'accès au répertoire Geom
 set /A compteurs="0"
 
@@ -12,10 +12,12 @@ for /F %%a in ('dir /B "NonRegression/Test"') do (
 cd NonRegression/res/
 for /F %%a in ('dir /B "../Test"') do (
 	
-	fc /C "%%a" "res%%a" | findstr "aucune diff" 
+	fc /C "%%a" "res%%a" | findstr "aucune" 
 	if errorlevel 1 (
-	echo Le test %%a a echoue
-    set /A compteurs+=1 ) )
+		echo Le test %%a a echoue
+		set /A compteurs+=1 
+	) else (
+		echo Le test %%a est passe) )
 
 cd ../..
 

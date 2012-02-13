@@ -36,6 +36,7 @@ public:
 	//
 	// Contrat :
 	//
+	static const string EXTENSION_FICHIER;
 
 	static bool GetCommande ( vector<string *> para, Commande **laCommande,
 			ObjetGeometrique *contexte, string *requete );

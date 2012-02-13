@@ -1,2 +1,4 @@
 R 2 2 6 6
+R 1 2 3 4 5
+R az ae rt yu
 EXIT

@@ -1,6 +1,7 @@
 Bienvenue dans le programme Geom.
-Veuilliez saisir votre commande : 
-C 1 1 10 OK
+Veuillez saisir votre commande : 
+OK C 1 2 3
+ERR C az er art
+#invalid parameters
 ERR C 1 2
 #invalid parameters
-Exit non implémenté (nettoyage nécessaire)

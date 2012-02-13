@@ -1,4 +1,7 @@
 Bienvenue dans le programme Geom.
-Veuilliez saisir votre commande : 
-R 2 2 6 6 OK
-Exit non implémenté (nettoyage nécessaire)
+Veuillez saisir votre commande : 
+OK R 2 2 6 6
+ERR R 1 2 3 4 5
+#invalid parameters
+ERR R az ae rt yu
+#invalid parameters

@@ -1,9 +1,6 @@
 Bienvenue dans le programme Geom.
 Veuillez saisir votre commande : 
-Load non implémenté
-Commande inconnue
-Ligne non implémenté
-Commande inconnue
-Delete non implémenté
-Commande inconnue
-Exit non implémenté (nettoyage nécessaire) 
+OK LOAD modele.txt
+ERR SEL 1 1 7 7
+#invalid parameters
+0

@@ -1,6 +1,3 @@
 Bienvenue dans le programme Geom.
 Veuillez saisir votre commande : 
-Load non implémenté
-Commande inconnue
-
-Exit non implémenté (nettoyage nécessaire) 
+OK LOAD modele.txt

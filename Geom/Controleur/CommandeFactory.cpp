@@ -31,7 +31,6 @@ static const string COMMANDE_LOAD = "LOAD";
 static const string COMMANDE_CLEAR = "CLEAR";
 static const string COMMANDE_DELETE = "DELETE";
 static const string COMMANDE_MOVE = "MOVE";
-static const string EXTENSION_FICHIER = ".txt";
 
 static const unsigned int NB_PARAM_MOVE = 3;
 static const unsigned int NB_PARAM_LOAD = 2;
@@ -43,7 +42,7 @@ static const unsigned int NB_PARA_PAR_POINT = 2;
 static const unsigned int NB_PARAM_CREAT_CERCLE = 4;
 static const unsigned int TAILLE_COMMANDE_LIGNE = 5;
 //----------------------------------------------------------------- PUBLIC
-
+const string CommandeFactory::EXTENSION_FICHIER = ".txt";
 //----------------------------------------------------- Méthodes publiques
 // type CommandeFactory::Méthode ( liste des paramètres )
 // Algorithme :

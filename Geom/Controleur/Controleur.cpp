@@ -32,7 +32,9 @@ static const string COMMANDE_UNDO = "UNDO";
 static const string COMMANDE_REDO = "REDO";
 static const string COMMANDE_SEL = "S";
 static const string COMMANDE_SAVE = "SAVE";
+
 static const string CHAINE_PARA_INVALIDE = "\n#invalid parameters";
+static const string LABEL_COUNT = "#number of objects:\n";
 
 static const unsigned int NB_PARAM_SELECT = 5;
 static const unsigned int NB_PARAM_LIST = 1;
@@ -41,8 +43,6 @@ static const unsigned int NB_PARAM_REDO = 1;
 static const unsigned int NB_PARAM_SAVE = 2;
 static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
-
-static const string EXTENSION_FICHIER;    // Définie dans CommandeFactory.cpp
 
 //----------------------------------------------------------------- PUBLIC
 
@@ -74,15 +74,12 @@ void Controleur::traitementCommande ( )
 		{
 			if (parametres.size() == NB_PARAM_EXIT)
 			{
-				reponse = "Exit non implémenté (nettoyage nécessaire)";
 				quitter = true;
 			}
 			else
 			{
-				reponse = ERREUR + requete;
+				cout << ERREUR << requete << endl;
 			}
-			cout << reponse << endl;
-
 		}
 		else if (commande->compare(COMMANDE_LIST) == 0)
 		{
@@ -102,7 +99,7 @@ void Controleur::traitementCommande ( )
 			{
 				stringstream convertisseur;
 				convertisseur << contexte->NbEltsTotals();
-				reponse = convertisseur.str();
+				reponse = LABEL_COUNT + convertisseur.str();
 			}
 			else
 			{
@@ -259,7 +256,7 @@ string Controleur::Save ( )
 	string reponse = ERREUR + requete;
 
 	if (parametres.size() != NB_PARAM_SAVE
-			|| parametres.at(1)->find(EXTENSION_FICHIER) == string::npos)
+			|| parametres.at(1)->find(CommandeFactory::EXTENSION_FICHIER) == string::npos)
 	{
 		return reponse;
 	}

@@ -1,5 +1,3 @@
 Bienvenue dans le programme Geom.
 Veuillez saisir votre commande : 
-Delete non implémenté
-Commande inconnue
-Exit non implémenté (nettoyage nécessaire) 
+0

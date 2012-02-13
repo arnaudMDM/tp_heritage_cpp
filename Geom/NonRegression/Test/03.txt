@@ -1,2 +1,8 @@
-L 2 3 4 6
+L 1 2 3 4
+L -1 2 4 -6
+L az er
+L az er ty ui
+L 1 2
+L1
+L1 1 2 3 4
 EXIT

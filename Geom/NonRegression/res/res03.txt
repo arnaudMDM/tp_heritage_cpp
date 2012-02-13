@@ -1,4 +1,14 @@
 Bienvenue dans le programme Geom.
-Veuilliez saisir votre commande : 
-L 2 3 4 6 OK
-Exit non implémenté (nettoyage nécessaire)
+Veuillez saisir votre commande : 
+OK L 1 2 3 4
+OK L -1 2 4 -6
+ERR L az er
+#invalid parameters
+ERR L az er ty ui
+#invalid parameters
+ERR L 1 2
+#invalid parameters
+ERR L1
+#invalid parameters
+ERR L1 1 2 3 4
+#invalid parameters

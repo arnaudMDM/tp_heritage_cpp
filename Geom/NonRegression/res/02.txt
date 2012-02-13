@@ -1,5 +1,7 @@
 Bienvenue dans le programme Geom.
 Veuillez saisir votre commande : 
-Rect non implémenté
-Commande inconnue
-Exit non implémenté (nettoyage nécessaire) 
+OK R 2 2 6 6
+ERR R 1 2 3 4 5
+#invalid parameters
+ERR R az ae rt yu
+#invalid parameters
