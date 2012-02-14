@@ -165,7 +165,7 @@ bool CommandeFactory::traitementMove ( vector<string *> para,
 	{
 		vector<string*>::iterator it = para.begin() + 1;
 
-		while (it != para.end() && !etat)
+		while (it != para.end() && etat)
 		{
 			if (!IsInteger(**it))
 			{
