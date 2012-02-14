@@ -1,8 +1,14 @@
 Bienvenue dans le programme Geom.
-Veuilliez saisir votre commande :
-C 1 1 10 OK
-R 2 2 6 6 OK
-L 2 3 4 6 OK
-PL 4 4 5 5 8 8 9 9 OK
-OK SAVE modele.txt
-Exit non implémenté (nettoyage nécessaire)
+Veuillez saisir votre commande : 
+0
+OK C 1 1 10
+OK R 2 2 6 6
+OK L 2 3 4 6
+OK PL 4 4 5 5 8 8 9 9
+4
+C 1 1 10
+R 2 2 6 6
+L 2 4 3 6
+PL 4 4 5 5 8 8 9 9
+4
+0

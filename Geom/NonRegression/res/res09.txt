@@ -1,13 +1,48 @@
 Bienvenue dans le programme Geom.
-Veuilliez saisir votre commande :
-C 1 1 10 OK
-R 2 2 6 6 OK
-L 2 3 4 6 OK
-PL 4 4 5 5 8 8 9 9 OK
-4
-OK MOVE 10 10
-C 11 11 20
-R 12 12 16 16
-L 12 13 14 16
-PL 14 14 15 15 18 18 19 19
-Exit non implémenté (nettoyage nécessaire)
+Veuillez saisir votre commande : 
+ERR UNDO
+ERR REDO
+OK C 1 1 10
+OK R 2 2 6 6
+OK UNDO 
+OK UNDO
+0
+OK REDO
+1
+C 1 1 10
+OK L 2 3 4 6
+OK PL 4 4 5 5 8 8 9 9
+OK C 1 -1 10
+OK R 2 -2 -6 6
+OK C -1 -1 10
+OK R -2 -2 -6 6
+7
+C 1 1 10
+L 2 4 3 6
+PL 4 4 5 5 8 8 9 9
+C 1 -1 10
+R 2 -2 -6 6
+C -1 -1 10
+R -2 -2 -6 6
+OK UNDO
+OK UNDO
+OK UNDO
+OK UNDO
+OK UNDO
+OK UNDO
+1
+C 1 1 10
+OK REDO
+OK REDO
+OK REDO
+OK REDO
+OK REDO
+OK REDO
+7
+C 1 1 10
+L 2 4 3 6
+PL 4 4 5 5 8 8 9 9
+C 1 -1 10
+R 2 -2 -6 6
+C -1 -1 10
+R -2 -2 -6 6

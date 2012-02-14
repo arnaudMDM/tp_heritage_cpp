@@ -1,5 +1,26 @@
 Bienvenue dans le programme Geom.
-Veuilliez saisir votre commande :
-OK LOAD modele.txt
+Veuillez saisir votre commande : 
+ERR MOVE azer azer
+#invalid parameters
+ERR MOVE 1 2 3
+#invalid parameters
+ERR MOVE 1-1 2
+#invalid parameters
+0
+0
+0
+OK C 1 1 10
+OK R 2 2 6 6
+OK L 2 3 4 6
+OK PL 4 4 5 5 8 8 9 9
 4
-Exit non implémenté (nettoyage nécessaire)
+C 1 1 10
+R 2 2 6 6
+L 2 4 3 6
+PL 4 4 5 5 8 8 9 9
+4
+4
+C 43 43 10
+R 44 44 48 48
+L 44 46 45 48
+PL 46 46 47 47 50 50 51 51

@@ -1,6 +1,0 @@
-Bienvenue dans le programme Geom.
-Veuillez saisir votre commande : 
-OK LOAD modele.txt
-OK CLEAR
-#number of objects:
-0

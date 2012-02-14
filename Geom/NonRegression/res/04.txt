@@ -1,7 +1,0 @@
-Bienvenue dans le programme Geom.
-Veuillez saisir votre commande : 
-ERR PL 1 2 3 4 5 6 7 8 9
-#invalid parameters
-OK PL 1 2 3 4 5 6 7 8 -1 -1
-ERR PL AZ ER RT TYU
-#invalid parameters

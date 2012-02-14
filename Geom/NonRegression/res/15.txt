@@ -1,6 +1,0 @@
-Bienvenue dans le programme Geom.
-Veuillez saisir votre commande : 
-OK LOAD modele.txt
-ERR SEL 1 1 7 7
-#invalid parameters
-0
