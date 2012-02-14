@@ -189,7 +189,6 @@ Controleur::~Controleur ( )
 	}
 
 	parametres.clear();
-//	commandesExec.pop();
 }    //----- Fin de ~Controleur
 
 //------------------------------------------------------------------ PRIVE
