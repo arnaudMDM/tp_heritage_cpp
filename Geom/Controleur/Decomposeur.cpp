@@ -50,6 +50,8 @@ void LireCommande(vector<string *> &parametres, string *requete)
 	{
 		parametres.push_back(new string(buffer));
 	}
+
+	delete buffer;
 } //----- fin de LireCommande
 
 void DecomposerCommande(vector<string *> &parametres, string *requete)
@@ -65,4 +67,6 @@ void DecomposerCommande(vector<string *> &parametres, string *requete)
 	{
 		parametres.push_back(new string(buffer));
 	}
+
+	delete buffer;
 } //----- fin de LireCommande

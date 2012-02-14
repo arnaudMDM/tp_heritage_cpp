@@ -67,6 +67,7 @@ Commande::~Commande ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Commande>" << endl;
 #endif
+
 } //----- Fin de ~Commande
 
 

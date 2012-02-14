@@ -130,8 +130,9 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 	{
 		texteCommande = ERREUR + LOAD + nomFichier;
 		statusLecture = false;
-	}
 
+	}
+	delete uneRequete;
 }    //----- Fin de CommandeLoad
 
 CommandeLoad::~CommandeLoad ( )

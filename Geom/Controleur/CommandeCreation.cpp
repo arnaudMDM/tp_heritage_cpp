@@ -72,6 +72,7 @@ CommandeCreation::~CommandeCreation ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeCreation>" << endl;
 #endif
+	delete element;
 }    //----- Fin de ~CommandeCreation
 
 //------------------------------------------------------------------ PRIVE

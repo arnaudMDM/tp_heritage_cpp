@@ -6,17 +6,7 @@
  */
 using namespace std;
 #include <iostream>
-#include <string>
-#include <vector>
-#include <sstream>
-#include "Controleur/CommandeFactory.h"
-#include "Controleur/Commande.h"
-#include "Modele/ObjetGeometrique.h"
-#include "Modele/Cercle.h"
-#include "Modele/EltGeometrique.h"
 #include "Controleur/Controleur.h"
-
-#include "Controleur/Decomposeur.h"
 
 int main ( int args, char *argv[] )
 {

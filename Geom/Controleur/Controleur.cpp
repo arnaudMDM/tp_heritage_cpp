@@ -53,7 +53,7 @@ void Controleur::traitementCommande ( )
 {
 	Commande *laCommande;
 	string reponse;
-	string *commande;
+	string *nomCommande;
 	while (!quitter)
 	{
 		LireCommande(parametres, &requete);
@@ -64,13 +64,13 @@ void Controleur::traitementCommande ( )
 		{
 			continue;
 		}
-		commande = parametres.front();
+		nomCommande = parametres.front();
 
-		if (commande->at(0) == CAR_COMMENTAIRE)
+		if (nomCommande->at(0) == CAR_COMMENTAIRE)
 		{
-			continue;
+			//Rien à faire
 		}
-		else if (commande->compare(COMMANDE_EXIT) == 0)
+		else if (nomCommande->compare(COMMANDE_EXIT) == 0)
 		{
 			if (parametres.size() == NB_PARAM_EXIT)
 			{
@@ -81,7 +81,7 @@ void Controleur::traitementCommande ( )
 				cout << ERREUR << requete << endl;
 			}
 		}
-		else if (commande->compare(COMMANDE_LIST) == 0)
+		else if (nomCommande->compare(COMMANDE_LIST) == 0)
 		{
 			if (parametres.size() == NB_PARAM_LIST)
 			{
@@ -93,7 +93,7 @@ void Controleur::traitementCommande ( )
 			}
 			cout << reponse << flush;
 		}
-		else if (commande->compare(COMMANDE_COUNT) == 0)
+		else if (nomCommande->compare(COMMANDE_COUNT) == 0)
 		{
 			if (parametres.size() == NB_PARAM_COUNT)
 			{
@@ -107,21 +107,21 @@ void Controleur::traitementCommande ( )
 			}
 			cout << reponse << endl;
 		}
-		else if (commande->compare(COMMANDE_UNDO) == 0)
+		else if (nomCommande->compare(COMMANDE_UNDO) == 0)
 		{
-			cout << Defaire() << endl;
+			cout << defaire() << endl;
 		}
-		else if (commande->compare(COMMANDE_REDO) == 0)
+		else if (nomCommande->compare(COMMANDE_REDO) == 0)
 		{
-			cout << Refaire() << endl;
+			cout << refaire() << endl;
 		}
-		else if (commande->compare(COMMANDE_SAVE) == 0)
+		else if (nomCommande->compare(COMMANDE_SAVE) == 0)
 		{
-			cout << Save() << endl;
+			cout << save() << endl;
 		}
-		else if (commande->compare(COMMANDE_SEL) == 0)
+		else if (nomCommande->compare(COMMANDE_SEL) == 0)
 		{
-			cout << Selectionner() << endl;
+			cout << selectionner() << endl;
 		}
 		else
 		{
@@ -129,9 +129,10 @@ void Controleur::traitementCommande ( )
 			traitementCommande(laCommande);
 		}
 		//Vidage des paramètres
-		ViderParametres();
+		parametres.clear();
 	}
-
+	delete laCommande;
+	delete nomCommande;
 }    //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -168,16 +169,32 @@ Controleur::~Controleur ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <Controleur>" << endl;
 #endif
+	delete contexte;
+	for (vector<string *>::iterator it = parametres.begin();
+			it != parametres.end(); it++)
+			{
+		delete *it;
+	}
+
+	while(!commandesExec.empty())
+	{
+		delete commandesExec.top();
+		commandesExec.pop();
+	}
+
+	while(!commandesHistorique.empty())
+	{
+		delete commandesHistorique.top();
+		commandesHistorique.pop();
+	}
+
+	parametres.clear();
+//	commandesExec.pop();
 }    //----- Fin de ~Controleur
 
 //------------------------------------------------------------------ PRIVE
-void Controleur::ViderParametres ( )
-{
-	//Vidage des paramètres
-	parametres.clear();
-}
 
-string Controleur::Defaire ( )
+string Controleur::defaire ( )
 {
 	string reponse;
 	if (parametres.size() == NB_PARAM_UNDO)
@@ -198,7 +215,7 @@ string Controleur::Defaire ( )
 	return reponse;
 }
 
-string Controleur::Refaire ( )
+string Controleur::refaire ( )
 {
 	string reponse;
 	if (parametres.size() == NB_PARAM_REDO)
@@ -218,7 +235,7 @@ string Controleur::Refaire ( )
 	return reponse;
 }
 
-string Controleur::Selectionner ( )
+string Controleur::selectionner ( )
 // Algorithme :
 //
 {
@@ -249,14 +266,15 @@ string Controleur::Selectionner ( )
 
 }    //----- Fin de Méthode
 
-string Controleur::Save ( )
+string Controleur::save ( )
 // Algorithme :
 //
 {
 	string reponse = ERREUR + requete;
 
 	if (parametres.size() != NB_PARAM_SAVE
-			|| parametres.at(1)->find(CommandeFactory::EXTENSION_FICHIER) == string::npos)
+			|| parametres.at(1)->find(CommandeFactory::EXTENSION_FICHIER)
+					== string::npos)
 	{
 		return reponse;
 	}
@@ -298,6 +316,7 @@ void Controleur::traitementCommande ( Commande *laCommande )
 		laCommande->Execute();
 		while (!commandesHistorique.empty())
 		{
+			delete commandesHistorique.top();
 			commandesHistorique.pop();
 		}
 		commandesExec.push(laCommande);

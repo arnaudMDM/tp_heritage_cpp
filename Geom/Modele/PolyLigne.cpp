@@ -133,6 +133,11 @@ PolyLigne::~PolyLigne ( )
 #ifdef MAP
     cout << "Appel au destructeur de <PolyLigne>" << endl;
 #endif
+//    for(vector <Point *>::iterator it = listePoints.begin(); it != listePoints.end(); it++)
+//    {
+//    	delete *it;
+//    }
+    listePoints.clear();
 }
 
 vector<Point*> PolyLigne::getListePoints() const

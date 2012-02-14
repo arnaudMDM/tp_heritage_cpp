@@ -82,15 +82,14 @@ protected:
     stack < Commande *> commandesHistorique;
 
 private:
-    void ViderParametres();
+    string defaire();
 
-    string Defaire();
+    string refaire();
 
-    string Refaire();
+    string selectionner();
 
-    string Selectionner();
+    string save();
 
-    string Save();
     void traitementCommande(Commande *laCommande);
 };
 
