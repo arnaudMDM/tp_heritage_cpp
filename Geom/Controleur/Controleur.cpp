@@ -43,6 +43,8 @@ static const unsigned int NB_PARAM_SAVE = 2;
 static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
 static const char FIN_LIGNE = '\n';
+
+
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -53,9 +55,10 @@ void Controleur::traitementCommande ( )
 	Commande *laCommande;
 	string reponse;
 	string *nomCommande;
+
 	while (!quitter)
 	{
-		LireCommande(parametres, &requete);
+		LireCommande(parametres, requete);
 
 		laCommande = NULL;
 		//Cas où l'utilisateur a juste fait entrée
@@ -90,7 +93,7 @@ void Controleur::traitementCommande ( )
 			}
 			else
 			{
-				reponse = ERREUR + requete + "\n";
+				reponse = ERREUR + requete + FIN_LIGNE;
 			}
 			cout << reponse << flush;
 		}
@@ -130,7 +133,7 @@ void Controleur::traitementCommande ( )
 			traitementCommande(laCommande);
 		}
 		//Vidage des paramètres
-		parametres.clear();
+	    vidagePara();
 	}
 	delete laCommande;
 	delete nomCommande;
@@ -332,5 +335,17 @@ void Controleur::traitementCommande ( Commande *laCommande )
 	}
 }
 
+void Controleur::vidagePara()
+{
+    //Vidage des paramètres
+
+//    for(vector<string *>::iterator it = parametres.begin(); it != parametres.end(); it++)
+//    {
+//    	delete *it;
+//    }
+//
+    parametres.clear();
+
+}
 //----------------------------------------------------- Méthodes protégées
 

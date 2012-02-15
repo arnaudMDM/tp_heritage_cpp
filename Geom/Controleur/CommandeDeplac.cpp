@@ -30,6 +30,7 @@ using namespace std;
 
 void CommandeDeplac::Execute()
 {
+	elementsDeplaces = contexte->getListeEltsGeomSelect();
 	contexte->Translater(deltaX, deltaY);
 }
 
@@ -37,11 +38,13 @@ void CommandeDeplac::Redo()
 {
 	contexte->SelectionnerElts(elementsDeplaces);
 	contexte->Translater(deltaX, deltaY);
+	contexte->Deselectionner();
 }
 
 void CommandeDeplac::Undo()
 {
-	contexte->SelectionnerElts(elementsDeplaces);
+	int nbSelect = contexte->SelectionnerElts(elementsDeplaces);
+	cout<<"#"<<nbSelect<<" objets UNDO"<<endl;
 	contexte->Translater(-deltaX, -deltaY);
 	contexte->Deselectionner();
 }
@@ -87,6 +90,11 @@ CommandeDeplac::~CommandeDeplac ( )
 #ifdef MAP
     cout << "Appel au destructeur de <CommandeDeplac>" << endl;
 #endif
+//    for(vector<EltGeometrique *>::iterator it = elementsDeplaces.begin(); it != elementsDeplaces.end(); it++)
+//    {
+//    	delete *it;
+//    }
+//    elementsDeplaces.clear();
 } //----- Fin de ~CommandeDeplac
 
 

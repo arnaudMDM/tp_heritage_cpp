@@ -91,6 +91,7 @@ private:
     string save();
 
     void traitementCommande(Commande *laCommande);
+    void vidagePara();
 };
 
 //--------------------------- Autres définitions dépendantes de <Controleur>

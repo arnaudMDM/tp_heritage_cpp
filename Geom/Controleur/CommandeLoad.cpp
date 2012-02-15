@@ -101,17 +101,21 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 
 		while (fichier.getline(bufferDesc, MAXSIZE) && statusLecture)
 		{
-			if (*bufferDesc != Controleur::CAR_COMMENTAIRE)
+			if ((*bufferDesc != Controleur::CAR_COMMENTAIRE) && (*bufferDesc != '\0'))
 			{
 				uneRequete = new string(bufferDesc);
 
 				DecomposerCommande(lesRequetes, uneRequete);
-
 				statusLecture = CommandeFactory::GetCommande(lesRequetes,
 						laCommande, contexte, uneRequete);
 
-
 				lesCommandesCrees.push_back(*laCommande);
+
+				// Suppression
+				for(vector<string *>::iterator it = lesRequetes.begin(); it != lesRequetes.end(); it++)
+				{
+					delete *it;
+				}
 				lesRequetes.clear();
 			}
 		}
@@ -143,6 +147,10 @@ CommandeLoad::~CommandeLoad ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeLoad>" << endl;
 #endif
+	for(vector<Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it ++)
+	{
+		delete *it;
+	}
 }    //----- Fin de ~CommandeLoad
 
 //------------------------------------------------------------------ PRIVE

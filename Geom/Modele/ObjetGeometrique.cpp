@@ -147,10 +147,25 @@ int ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 
 int ObjetGeometrique::SelectionnerElts ( vector<EltGeometrique *> elts )
 {
+	int codeRetour = 0;
 	listeEltsGeomSelect.clear();
-	listeEltsGeomSelect = elts;
 
-	return listeEltsGeomSelect.size();
+	vector<EltGeometrique *>::iterator it = elts.begin();
+
+	while(it != elts.end() && codeRetour != -1)
+	{
+		if(!SelectionnerElt(*it))
+		{
+			codeRetour = -1;
+		}
+		else
+		{
+			codeRetour ++;
+		}
+		it++;
+	}
+
+	return codeRetour;
 }
 
 bool ObjetGeometrique::SelectionnerElt(EltGeometrique *elt)
@@ -226,12 +241,12 @@ ObjetGeometrique::~ObjetGeometrique ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <ObjetGeometrique>" << endl;
 #endif
-	for(vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin(); it != listeEltsGeomSelect.end(); it++)
-	{
-		delete *it;
-	}
-	listeEltsGeomSelect.clear();
-	listeEltsGeomTotal.clear();
+//	for(vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin(); it != listeEltsGeomSelect.end(); it++)
+//	{
+//		delete *it;
+//	}
+//	listeEltsGeomSelect.clear();
+//	listeEltsGeomTotal.clear();
 }
 
 ObjetGeometrique::ObjetGeometrique ( vector<EltGeometrique*> uneListeEltsGeom )
