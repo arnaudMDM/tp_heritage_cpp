@@ -1,7 +1,7 @@
-Bienvenue dans le programme Geom.
-Veuillez saisir votre commande : 
-ERR UNDO
-ERR REDO
+ERR UNDO uneErreur
+ERR REDO uneAutreErreur
+OK UNDO
+OK REDO
 OK C 1 1 10
 OK R 2 2 6 6
 OK UNDO 

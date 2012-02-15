@@ -1,14 +1,12 @@
-Bienvenue dans le programme Geom.
-Veuillez saisir votre commande : 
 ERR MOVE azer azer
 #invalid parameters
 ERR MOVE 1 2 3
 #invalid parameters
 ERR MOVE 1-1 2
 #invalid parameters
+OK MOVE 1 1
 0
-0
-0
+OK MOVE 42 42
 OK C 1 1 10
 OK R 2 2 6 6
 OK L 2 3 4 6
@@ -18,7 +16,7 @@ C 1 1 10
 R 2 2 6 6
 L 2 4 3 6
 PL 4 4 5 5 8 8 9 9
-4
+OK MOVE 42 42
 4
 C 43 43 10
 R 44 44 48 48
