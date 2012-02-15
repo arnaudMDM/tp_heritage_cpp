@@ -75,6 +75,7 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
 
+    void selectionElt();
 //----------------------------------------------------- Attributs protégés
 
     EltGeometrique *element;

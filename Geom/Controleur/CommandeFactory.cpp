@@ -70,7 +70,7 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 	}
 	else if (commande.compare(COMMANDE_MOVE) == 0)
 	{
-		status = traitementMove(para, laCommande, contexte);
+		status = traitementMove(para, laCommande, contexte, requete);
 	}
 	else if (commande.compare(COMMANDE_CLEAR) == 0)
 	{
@@ -157,7 +157,7 @@ CommandeFactory::~CommandeFactory ( )
 
 //------------------------------------------------------------------ PRIVE
 bool CommandeFactory::traitementMove ( vector<string *> para,
-		Commande ** laCommande, ObjetGeometrique * contexte )
+		Commande ** laCommande, ObjetGeometrique * contexte, const string *requete )
 {
 	bool etat(true);
 
@@ -176,7 +176,7 @@ bool CommandeFactory::traitementMove ( vector<string *> para,
 
 		if (etat)
 		{
-			*laCommande = new CommandeDeplac(para, contexte);
+			*laCommande = new CommandeDeplac(para, contexte, requete);
 		}
 	}
 	else

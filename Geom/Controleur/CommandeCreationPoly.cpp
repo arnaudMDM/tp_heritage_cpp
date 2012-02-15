@@ -29,6 +29,7 @@ void CommandeCreationPoly::Execute ( )
 {
 	element = new PolyLigne(coordonneesX, coordonneesY);
 	contexte->AjouterEltGeom(element);
+	selectionElt();
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

@@ -22,6 +22,7 @@ void CommandeCreationLigne::Execute ( )
 {
 	element = new Ligne(x1, y1, x2, y2);
 	contexte->AjouterEltGeom(element);
+	selectionElt();
 }
 //----------------------------------------------------- Méthodes publiques
 // type CommandeCreationLigne::Méthode ( liste des paramètres )

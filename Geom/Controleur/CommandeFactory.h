@@ -79,7 +79,7 @@ protected:
 
 private:
 	static bool traitementMove ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte );
+			ObjetGeometrique * contexte, const string *requete );
 
 	static bool traitementLoad ( vector<string *> para, Commande ** laCommande,
 			ObjetGeometrique * contexte );

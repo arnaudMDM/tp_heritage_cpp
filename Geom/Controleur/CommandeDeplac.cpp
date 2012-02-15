@@ -64,7 +64,7 @@ void CommandeDeplac::Undo()
 //} //----- Fin de CommandeDeplac (constructeur de copie)
 
 
-CommandeDeplac::CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte):
+CommandeDeplac::CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte, const string *requete):
 		Commande (unContexte)
 // Algorithme :
 //
@@ -72,15 +72,11 @@ CommandeDeplac::CommandeDeplac (vector <string *> para, ObjetGeometrique *unCont
 #ifdef MAP
     cout << "Appel au constructeur de <CommandeDeplac>" << endl;
 #endif
-    stringstream convertisseur;
 
     deltaX = atoi(para.at(1)->c_str());
     deltaY = atoi(para.at(2)->c_str());
-    elementsDeplaces = contexte->getListeEltsGeomSelect();
 
-    convertisseur << elementsDeplaces.size();
-
-    texteCommande = convertisseur.str();
+    texteCommande = OK + *requete;
 } //----- Fin de CommandeDeplac
 
 

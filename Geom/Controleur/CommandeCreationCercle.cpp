@@ -31,6 +31,7 @@ void CommandeCreationCercle::Execute ( )
 {
 	element = new Cercle(x1, y1, rayon);
 	contexte->AjouterEltGeom(element);
+	selectionElt();
 }
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )

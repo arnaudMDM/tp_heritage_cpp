@@ -32,7 +32,6 @@ static const string COMMANDE_UNDO = "UNDO";
 static const string COMMANDE_REDO = "REDO";
 static const string COMMANDE_SEL = "S";
 static const string COMMANDE_SAVE = "SAVE";
-
 static const string CHAINE_PARA_INVALIDE = "\n#invalid parameters";
 static const string LABEL_COUNT = "#number of objects:\n";
 
@@ -43,7 +42,7 @@ static const unsigned int NB_PARAM_REDO = 1;
 static const unsigned int NB_PARAM_SAVE = 2;
 static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
-
+static const char FIN_LIGNE = '\n';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -65,6 +64,8 @@ void Controleur::traitementCommande ( )
 			continue;
 		}
 		nomCommande = parametres.front();
+
+		cout << CAR_COMMENTAIRE << requete << endl;
 
 		if (nomCommande->at(0) == CAR_COMMENTAIRE)
 		{
@@ -176,13 +177,13 @@ Controleur::~Controleur ( )
 		delete *it;
 	}
 
-	while(!commandesExec.empty())
+	while (!commandesExec.empty())
 	{
 		delete commandesExec.top();
 		commandesExec.pop();
 	}
 
-	while(!commandesHistorique.empty())
+	while (!commandesHistorique.empty())
 	{
 		delete commandesHistorique.top();
 		commandesHistorique.pop();
@@ -198,6 +199,7 @@ string Controleur::defaire ( )
 	string reponse;
 	if (parametres.size() == NB_PARAM_UNDO)
 	{
+		reponse = OK + requete;
 		if (!commandesExec.empty())
 		{
 			Commande *laCommande = NULL;
@@ -205,12 +207,12 @@ string Controleur::defaire ( )
 			laCommande->Undo();
 			commandesHistorique.push(laCommande);
 			commandesExec.pop();
-			reponse = OK + requete;
-			return reponse;
 		}
 	}
-
-	reponse = ERREUR + requete;
+	else
+	{
+		reponse = ERREUR + requete;
+	}
 	return reponse;
 }
 
@@ -219,6 +221,7 @@ string Controleur::refaire ( )
 	string reponse;
 	if (parametres.size() == NB_PARAM_REDO)
 	{
+		reponse = OK + requete;
 		if (!commandesHistorique.empty())
 		{
 			Commande *laCommande = NULL;
@@ -226,11 +229,13 @@ string Controleur::refaire ( )
 			laCommande->Redo();
 			commandesExec.push(laCommande);
 			commandesHistorique.pop();
-			reponse = OK + requete;
-			return reponse;
 		}
 	}
-	reponse = ERREUR + requete;
+	else
+	{
+		reponse = ERREUR + requete;
+	}
+
 	return reponse;
 }
 
@@ -258,9 +263,9 @@ string Controleur::selectionner ( )
 		}
 	}
 
-	os
-	<< contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
+	os<< contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
 			nombres.at(2), nombres.at(3));
+
 	return os.str();
 
 }    //----- Fin de Méthode

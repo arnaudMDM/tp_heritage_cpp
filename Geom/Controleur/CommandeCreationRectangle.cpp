@@ -29,6 +29,7 @@ void CommandeCreationRectangle::Execute ( )
 {
 	element = new Rectangle(x1, y1, x2, y2);
 	contexte->AjouterEltGeom(element);
+	selectionElt();
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

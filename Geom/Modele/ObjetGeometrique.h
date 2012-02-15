@@ -105,6 +105,8 @@ public:
     // Contrat :
     //
 
+    bool SelectionnerElt(EltGeometrique *elt);
+
     void AjouterEltGeom(EltGeometrique *unEltGeometrique);
     // Mode d'emploi :
     //

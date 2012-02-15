@@ -76,6 +76,10 @@ CommandeCreation::~CommandeCreation ( )
 }    //----- Fin de ~CommandeCreation
 
 //------------------------------------------------------------------ PRIVE
-
+void CommandeCreation::selectionElt()
+{
+	contexte->Deselectionner();
+	contexte->SelectionnerElt(element);
+}
 //----------------------------------------------------- Méthodes protégées
 

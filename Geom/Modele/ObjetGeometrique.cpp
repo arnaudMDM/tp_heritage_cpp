@@ -153,6 +153,20 @@ int ObjetGeometrique::SelectionnerElts ( vector<EltGeometrique *> elts )
 	return listeEltsGeomSelect.size();
 }
 
+bool ObjetGeometrique::SelectionnerElt(EltGeometrique *elt)
+{
+	for(vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin(); it != listeEltsGeomTotal.end(); it++)
+	{
+		if(*it == elt)
+		{
+			listeEltsGeomSelect.push_back(elt);
+			return true;
+		}
+	}
+	return false;
+
+}
+
 void ObjetGeometrique::AjouterEltGeom ( EltGeometrique *unEltGeometrique )
 // Algorithme : ajoute un élément à la liste des élémentsGéométriques totals
 //

@@ -39,6 +39,7 @@ void CommandeLoad::Execute ( )
 	{
 		(*it)->Execute();
 	}
+	contexte->Deselectionner();
 }
 
 void CommandeLoad::Undo ( )

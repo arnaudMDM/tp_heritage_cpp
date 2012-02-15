@@ -11,7 +11,7 @@ using namespace std;
 int main ( int args, char *argv[] )
 {
 	cout
-			<< "Bienvenue dans le programme Geom.\nVeuillez saisir votre commande : "
+			<< "#Bienvenue dans le programme Geom.\n#Veuillez saisir votre commande : "
 			<< endl;
 
 	Controleur ctrl;
