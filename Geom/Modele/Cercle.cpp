@@ -1,15 +1,15 @@
 /*************************************************************************
                            Cercle  -  description
                              -------------------
-    début                : 27 janv. 2012
+    dï¿½but                : 27 janv. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
-//---------- Réalisation de la classe <Cercle> (fichier Cercle.cpp) -------
+//---------- Rï¿½alisation de la classe <Cercle> (fichier Cercle.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <sstream>
@@ -22,12 +22,12 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Cercle::Méthode ( liste des paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type Cercle::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
 
 string Cercle::Description()
@@ -43,11 +43,11 @@ string Cercle::Description()
 	string description = "C " + osX.str() + " " + osY.str() + " " + osRayon.str();
 	description += "\n";
 	return description;
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
 
 
 bool Cercle::Appartient(int x1, int y1, int x2, int y2)
-// type Cercle::Méthode ( liste des paramètres )
+// type Cercle::Mï¿½thode ( liste des paramï¿½tres )
 // Algorithme :
 //
 {
@@ -72,7 +72,7 @@ bool Cercle::Appartient(int x1, int y1, int x2, int y2)
 	}
 	return false;
 
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
 
 
 void Cercle::Translater(int deltaX, int deltaY)
@@ -80,10 +80,10 @@ void Cercle::Translater(int deltaX, int deltaY)
 //
 {
 	centre.Translater(deltaX, deltaY);
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 Cercle & Cercle::operator = ( const Cercle & unCercle )
 // Algorithme :
 //
@@ -117,13 +117,15 @@ Cercle::Cercle ( )
 } //----- Fin de Cercle
 
 
-Cercle::Cercle (int x, int y, int unRayon):rayon(unRayon),centre(x,y)
+Cercle::Cercle (int x, int y, int unRayon):rayon(unRayon)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Cercle>" << endl;
 #endif
+
+    centre = Point(x,y);
 } //----- Fin de Cercle
 
 Cercle::~Cercle ( )
@@ -150,5 +152,5 @@ int Cercle::getRayon() const
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 

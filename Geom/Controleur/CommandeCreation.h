@@ -1,7 +1,7 @@
 /*************************************************************************
                            CommandeCreation  -  description
                              -------------------
-    début                : 27 janv. 2012
+    dï¿½but                : 27 janv. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
@@ -11,18 +11,18 @@
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 #include "../Modele/EltGeometrique.h"
-#include "..\Modele\Service.h"
+#include "../Modele/Service.h"
 #include "Commande.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <CommandeCreation>
+// Rï¿½le de la classe <CommandeCreation>
 //
 //
 //------------------------------------------------------------------------ 
@@ -32,8 +32,8 @@ class CommandeCreation : public Commande
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+    // type Mï¿½thode ( liste des paramï¿½tres );
     // Mode d'emploi :
     //
     // Contrat :
@@ -43,7 +43,7 @@ public:
 	virtual void Undo();
 
 	virtual void Redo();
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 //    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
 //    // Mode d'emploi :
 //    //
@@ -73,14 +73,14 @@ public:
 //------------------------------------------------------------------ PRIVE 
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
     void selectionElt();
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
     EltGeometrique *element;
 };
 
-//--------------------------- Autres définitions dépendantes de <CommandeCreation>
+//--------------------------- Autres dï¿½finitions dï¿½pendantes de <CommandeCreation>
 
 #endif // COMMANDECREATION_H_

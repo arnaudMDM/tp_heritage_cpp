@@ -1,7 +1,7 @@
 /*************************************************************************
                            EltGeometrique  -  description
                              -------------------
-    début                : 27 janv. 2012
+    dï¿½but                : 27 janv. 2012
     copyright            : (C) 2012 par Pitou
 *************************************************************************/
 
@@ -11,17 +11,17 @@
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
-#include<string>
+//-------------------------------------------------------- Include systï¿½me
+#include <string>
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <EltGeometrique>
+// Rï¿½le de la classe <EltGeometrique>
 //
 //
 //------------------------------------------------------------------------ 
@@ -31,8 +31,8 @@ class EltGeometrique
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+    // type Mï¿½thode ( liste des paramï¿½tres );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,29 +45,29 @@ public:
     //
 
 	virtual bool Appartient(int X1, int Y1, int X2, int Y2) = 0;
-    // Mode d'emploi : renvoie vrai si la forme géométrique est inclus dans le rectangle défini par ces deux points. Il peu être égal
-    //renvoie vrai si la forme géométrique appartient dans le rectangle de sélection.
+    // Mode d'emploi : renvoie vrai si la forme gï¿½omï¿½trique est inclus dans le rectangle dï¿½fini par ces deux points. Il peu ï¿½tre ï¿½gal
+    //renvoie vrai si la forme gï¿½omï¿½trique appartient dans le rectangle de sï¿½lection.
 	//
     // Contrat :
     //
 
 	virtual void Translater(int deltaX, int deltaY) = 0;
-    // Mode d'emploi : translate la forme géométrique par le biais vecteur défini par deltaX et deltaY
+    // Mode d'emploi : translate la forme gï¿½omï¿½trique par le biais vecteur dï¿½fini par deltaX et deltaY
 	//
     // Contrat :
     //
 
-	//virtual ~EltGeometrique();
+	virtual ~EltGeometrique() {};
 
 //------------------------------------------------------------------ PRIVE 
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 };
 
-//--------------------------- Autres définitions dépendantes de <EltGeometrique>
+//--------------------------- Autres dï¿½finitions dï¿½pendantes de <EltGeometrique>
 
 #endif // ELTGEOMETRIQUE_H_

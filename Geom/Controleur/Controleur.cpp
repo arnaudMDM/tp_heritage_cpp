@@ -1,13 +1,13 @@
 /*************************************************************************
  Controleur  -  description
  -------------------
- début                : 27 janv. 2012
+ dï¿½but                : 27 janv. 2012
  copyright            : (C) 2012 par Pitou
  *************************************************************************/
 
-//---------- Réalisation de la classe <Controleur> (fichier Controleur.cpp) -------
+//---------- Rï¿½alisation de la classe <Controleur> (fichier Controleur.cpp) -------
 //---------------------------------------------------------------- INCLUDE
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <sstream>
@@ -20,7 +20,7 @@ using namespace std;
 #include "Controleur.h"
 #include "Decomposeur.h"
 #include "CommandeFactory.h"
-#include "..\Modele\Service.h"
+#include "../Modele/Service.h"
 
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes
@@ -46,7 +46,7 @@ static const char FIN_LIGNE = '\n';
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Mï¿½thodes publiques
 void Controleur::traitementCommande ( )
 // Algorithme :
 //
@@ -60,7 +60,7 @@ void Controleur::traitementCommande ( )
 		LireCommande(parametres, requete);
 
 		laCommande = NULL;
-		//Cas où l'utilisateur a juste fait entrée
+		//Cas oï¿½ l'utilisateur a juste fait entrï¿½e
 		if (parametres.empty())
 		{
 			continue;
@@ -71,7 +71,7 @@ void Controleur::traitementCommande ( )
 
 		if (nomCommande->at(0) == CAR_COMMENTAIRE)
 		{
-			//Rien à faire
+			//Rien ï¿½ faire
 		}
 		else if (nomCommande->compare(COMMANDE_EXIT) == 0)
 		{
@@ -128,18 +128,18 @@ void Controleur::traitementCommande ( )
 		}
 		else
 		{
-			//Récupération de la bonne commande
+			//Rï¿½cupï¿½ration de la bonne commande
 			traitementCommande(laCommande);
 		}
-		//Vidage des paramètres
+		//Vidage des paramï¿½tres
 		vidagePara();
 		delete laCommande;
 		delete nomCommande;
 	}
 
-}    //----- Fin de Méthode
+}    //----- Fin de Mï¿½thode
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 //Controleur & Controleur::operator = ( const Controleur & unControleur )
 //// Algorithme :
 ////
@@ -271,7 +271,7 @@ string Controleur::selectionner ( )
 
 	return os.str();
 
-}    //----- Fin de Méthode
+}    //----- Fin de Mï¿½thode
 
 string Controleur::save ( )
 // Algorithme :
@@ -296,7 +296,7 @@ string Controleur::save ( )
 	string lesDescripteurs(contexte->DescriptionEltsTotal());
 
 	fichier.write(lesDescripteurs.c_str(), lesDescripteurs.size());
-	string texte("#fin du fichier de création");
+	string texte("#fin du fichier de crï¿½ation");
 	fichier.write(texte.c_str(), texte.size());
 	fichier.close();
 
@@ -307,11 +307,11 @@ string Controleur::save ( )
 
 	return OK + requete;
 
-}    //----- Fin de Méthode
+}    //----- Fin de Mï¿½thode
 
 void Controleur::traitementCommande ( Commande *laCommande )
 {
-	//Récupération de la bonne commande
+	//Rï¿½cupï¿½ration de la bonne commande
 	bool statusCommande;
 
 	statusCommande = CommandeFactory::GetCommande(parametres, &laCommande,
@@ -337,10 +337,10 @@ void Controleur::traitementCommande ( Commande *laCommande )
 
 void Controleur::vidagePara ( )
 {
-	//Vidage des paramètres
+	//Vidage des paramï¿½tres
 
 	parametres.clear();
 
 }
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
