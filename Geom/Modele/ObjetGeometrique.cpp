@@ -241,10 +241,6 @@ ObjetGeometrique::~ObjetGeometrique ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <ObjetGeometrique>" << endl;
 #endif
-//	for(vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin(); it != listeEltsGeomSelect.end(); it++)
-//	{
-//		delete *it;
-//	}
 //	listeEltsGeomSelect.clear();
 //	listeEltsGeomTotal.clear();
 }

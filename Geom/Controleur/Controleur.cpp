@@ -44,7 +44,6 @@ static const unsigned int NB_PARAM_COUNT = 1;
 static const unsigned int NB_PARAM_EXIT = 1;
 static const char FIN_LIGNE = '\n';
 
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -53,8 +52,8 @@ void Controleur::traitementCommande ( )
 //
 {
 	Commande *laCommande;
-	string reponse;
 	string *nomCommande;
+	string reponse;
 
 	while (!quitter)
 	{
@@ -133,10 +132,11 @@ void Controleur::traitementCommande ( )
 			traitementCommande(laCommande);
 		}
 		//Vidage des paramètres
-	    vidagePara();
+		vidagePara();
+		delete laCommande;
+		delete nomCommande;
 	}
-	delete laCommande;
-	delete nomCommande;
+
 }    //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -266,7 +266,7 @@ string Controleur::selectionner ( )
 		}
 	}
 
-	os<< contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
+	os << contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
 			nombres.at(2), nombres.at(3));
 
 	return os.str();
@@ -335,16 +335,11 @@ void Controleur::traitementCommande ( Commande *laCommande )
 	}
 }
 
-void Controleur::vidagePara()
+void Controleur::vidagePara ( )
 {
-    //Vidage des paramètres
+	//Vidage des paramètres
 
-//    for(vector<string *>::iterator it = parametres.begin(); it != parametres.end(); it++)
-//    {
-//    	delete *it;
-//    }
-//
-    parametres.clear();
+	parametres.clear();
 
 }
 //----------------------------------------------------- Méthodes protégées
