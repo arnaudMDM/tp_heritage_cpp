@@ -151,6 +151,7 @@ CommandeLoad::~CommandeLoad ( )
 	{
 		delete *it;
 	}
+	commandesCreation.clear();
 }    //----- Fin de ~CommandeLoad
 
 //------------------------------------------------------------------ PRIVE

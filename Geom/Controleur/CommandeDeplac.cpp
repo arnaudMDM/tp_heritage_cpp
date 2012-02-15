@@ -90,11 +90,7 @@ CommandeDeplac::~CommandeDeplac ( )
 #ifdef MAP
     cout << "Appel au destructeur de <CommandeDeplac>" << endl;
 #endif
-//    for(vector<EltGeometrique *>::iterator it = elementsDeplaces.begin(); it != elementsDeplaces.end(); it++)
-//    {
-//    	delete *it;
-//    }
-//    elementsDeplaces.clear();
+    elementsDeplaces.clear();
 } //----- Fin de ~CommandeDeplac
 
 
