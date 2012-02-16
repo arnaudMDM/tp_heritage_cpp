@@ -39,7 +39,7 @@ public:
 	//
 
 	virtual string Description ( );
-	// Mode d'emploi :
+	// Mode d'emploi : renvoie la commnde de creation du rectangle
 	//
 	// Contrat :
 	//

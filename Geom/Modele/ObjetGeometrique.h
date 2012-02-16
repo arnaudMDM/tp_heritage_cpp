@@ -39,128 +39,138 @@ public:
 	//
 
 	string DescriptionEltsSelect ( );
-	// Mode d'emploi :
+	// Mode d'emploi : renvoie les string de commandes des éléments sélectionnés
 	//
-	// Contrat :
+	// Contrat : aucun
 	//
 
 	string DescriptionEltsTotal ( );
-	// Mode d'emploi :
+	// Mode d'emploi : renvoie les string de commandes des éléments totaux
 	//
-	// Contrat :
+	// Contrat : aucun
 	//
 
 	int NbEltsTotals ( );
-	// Mode d'emploi :
+	// Mode d'emploi : renvoie le nombre total de d'éléments totaux
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void SupprimerTousElts ( );
-	// Mode d'emploi :
+	// Mode d'emploi : supprime tous les élements totaux
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void SupprimerEltsSelectionnes ( );
-	// Mode d'emploi :
+	// Mode d'emploi : supprimer tous les éléments sélectionnés
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void Deselectionner ( );
-	// Mode d'emploi :
+	// Mode d'emploi : déselctionne tous les éléments sélectionnés
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void SupprimerEltParticulier ( EltGeometrique *elt );
-	// Mode d'emploi :
+	// Mode d'emploi : supprime un élément géométrique
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void SupprimerElts ( vector<EltGeometrique *> elts );
-	// Mode d'emploi :
+	// Mode d'emploi : supprime plusieurs éléments géométriques
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void Translater ( int x, int y );
-	// Mode d'emploi :
+	// Mode d'emploi : translate les éléments sélectionnés
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	int SelectionnerElts ( int x1, int y1, int x2, int y2 );
-	// Mode d'emploi :
+	// Mode d'emploi : sélectionne les nouveaux éléments à partir de la liste des
+	// éléments totaux.
+	// Renvoie le nombre d'éléments sélectionnés
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	int SelectionnerElts ( vector<EltGeometrique *> elementsASelectionner );
-	// Mode d'emploi :
+	// Mode d'emploi : la liste des éléments sélectionnés remplace ses éléments
+	// par elementsASelectionner si ils appartiennent à la liste des éléments totaux.
+	// Renvoie le nombre d'éléments sélectionnés
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	bool SelectionnerElt ( EltGeometrique *elt );
+	// Mode d'emploi : ajoute elt à la liste des éléments sélectionnés si
+	// l'élément appartient à la liste des éléments totaux
+	// Renvoie vrai si l'élément appartient à la liste des éléments totaux
+	//
+	// Contrat :aucun
+	//
 
 	void AjouterEltGeom ( EltGeometrique *unEltGeometrique );
-	// Mode d'emploi :
+	// Mode d'emploi : ajoute unEltGeometrique à la liste des éléments totaux
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	void AjouterEltGeom ( vector<EltGeometrique *> elts );
-	// Mode d'emploi :
+	// Mode d'emploi : ajoute elts à la liste des éléments totaux
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 //------------------------------------------------- Surcharge d'opérateurs
 	ObjetGeometrique & operator = (
 	        const ObjetGeometrique & unObjetGeometrique );
-	// Mode d'emploi :
+	// Mode d'emploi : trivial
 	//
 	// Contrat :
 	//
 
 	vector<EltGeometrique *> getListeEltsGeomTotal ( ) const;
-	// Mode d'emploi :
+	// Mode d'emploi :trivial
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	vector<EltGeometrique *> getListeEltsGeomSelect ( ) const;
-	// Mode d'emploi :
+	// Mode d'emploi :trivial
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 //-------------------------------------------- Constructeurs - destructeur
 	ObjetGeometrique ( const ObjetGeometrique & unObjetGeometrique );
 	// Mode d'emploi (constructeur de copie) :
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	ObjetGeometrique ( );
 	// Mode d'emploi :
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	ObjetGeometrique ( vector<EltGeometrique *> uneListeEltsGeom );
 	// Mode d'emploi :
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 	virtual ~ObjetGeometrique ( );
 	// Mode d'emploi :
 	//
-	// Contrat :
+	// Contrat :aucun
 	//
 
 //------------------------------------------------------------------ PRIVE 

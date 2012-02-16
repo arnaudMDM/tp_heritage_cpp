@@ -40,7 +40,7 @@ public:
 	//
 
 	virtual string Description ( );
-	// Mode d'emploi :
+	// Mode d'emploi : renvoie la commnde de creation de la ligne
 	//
 	// Contrat :
 	//
