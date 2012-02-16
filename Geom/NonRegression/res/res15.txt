@@ -1,0 +1,15 @@
+OK C 0 0 1
+OK C 0 0 2
+OK R 2 2 3 3
+OK R 3 2 2 3
+OK L 0 0 3 3
+OK PL 0 0 3 3 3 0 0 0
+PL 0 0 3 3 3 0 0 0
+OK MOVE 0 0
+4
+4
+OK SAVE a.txt
+2
+OK MOVE 5 5
+OK LOAD a.txt
+4

@@ -1,0 +1,17 @@
+OK C 0 0 1
+OK C 0 0 2
+OK UNDO
+1
+C 0 0 1
+OK UNDO
+0
+OK REDO
+1
+C 0 0 1
+OK C 0 0 3
+2
+OK REDO
+2
+OK UNDO
+1
+C 0 0 1
