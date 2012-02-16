@@ -47,9 +47,7 @@ static const char FIN_LIGNE = '\n';
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Mï¿½thodes publiques
-void Controleur::traitementCommande ( )
-// Algorithme :
-//
+void Controleur::TraitementCommande ( )
 {
 	Commande *laCommande;
 	string *nomCommande;
@@ -57,18 +55,22 @@ void Controleur::traitementCommande ( )
 
 	while (!quitter)
 	{
+		//Recuperation de la requete de l'utilisateur
 		LireCommande(parametres, requete);
 
 		laCommande = NULL;
+
 		//Cas oï¿½ l'utilisateur a juste fait entrï¿½e
 		if (parametres.empty())
 		{
 			continue;
 		}
+
 		nomCommande = parametres.front();
 
 		cout << CAR_COMMENTAIRE << requete << endl;
 
+		//Deroulement des differents cas de figure
 		if (nomCommande->at(0) == CAR_COMMENTAIRE)
 		{
 			//Rien ï¿½ faire
@@ -137,29 +139,14 @@ void Controleur::traitementCommande ( )
 		delete nomCommande;
 	}
 
-}    //----- Fin de Mï¿½thode
+}    //----- Fin de TraitementCommande()
 
 //------------------------------------------------- Surcharge d'opï¿½rateurs
-//Controleur & Controleur::operator = ( const Controleur & unControleur )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-//Controleur::Controleur ( const Controleur & unControleur )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//	cout << "Appel au constructeur de copie de <Controleur>" << endl;
-//#endif
-//} //----- Fin de Controleur (constructeur de copie)
 
 Controleur::Controleur ( ) :
 		quitter(false), contexte(new ObjetGeometrique())
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au constructeur de <Controleur>" << endl;
@@ -167,7 +154,8 @@ Controleur::Controleur ( ) :
 }    //----- Fin de Controleur
 
 Controleur::~Controleur ( )
-// Algorithme :
+// Algorithme : désalloue la mémoire utiliser par les pointeurs stockes
+// dans les piles de Commandes
 //
 {
 #ifdef MAP
@@ -198,11 +186,14 @@ Controleur::~Controleur ( )
 //------------------------------------------------------------------ PRIVE
 
 string Controleur::defaire ( )
+// Appel le Undo() de la commande sur le dessus de la pile de commandes
+// executees et change cet element de pile.
 {
 	string reponse;
 	if (parametres.size() == NB_PARAM_UNDO)
 	{
 		reponse = OK + requete;
+		//Undo possible si des commandes ont etes precedemment executees
 		if (!commandesExec.empty())
 		{
 			Commande *laCommande = NULL;
@@ -217,14 +208,17 @@ string Controleur::defaire ( )
 		reponse = ERREUR + requete;
 	}
 	return reponse;
-}
+}//----- Fin de defaire
 
 string Controleur::refaire ( )
+// Appel le Redo() de la commande sur le dessus de la pile de commandes
+// undo-ees et change cet element de pile.
 {
 	string reponse;
 	if (parametres.size() == NB_PARAM_REDO)
 	{
 		reponse = OK + requete;
+		//Redo possible si des commandes ont etes precedemment Undo-ees
 		if (!commandesHistorique.empty())
 		{
 			Commande *laCommande = NULL;
@@ -240,42 +234,13 @@ string Controleur::refaire ( )
 	}
 
 	return reponse;
-}
-
-string Controleur::selectionner ( )
-// Algorithme :
-//
-{
-	vector<int> nombres;
-	string reponse;
-	ostringstream os;
-
-	if (parametres.size() == NB_PARAM_SELECT)
-	{
-		vector<string*>::iterator it = parametres.begin();
-		it++;
-		while (it != parametres.end())
-		{
-			if (!IsInteger(**it))
-			{
-				reponse = ERREUR + requete;
-				return reponse;
-			}
-			nombres.push_back(atoi((*it)->c_str()));
-			it++;
-		}
-	}
-
-	os << contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
-			nombres.at(2), nombres.at(3));
-
-	return os.str();
-
-}    //----- Fin de Mï¿½thode
+}//----- Fin de refaire
 
 string Controleur::save ( )
-// Algorithme :
-//
+// Methode permettant de traiter le cas du SAVE
+// Verifie la validite du fichier passe en argument
+// et le cas echeant le rempli par les descripteurs des
+// commandes de creation
 {
 	string reponse = ERREUR + requete;
 
@@ -296,7 +261,7 @@ string Controleur::save ( )
 	string lesDescripteurs(contexte->DescriptionEltsTotal());
 
 	fichier.write(lesDescripteurs.c_str(), lesDescripteurs.size());
-	string texte("#fin du fichier de crï¿½ation");
+	string texte("#fin du fichier de creation");
 	fichier.write(texte.c_str(), texte.size());
 	fichier.close();
 
@@ -307,13 +272,53 @@ string Controleur::save ( )
 
 	return OK + requete;
 
-}    //----- Fin de Mï¿½thode
+}    //----- Fin de save
+
+string Controleur::selectionner ( )
+// Methode permettant de traiter le cas du S X X X X
+// Verifie que les arguments de la commande sont correctes
+// et le cas echeant realise la selection des elements
+{
+	vector<int> nombres;
+	string reponse;
+	ostringstream os;
+
+	//Verification du nombre d'arguments
+	if (parametres.size() == NB_PARAM_SELECT)
+	{
+		//Verification de leur validite numerique
+		vector<string*>::iterator it = parametres.begin();
+		it++;
+		while (it != parametres.end())
+		{
+			if (!IsInteger(**it))
+			{
+				reponse = ERREUR + requete;
+				return reponse;
+			}
+			nombres.push_back(atoi((*it)->c_str()));
+			it++;
+		}
+	}
+
+	//Selection &R ecuperation du nombre d'elements selectionnes
+	os << contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
+			nombres.at(2), nombres.at(3));
+
+	return os.str();
+
+}//----- Fin de selectionner
+
+
 
 void Controleur::traitementCommande ( Commande *laCommande )
+// Methode permettant de traiter le cas des commandes necessittant
+// une historisation c'est a dire le cas ou le undo/redo est possible:
+// Appel a la fabrique.
 {
-	//Rï¿½cupï¿½ration de la bonne commande
 	bool statusCommande;
 
+	//Recuperation de la bonne commande
 	statusCommande = CommandeFactory::GetCommande(parametres, &laCommande,
 			contexte, &requete);
 
@@ -321,6 +326,7 @@ void Controleur::traitementCommande ( Commande *laCommande )
 	{
 		//Historisation des commandes
 		laCommande->Execute();
+		//Si des elements existaient dans la pile de undo, alors purge de cette derniere
 		while (!commandesHistorique.empty())
 		{
 			delete commandesHistorique.top();
@@ -337,10 +343,10 @@ void Controleur::traitementCommande ( Commande *laCommande )
 
 void Controleur::vidagePara ( )
 {
-	//Vidage des paramï¿½tres
+	//Vidage des parametres
 
 	parametres.clear();
 
 }
-//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
+//----------------------------------------------------- Methodes protï¿½gï¿½es
 
