@@ -1,12 +1,7 @@
 OK L 1 2 3 4
 OK L -1 2 4 -6
 ERR L az er
-#invalid parameters
 ERR L az er ty ui
-#invalid parameters
 ERR L 1 2
-#invalid parameters
 ERR L1
-#invalid parameters
 ERR L1 1 2 3 4
-#invalid parameters

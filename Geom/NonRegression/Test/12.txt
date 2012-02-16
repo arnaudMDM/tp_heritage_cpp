@@ -1,16 +1,8 @@
-MOVE azer azer
-MOVE 1 2 3
-MOVE 1-1 2
-MOVE 1 1
-S -100 -100 100 100
-MOVE 42 42
-C 1 1 10
-R 2 2 6 6
+SAVE NonRegression/fichierTest/fichierSave1.txt
+C -10 -10 1
+R -20 -20 -10 -10
 L 2 3 4 6
 PL 4 4 5 5 8 8 9 9
-S -100 -100 100 100
-LIST
-MOVE 42 42
-S -100 -100 100 100
-LIST
+SAVE NonRegression/fichierTest/fichierSave2.html
+SAVE NonRegression/fichierTest/fichierSave2.txt
 EXIT

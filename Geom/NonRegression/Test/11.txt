@@ -1,17 +1,12 @@
-DELETE
-C 1 1 10
-R 2 2 6 6
-L 2 3 4 6
-PL 4 4 5 5 8 8 9 9
+LOAD NonRegression/fichierTest/fichierLoadVide.txt
+C 1 1 1
 S -100 -100 100 100
 LIST
-DELETE
-S -100 -100 100 100
+LOAD NonRegression/fichierTest/erreur.txt
+LOAD NonRegression/fichierTest/fichierLoadBon.html
+LOAD NonRegression/fichierTest/fichierLoadBon.txt
+LOAD NonRegression/fichierTest/fichierLoadFAUX.txt
 LIST
-UNDO
-S -100 -100 100 100
-LIST
-REDO
 S -100 -100 100 100
 LIST
 EXIT

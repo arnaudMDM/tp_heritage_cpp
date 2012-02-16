@@ -1,16 +1,10 @@
-OK C 1 1 10
-OK R 2 2 6 6
+OK C -10 -10 1
+OK R -20 -20 -10 -10
 OK L 2 3 4 6
 OK PL 4 4 5 5 8 8 9 9
-#number of objects:
 4
-OK SAVE modele.txt
-OK CLEAR
-#number of objects:
-0
-OK LOAD modele.txt
-4
-C 1 1 10
-R 2 2 6 6
+C -10 -10 1
+R -20 -20 -10 -10
 L 2 3 4 6
 PL 4 4 5 5 8 8 9 9
+0

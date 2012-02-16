@@ -1,8 +1,6 @@
 0
-OK C 1 1 10
-OK R 2 2 6 6
+OK C -10 -10 1
+OK R -20 -20 -10 -10
 OK L 2 3 4 6
 OK PL 4 4 5 5 8 8 9 9
-#number of objects:
-4
 4

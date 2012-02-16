@@ -1,5 +1,3 @@
-#Bienvenue dans le programme Geom.
-#Veuillez saisir votre commande : 
 OK C 1 2 3
 ERR C az er art
 ERR C 1 2

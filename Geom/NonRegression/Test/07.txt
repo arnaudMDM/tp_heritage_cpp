@@ -1,7 +1,10 @@
-C 1 1 10
-R 2 2 6 6
+C -10 -10 1
+R -20 -20 -10 -10
 L 2 3 4 6
 PL 4 4 5 5 8 8 9 9
-SAVE modele.ErreurAVenir
-SAVE modele.txt
+S -100 -100 0 0
+MOVE 50 50
+S -100 -100 0 0
+S -100 -100 100 100
+MOVE AZ EZ
 EXIT
