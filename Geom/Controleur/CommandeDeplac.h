@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeDeplac  -  description
-                             -------------------
-    début                : 12 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeDeplac  -  description
+ -------------------
+ début                : 12 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeDeplac> (fichier CommandeDeplac.h) ------
 #if ! defined ( COMMANDEDEPLAC_H_ )
@@ -34,36 +34,36 @@ class CommandeDeplac : public Commande
 public:
 //----------------------------------------------------- Méthodes publiques
 
-	void Execute();
+	void Execute ( );
 	//Recupere la liste des elements a deplacer (corresponds à ceux selectionnes)
 	//et les translate.
 
-	void Redo();
+	void Redo ( );
 	//Redeplace les elements
 	//doit etre execute apres un Undo()
 
-	void Undo();
+	void Undo ( );
 	//Annule le deplacement des elements.
 	//Doit etre execute apres un Execute() ou un Redo()
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeDeplac & operator = ( const CommandeDeplac & unCommandeDeplac );
+	CommandeDeplac & operator = ( const CommandeDeplac & unCommandeDeplac );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
 
 //-------------------------------------------- Constructeurs - destructeur
-    CommandeDeplac ( const CommandeDeplac & unCommandeDeplac );
+	CommandeDeplac ( const CommandeDeplac & unCommandeDeplac );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
 
-    CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte, const string *requete);
+	CommandeDeplac ( vector<string *> para, ObjetGeometrique *unContexte,
+	        const string *requete );
 	// Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
 	// pour récupérer les éléments numériques et la chaine de caractères pour préparer
 	// le message.
 	// la validité des données numeriques ne sont pas verifiees dans le constructeur
 
-
-    virtual ~CommandeDeplac ( );
+	virtual ~CommandeDeplac ( );
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -71,12 +71,12 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    int deltaX;
-    //valeur de décalage voulu sur l'axe des abscisses
-    int deltaY;
-    //valeur de décalage voulu sur l'axe des ordonnees
-    vector <EltGeometrique *> elementsDeplaces;
-    //Liste de tous les éléments devant etre deplaces
+	int deltaX;
+	//valeur de décalage voulu sur l'axe des abscisses
+	int deltaY;
+	//valeur de décalage voulu sur l'axe des ordonnees
+	vector<EltGeometrique *> elementsDeplaces;
+	//Liste de tous les éléments devant etre deplaces
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeDeplac>

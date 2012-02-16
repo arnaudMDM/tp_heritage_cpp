@@ -26,14 +26,14 @@ using namespace std;
 //} //----- Fin de Méthode
 void CommandeCreation::Undo ( )
 {
-	contexte->SupprimerEltParticulier(element);
-	contexte->Deselectionner();
+	contexte->SupprimerEltParticulier ( element );
+	contexte->Deselectionner ( );
 }
 
 void CommandeCreation::Redo ( )
 {
-	contexte->AjouterEltGeom(element);
-	contexte->Deselectionner();
+	contexte->AjouterEltGeom ( element );
+	contexte->Deselectionner ( );
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -41,14 +41,14 @@ void CommandeCreation::Redo ( )
 ////-------------------------------------------- Constructeurs - destructeur
 
 CommandeCreation::CommandeCreation ( ObjetGeometrique *unContexte ) :
-		Commande(unContexte), element(NULL)
+		Commande ( unContexte ), element ( NULL )
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeCreation>" << endl;
 #endif
-}    //----- Fin de CommandeCreation
+} //----- Fin de CommandeCreation
 
 CommandeCreation::~CommandeCreation ( )
 // Algorithme :
@@ -58,13 +58,13 @@ CommandeCreation::~CommandeCreation ( )
 	cout << "Appel au destructeur de <CommandeCreation>" << endl;
 #endif
 	delete element;
-}    //----- Fin de ~CommandeCreation
+} //----- Fin de ~CommandeCreation
 
 //------------------------------------------------------------------ PRIVE
-void CommandeCreation::selectionElt()
+void CommandeCreation::selectionElt ( )
 {
-	contexte->Deselectionner();
-	contexte->SelectionnerElt(element);
+	contexte->Deselectionner ( );
+	contexte->SelectionnerElt ( element );
 }
 //----------------------------------------------------- Méthodes protégées
 

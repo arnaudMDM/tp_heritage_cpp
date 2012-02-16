@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeCreationCercle  -  description
-                             -------------------
-    début                : 3 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeCreationCercle  -  description
+ -------------------
+ début                : 3 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeCreationCercle> (fichier CommandeCreationCercle.h) ------
 #if ! defined ( COMMANDECREATIONCERCLE_H_ )
@@ -33,27 +33,29 @@ class CommandeCreationCercle : public CommandeCreation
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	void Execute();
+	void Execute ( );
 	// Crée une nouvelle instance de Cercle et l'ajoute au contexte
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
-    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
-    // d'appels implicites.
+	CommandeCreationCercle & operator = (
+	        const CommandeCreationCercle & unCommandeCreationCercle );
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 ////-------------------------------------------- Constructeurs - destructeur
-    CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle );
-    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
-    // d'appels implicites.
+	CommandeCreationCercle (
+	        const CommandeCreationCercle & unCommandeCreationCercle );
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
-    CommandeCreationCercle (vector < string *> para, ObjetGeometrique *unContexte, const string *requete);
-    // Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
-    // pour récupérer les éléments numériques et la chaine de caractères pour préparer
-    // le message.
-    // la validité des données numeriques ne sont pas verifiees dans le constructeur
+	CommandeCreationCercle ( vector<string *> para,
+	        ObjetGeometrique *unContexte, const string *requete );
+	// Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
+	// pour récupérer les éléments numériques et la chaine de caractères pour préparer
+	// le message.
+	// la validité des données numeriques ne sont pas verifiees dans le constructeur
 
-    virtual ~CommandeCreationCercle ( );
-
+	virtual ~CommandeCreationCercle ( );
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -61,14 +63,14 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    int x1;
-    //abscisse du centre du cercle
+	int x1;
+	//abscisse du centre du cercle
 
-    int y1;
-    //ordonnée du centre du cercle
+	int y1;
+	//ordonnée du centre du cercle
 
-    int rayon;
-    //rayon du cercle
+	int rayon;
+	//rayon du cercle
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationCercle>

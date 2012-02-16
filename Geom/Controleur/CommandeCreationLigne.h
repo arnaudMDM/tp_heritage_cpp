@@ -26,36 +26,36 @@
 // création d'une Ligne.
 //------------------------------------------------------------------------ 
 
-class CommandeCreationLigne: public CommandeCreation {
+class CommandeCreationLigne : public CommandeCreation
+{
 	//----------------------------------------------------------------- PUBLIC
 
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	void Execute();
+	void Execute ( );
 	// Crée une nouvelle instance de Ligne et l'ajoute au contexte
 
 	//------------------------------------------------- Surcharge d'opérateurs
-	CommandeCreationLigne & operator =(
-			const CommandeCreationLigne & unCommandeCreationLigne);
+	CommandeCreationLigne & operator = (
+	        const CommandeCreationLigne & unCommandeCreationLigne );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
-
 
 	//-------------------------------------------- Constructeurs - destructeur
-			CommandeCreationLigne(
-					const CommandeCreationLigne & unCommandeCreationLigne);
+	CommandeCreationLigne (
+	        const CommandeCreationLigne & unCommandeCreationLigne );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
 
-	CommandeCreationLigne(vector<string *> para, ObjetGeometrique *leContexte,
-			const string *requete);
+	CommandeCreationLigne ( vector<string *> para, ObjetGeometrique *leContexte,
+	        const string *requete );
 	// Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
 	// pour récupérer les éléments numériques et la chaine de caractères pour préparer
 	// le message.
 	// la validité des données numeriques ne sont pas verifiees dans le constructeur
 
-	virtual ~CommandeCreationLigne();
+	virtual ~CommandeCreationLigne ( );
 
 	//------------------------------------------------------------------ PRIVE
 

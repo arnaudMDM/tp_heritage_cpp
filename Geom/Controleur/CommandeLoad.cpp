@@ -24,41 +24,45 @@ static const unsigned int MAXSIZE = 20;
 //----------------------------------------------------- Méthodes publiques
 void CommandeLoad::Execute ( )
 {
-	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
+	for ( vector<Commande *>::iterator it = commandesCreation.begin ( );
+	        it != commandesCreation.end ( ); it++ )
 	{
-		(*it)->Execute();
+		(*it)->Execute ( );
 	}
-	contexte->Deselectionner();
-}//----- Fin de Execute
+	contexte->Deselectionner ( );
+} //----- Fin de Execute
 
-bool CommandeLoad::IsOk()
+bool CommandeLoad::IsOk ( )
 {
 	return statusLecture;
-}//----- Fin de IsOk
+} //----- Fin de IsOk
 
 void CommandeLoad::Redo ( )
 {
-	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
+	for ( vector<Commande *>::iterator it = commandesCreation.begin ( );
+	        it != commandesCreation.end ( ); it++ )
 	{
-		(*it)->Redo();
+		(*it)->Redo ( );
 	}
-}//----- Fin de Redo
+} //----- Fin de Redo
 
 void CommandeLoad::Undo ( )
 {
-	for(vector <Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it++)
+	for ( vector<Commande *>::iterator it = commandesCreation.begin ( );
+	        it != commandesCreation.end ( ); it++ )
 	{
-		(*it)->Undo();
+		(*it)->Undo ( );
 	}
-}//----- Fin de Undo
+} //----- Fin de Undo
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 ////-------------------------------------------- Constructeurs - destructeur
 
 CommandeLoad::CommandeLoad ( const string &unNomFichier,
-		ObjetGeometrique *unContexte) :
-		Commande(unContexte), nomFichier(unNomFichier), statusLecture(true)
+        ObjetGeometrique *unContexte ) :
+		Commande ( unContexte ), nomFichier ( unNomFichier ), statusLecture (
+		        true )
 // Algorithme :Ouverture du fichier et lecture de ce dernier afin d'en extraire
 // les descripteurs de commande
 //
@@ -71,55 +75,56 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 	char *bufferDesc = new char[MAXSIZE];
 
 	vector<string *> lesRequetes;
-	vector <Commande*> lesCommandesCrees;
+	vector<Commande*> lesCommandesCrees;
 
 	string *uneRequete = NULL;
-	Commande **laCommande = new Commande *();
+	Commande **laCommande = new Commande * ( );
 
 	//Preparation du fichier : ce dernier lancera une exception si
 	//le flag badbit est positionne
-	fichier.exceptions(ifstream::badbit);
+	fichier.exceptions ( ifstream::badbit );
 
 	try
 	{
-		fichier.open(nomFichier.c_str());
+		fichier.open ( nomFichier.c_str ( ) );
 		// A changer
-		if (fichier == NULL)
+		if ( fichier == NULL )
 		{
-		texteCommande = ERREUR + LOAD + nomFichier;
-		statusLecture = false;
+			texteCommande = ERREUR + LOAD + nomFichier;
+			statusLecture = false;
 		}
 
-		while (fichier.getline(bufferDesc, MAXSIZE) && statusLecture)
+		while (fichier.getline ( bufferDesc, MAXSIZE ) && statusLecture)
 		{
 			//Pour chaque ligne presente du fichier, ignorance des commentaires et vide
-			if ((*bufferDesc != Controleur::CAR_COMMENTAIRE) && (*bufferDesc != '\0'))
+			if ( (*bufferDesc != Controleur::CAR_COMMENTAIRE)
+			        && (*bufferDesc != '\0') )
 			{
-				uneRequete = new string(bufferDesc);
+				uneRequete = new string ( bufferDesc );
 
 				//Permet de briser uneRequete en token, range dans la liste
-				DecomposerCommande(lesRequetes, uneRequete);
+				DecomposerCommande ( lesRequetes, uneRequete );
 
 				//Recuperation de la commande correspondante, le booleen permet de savoir
 				//si tout s'est bien passe
-				statusLecture = CommandeFactory::GetCommande(lesRequetes,
-						laCommande, contexte, uneRequete, Creation);
+				statusLecture = CommandeFactory::GetCommande ( lesRequetes,
+				        laCommande, contexte, uneRequete, Creation );
 
-				lesCommandesCrees.push_back(*laCommande);
-
+				lesCommandesCrees.push_back ( *laCommande );
 
 				// Suppression du contenu de la liste
-				for(vector<string *>::iterator it = lesRequetes.begin(); it != lesRequetes.end(); it++)
+				for ( vector<string *>::iterator it = lesRequetes.begin ( );
+				        it != lesRequetes.end ( ); it++ )
 				{
 					delete *it;
 				}
-				lesRequetes.clear();
+				lesRequetes.clear ( );
 			}
 		}
-		fichier.close();
+		fichier.close ( );
 
 		//Permet de preparer le message de status de la commande
-		if(statusLecture)
+		if ( statusLecture )
 		{
 			commandesCreation = lesCommandesCrees;
 			texteCommande = OK + LOAD + nomFichier;
@@ -137,7 +142,7 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 
 	}
 	delete uneRequete;
-}    //----- Fin de CommandeLoad
+} //----- Fin de CommandeLoad
 
 CommandeLoad::~CommandeLoad ( )
 // Algorithme :
@@ -146,12 +151,13 @@ CommandeLoad::~CommandeLoad ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeLoad>" << endl;
 #endif
-	for(vector<Commande *>::iterator it = commandesCreation.begin(); it != commandesCreation.end(); it ++)
+	for ( vector<Commande *>::iterator it = commandesCreation.begin ( );
+	        it != commandesCreation.end ( ); it++ )
 	{
 		delete *it;
 	}
-	commandesCreation.clear();
-}    //----- Fin de ~CommandeLoad
+	commandesCreation.clear ( );
+} //----- Fin de ~CommandeLoad
 
 //------------------------------------------------------------------ PRIVE
 

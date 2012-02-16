@@ -20,22 +20,22 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void CommandeCreationPoly::Execute()
+void CommandeCreationPoly::Execute ( )
 {
-	element = new PolyLigne(coordonneesX, coordonneesY);
-	contexte->AjouterEltGeom(element);
-	selectionElt();
-}//----- Fin de Execute
+	element = new PolyLigne ( coordonneesX, coordonneesY );
+	contexte->AjouterEltGeom ( element );
+	selectionElt ( );
+} //----- Fin de Execute
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 ////-------------------------------------------- Constructeurs - destructeur
 
-CommandeCreationPoly::CommandeCreationPoly(vector<int> abscisses,
-		vector<int> ordonnees, ObjetGeometrique *unContexte,
-		const string *requete) :
-	CommandeCreation(unContexte), coordonneesX(abscisses), coordonneesY(
-			ordonnees)
+CommandeCreationPoly::CommandeCreationPoly ( vector<int> abscisses,
+        vector<int> ordonnees, ObjetGeometrique *unContexte,
+        const string *requete ) :
+		CommandeCreation ( unContexte ), coordonneesX ( abscisses ), coordonneesY (
+		        ordonnees )
 // Algorithme :
 //
 {
@@ -45,7 +45,7 @@ CommandeCreationPoly::CommandeCreationPoly(vector<int> abscisses,
 	texteCommande = OK + *requete;
 } //----- Fin de CommandeCreationPoly
 
-CommandeCreationPoly::~CommandeCreationPoly()
+CommandeCreationPoly::~CommandeCreationPoly ( )
 // Algorithme :
 //
 {

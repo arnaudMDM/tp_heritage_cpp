@@ -63,65 +63,68 @@ const string CommandeFactory::EXTENSION_FICHIER = ".txt";
 //----------------------------------------------------- Méthodes publiques
 
 bool CommandeFactory::GetCommande ( vector<string *> para,
-		Commande **laCommande,
-		ObjetGeometrique *contexte, string *requete, TypeCommande unTypeCommande)
+        Commande **laCommande, ObjetGeometrique *contexte, string *requete,
+        TypeCommande unTypeCommande )
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
 {
-	bool status(true);
+	bool status ( true );
 
-	string commande(*para.front());
+	string commande ( *para.front ( ) );
 
 	//Comparaison du nom de la commande avec les differentes constantes
 	//et traitement si correspondance
-	if (commande.compare(COMMANDE_LOAD) == 0 && unTypeCommande != Creation)
+	if ( commande.compare ( COMMANDE_LOAD ) == 0 && unTypeCommande != Creation )
 	{
-		status = traitementLoad(para, laCommande, contexte);
+		status = traitementLoad ( para, laCommande, contexte );
 	}
-	else if (commande.compare(COMMANDE_MOVE) == 0 && unTypeCommande != Creation)
+	else if ( commande.compare ( COMMANDE_MOVE ) == 0
+	        && unTypeCommande != Creation )
 	{
-		status = traitementMove(para, laCommande, contexte, requete);
+		status = traitementMove ( para, laCommande, contexte, requete );
 	}
-	else if (commande.compare(COMMANDE_CLEAR) == 0 && unTypeCommande != Creation)
+	else if ( commande.compare ( COMMANDE_CLEAR ) == 0
+	        && unTypeCommande != Creation )
 	{
-		if (para.size() == NB_PARAM_CLEAR)
+		if ( para.size ( ) == NB_PARAM_CLEAR )
 		{
-			*laCommande = new CommandeSuppression(contexte,
-					CommandeSuppression::CLEAR);
+			*laCommande = new CommandeSuppression ( contexte,
+			        CommandeSuppression::CLEAR );
 		}
 		else
 		{
 			status = false;
 		}
 	}
-	else if (commande.compare(COMMANDE_DELETE) == 0 && unTypeCommande != Creation)
+	else if ( commande.compare ( COMMANDE_DELETE ) == 0
+	        && unTypeCommande != Creation )
 	{
-		if (para.size() == NB_PARAM_DELETE)
+		if ( para.size ( ) == NB_PARAM_DELETE )
 		{
-			*laCommande = new CommandeSuppression(contexte,
-					CommandeSuppression::DELETE);
+			*laCommande = new CommandeSuppression ( contexte,
+			        CommandeSuppression::DELETE );
 		}
 		else
 		{
 			status = false;
 		}
 	}
-	else if (commande.find(COMMANDE_CERCLE) == 0)
+	else if ( commande.find ( COMMANDE_CERCLE ) == 0 )
 	{
-		status = traitementCercle(para, laCommande, contexte, requete);
+		status = traitementCercle ( para, laCommande, contexte, requete );
 	}
-	else if (commande.compare(COMMANDE_RECTANGLE) == 0)
+	else if ( commande.compare ( COMMANDE_RECTANGLE ) == 0 )
 	{
-		status = traitementRect(para, laCommande, contexte, requete);
+		status = traitementRect ( para, laCommande, contexte, requete );
 	}
-	else if (commande.compare(COMMANDE_LIGNE) == 0)
+	else if ( commande.compare ( COMMANDE_LIGNE ) == 0 )
 	{
-		status = traitementLigne(para, laCommande, contexte, requete);
+		status = traitementLigne ( para, laCommande, contexte, requete );
 	}
-	else if (commande.compare(COMMANDE_POLY) == 0)
+	else if ( commande.compare ( COMMANDE_POLY ) == 0 )
 	{
-		status = traitementPoly(para, laCommande, contexte, requete);
+		status = traitementPoly ( para, laCommande, contexte, requete );
 	}
 	else
 	{
@@ -139,42 +142,43 @@ CommandeFactory::CommandeFactory ( )
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeFactory>" << endl;
 #endif
-}    //----- Fin de CommandeFactory
+} //----- Fin de CommandeFactory
 
 CommandeFactory::~CommandeFactory ( )
 {
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeFactory>" << endl;
 #endif
-}    //----- Fin de ~CommandeFactory
+} //----- Fin de ~CommandeFactory
 
 //------------------------------------------------------------------ PRIVE
 bool CommandeFactory::traitementMove ( vector<string *> para,
-		Commande ** laCommande, ObjetGeometrique * contexte, const string *requete )
+        Commande ** laCommande, ObjetGeometrique * contexte,
+        const string *requete )
 //Methode permettant de traiter le cas du MOVE. Verifie la validite de la
 // commande et le cas echeant cree la commande correspondante.
 //Renvoie vrai si la commande a ete cree faux sinon
 {
-	bool etat(true);
+	bool etat ( true );
 
 	//Verification nombre d'arguments
-	if (para.size() == NB_PARAM_MOVE)
+	if ( para.size ( ) == NB_PARAM_MOVE )
 	{
-		vector<string*>::iterator it = para.begin() + 1;
+		vector<string*>::iterator it = para.begin ( ) + 1;
 
 		//Verification validite de chaque argument
-		while (it != para.end() && etat)
+		while (it != para.end ( ) && etat)
 		{
-			if (!IsInteger(**it))
+			if ( !IsInteger ( **it ) )
 			{
 				etat = false;
 			}
 			it++;
 		}
 
-		if (etat)
+		if ( etat )
 		{
-			*laCommande = new CommandeDeplac(para, contexte, requete);
+			*laCommande = new CommandeDeplac ( para, contexte, requete );
 		}
 	}
 	else
@@ -183,10 +187,10 @@ bool CommandeFactory::traitementMove ( vector<string *> para,
 	}
 
 	return etat;
-}//----- Fin de traitementMove
+} //----- Fin de traitementMove
 
 bool CommandeFactory::traitementLoad ( vector<string *> para,
-		Commande ** laCommande, ObjetGeometrique * contexte )
+        Commande ** laCommande, ObjetGeometrique * contexte )
 //Methode permettant de traiter le cas du LOAD. Verifie la validite de la
 // commande et le cas echeant cree la commande correspondante.
 //Renvoie vrai si la commande a ete cree ET si cette commande est valide.
@@ -194,57 +198,57 @@ bool CommandeFactory::traitementLoad ( vector<string *> para,
 // fichier s'est bien passe.
 //Retourne faux sinon.
 {
-	if (para.size() == NB_PARAM_LOAD
-			&& para.at(1)->find(EXTENSION_FICHIER) != string::npos)
+	if ( para.size ( ) == NB_PARAM_LOAD
+	        && para.at ( 1 )->find ( EXTENSION_FICHIER ) != string::npos )
 	{
-		CommandeLoad *ptrLoad = new CommandeLoad(*(para.at(1)), contexte);
+		CommandeLoad *ptrLoad = new CommandeLoad ( *(para.at ( 1 )), contexte );
 		*laCommande = ptrLoad;
-		return ((CommandeLoad *)(*laCommande))->IsOk();
-		return ptrLoad->IsOk();
+		return ((CommandeLoad *) (*laCommande))->IsOk ( );
+		return ptrLoad->IsOk ( );
 	}
 	else
 	{
 		return false;
 	}
-}//----- Fin de traitementLoad
+} //----- Fin de traitementLoad
 
 bool CommandeFactory::traitementRect ( vector<string *> para,
-		Commande ** laCommande,
-		ObjetGeometrique * contexte, const string *requete )
+        Commande ** laCommande, ObjetGeometrique * contexte,
+        const string *requete )
 //Methode permettant de traiter le cas de la création du Rectangle.
 //Verifie la validite de la commande et le cas echeant cree la commande
 // correspondante.
 //Renvoie vrai si la commande a ete cree faux sinon
 {
-	bool correct(false);
+	bool correct ( false );
 
-	if (para.size() == NB_PARAM_CREAT_RECT)
+	if ( para.size ( ) == NB_PARAM_CREAT_RECT )
 	{
 		correct = true;
 
-		vector<string*>::iterator it = para.begin() + 1;
+		vector<string*>::iterator it = para.begin ( ) + 1;
 
-		while (it != para.end() && correct)
+		while (it != para.end ( ) && correct)
 		{
-			if (!IsInteger(**it))
+			if ( !IsInteger ( **it ) )
 			{
 				correct = false;
 			}
 			it++;
 		}
 
-		if (correct)
+		if ( correct )
 		{
-			*laCommande = new CommandeCreationRectangle(para, contexte,
-					requete);
+			*laCommande = new CommandeCreationRectangle ( para, contexte,
+			        requete );
 		}
 	}
 	return correct;
-}//----- Fin de traitementRect
+} //----- Fin de traitementRect
 
 bool CommandeFactory::traitementPoly ( vector<string *> para,
-		Commande ** laCommande,
-		ObjetGeometrique * contexte, const string *requete )
+        Commande ** laCommande, ObjetGeometrique * contexte,
+        const string *requete )
 //Methode permettant de traiter le cas de la création de la PolyLigne.
 //Verifie la validite de la commande et le cas echeant cree la commande
 // correspondante.
@@ -253,29 +257,30 @@ bool CommandeFactory::traitementPoly ( vector<string *> para,
 	vector<int> tempX;
 	vector<int> tempY;
 
-	bool correct(true);
+	bool correct ( true );
 
 	//Verification du nombre d'arguments
-	if ((para.size() - NB_PARA_INVARIANT_PL) % NB_PARA_PAR_POINT != 0)
+	if ( (para.size ( ) - NB_PARA_INVARIANT_PL) % NB_PARA_PAR_POINT != 0 )
 	{
 		correct = false;
 	}
 	else
 	{
 		//Verification de la validite de chaque argument
-		vector<string *>::iterator itX = para.begin() + 1;
-		vector<string *>::iterator itY = para.begin() + 2;
+		vector<string *>::iterator itX = para.begin ( ) + 1;
+		vector<string *>::iterator itY = para.begin ( ) + 2;
 
-		while (itX != para.end() && correct)
+		while (itX != para.end ( ) && correct)
 		{
-			if (!IsInteger((*itY)->c_str()) || !IsInteger((*itX)->c_str()))
+			if ( !IsInteger ( (*itY)->c_str ( ) )
+			        || !IsInteger ( (*itX)->c_str ( ) ) )
 			{
 				correct = false;
 			}
 			else
 			{
-				tempX.push_back(atoi((*itX)->c_str()));
-				tempY.push_back(atoi((*itY)->c_str()));
+				tempX.push_back ( atoi ( (*itX)->c_str ( ) ) );
+				tempY.push_back ( atoi ( (*itY)->c_str ( ) ) );
 			}
 
 			itX += NB_PARA_PAR_POINT;
@@ -283,38 +288,40 @@ bool CommandeFactory::traitementPoly ( vector<string *> para,
 		}
 	}
 
-	if (correct)
+	if ( correct )
 	{
-		*laCommande = new CommandeCreationPoly(tempX, tempY, contexte, requete);
+		*laCommande = new CommandeCreationPoly ( tempX, tempY, contexte,
+		        requete );
 	}
 	return correct;
-}//----- Fin de traitementPoly
+} //----- Fin de traitementPoly
 
 bool CommandeFactory::traitementCercle ( vector<string *> para,
-		Commande ** laCommande,
-		ObjetGeometrique * contexte, const string *requete )
+        Commande ** laCommande, ObjetGeometrique * contexte,
+        const string *requete )
 //Methode permettant de traiter le cas de la création du Cercle.
 //Verifie la validite de la commande et le cas echeant cree la commande
 // correspondante.
 //Renvoie vrai si la commande a ete cree. faux sinon
 {
-	bool correct(true);
+	bool correct ( true );
 
-	if (para.size() == NB_PARAM_CREAT_CERCLE)
+	if ( para.size ( ) == NB_PARAM_CREAT_CERCLE )
 	{
-		vector<string*>::iterator it = para.begin() + 1;
-		while (it != para.end() && correct)
+		vector<string*>::iterator it = para.begin ( ) + 1;
+		while (it != para.end ( ) && correct)
 		{
-			if (!IsInteger(**it))
+			if ( !IsInteger ( **it ) )
 			{
 				correct = false;
 			}
 			it++;
 		}
 
-		if (correct && atoi((para.at(3))->c_str()) > 0)
+		if ( correct && atoi ( (para.at ( 3 ))->c_str ( ) ) > 0 )
 		{
-			*laCommande = new CommandeCreationCercle(para, contexte, requete);
+			*laCommande = new CommandeCreationCercle ( para, contexte,
+			        requete );
 		}
 		else
 		{
@@ -327,11 +334,11 @@ bool CommandeFactory::traitementCercle ( vector<string *> para,
 	}
 
 	return correct;
-}//----- Fin de traitementCercle
+} //----- Fin de traitementCercle
 
 bool CommandeFactory::traitementLigne ( vector<string *> para,
-		Commande ** laCommande,
-		ObjetGeometrique * contexte, const string *requete )
+        Commande ** laCommande, ObjetGeometrique * contexte,
+        const string *requete )
 //Methode permettant de traiter le cas de la création du Rectangle.
 //Verifie la validite de la commande et le cas echeant cree la commande
 // correspondante.
@@ -339,24 +346,24 @@ bool CommandeFactory::traitementLigne ( vector<string *> para,
 {
 
 	string tmp;
-	bool correct(true);
+	bool correct ( true );
 
-	if (para.size() == TAILLE_COMMANDE_LIGNE)
+	if ( para.size ( ) == TAILLE_COMMANDE_LIGNE )
 	{
-		vector<string *>::iterator it = para.begin() + 1;
+		vector<string *>::iterator it = para.begin ( ) + 1;
 
-		while (it != para.end() && correct)
+		while (it != para.end ( ) && correct)
 		{
-			if (!IsInteger((*it)->c_str()))
+			if ( !IsInteger ( (*it)->c_str ( ) ) )
 			{
 				correct = false;
 			}
 			it++;
 		}
 
-		if (correct)
+		if ( correct )
 		{
-			*laCommande = new CommandeCreationLigne(para, contexte, requete);
+			*laCommande = new CommandeCreationLigne ( para, contexte, requete );
 		}
 	}
 	else
@@ -365,6 +372,6 @@ bool CommandeFactory::traitementLigne ( vector<string *> para,
 	}
 
 	return correct;
-}//----- Fin de traitementLigne
+} //----- Fin de traitementLigne
 //----------------------------------------------------- Méthodes protégées
 

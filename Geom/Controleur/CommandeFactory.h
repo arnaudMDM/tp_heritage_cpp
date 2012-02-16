@@ -36,7 +36,8 @@ public:
 	//Chaine de caracteres définissant l'extension du fichier de sauvegarde
 
 	static bool GetCommande ( vector<string *> para, Commande **laCommande,
-			ObjetGeometrique *contexte, string *requete, TypeCommande unTypeCommande = ToutesCommandes);
+	        ObjetGeometrique *contexte, string *requete,
+	        TypeCommande unTypeCommande = ToutesCommandes );
 	// Mode d'emploi : Retourne un booleen valant vrai si l'instance d'une commande
 	// correspondant aux arguments passés en paramètre a ete cree.
 	// Faux sinon.
@@ -55,8 +56,6 @@ public:
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
 
-
-
 	virtual ~CommandeFactory ( );
 
 //------------------------------------------------------------------ PRIVE 
@@ -68,13 +67,13 @@ protected:
 
 private:
 	static bool traitementMove ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte, const string *requete );
+	        ObjetGeometrique * contexte, const string *requete );
 	//Methode permettant de traiter le cas du MOVE. Verifie la validite de la
 	// commande et le cas echeant cree la commande correspondante.
 	//Renvoie vrai si la commande a ete cree faux sinon
 
 	static bool traitementLoad ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte );
+	        ObjetGeometrique * contexte );
 	//Methode permettant de traiter le cas du LOAD. Verifie la validite de la
 	// commande et le cas echeant cree la commande correspondante.
 	//Renvoie vrai si la commande a ete cree ET si cette commande est valide.
@@ -83,28 +82,29 @@ private:
 	//Retourne faux sinon.
 
 	static bool traitementRect ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte, const string *requete );
+	        ObjetGeometrique * contexte, const string *requete );
 	//Methode permettant de traiter le cas de la création du Rectangle.
 	//Verifie la validite de la commande et le cas echeant cree la commande
 	// correspondante.
 	//Renvoie vrai si la commande a ete cree. faux sinon
 
 	static bool traitementPoly ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte, const string *requete );
+	        ObjetGeometrique * contexte, const string *requete );
 	//Methode permettant de traiter le cas de la création de la PolyLigne.
 	//Verifie la validite de la commande et le cas echeant cree la commande
 	// correspondante.
 	//Renvoie vrai si la commande a ete cree. faux sinon
 
-	static bool traitementCercle ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte, const string *requete );
+	static bool traitementCercle ( vector<string *> para,
+	        Commande ** laCommande, ObjetGeometrique * contexte,
+	        const string *requete );
 	//Methode permettant de traiter le cas de la création du Cercle.
 	//Verifie la validite de la commande et le cas echeant cree la commande
 	// correspondante.
 	//Renvoie vrai si la commande a ete cree. faux sinon
 
 	static bool traitementLigne ( vector<string *> para, Commande ** laCommande,
-			ObjetGeometrique * contexte, const string *requete );
+	        ObjetGeometrique * contexte, const string *requete );
 	//Methode permettant de traiter le cas de la création du Rectangle.
 	//Verifie la validite de la commande et le cas echeant cree la commande
 	// correspondante.

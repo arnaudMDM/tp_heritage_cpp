@@ -24,17 +24,17 @@ using namespace std;
 
 void CommandeCreationCercle::Execute ( )
 {
-	element = new Cercle(x1, y1, rayon);
-	contexte->AjouterEltGeom(element);
-	selectionElt();
+	element = new Cercle ( x1, y1, rayon );
+	contexte->AjouterEltGeom ( element );
+	selectionElt ( );
 }
 //------------------------------------------------- Surcharge d'opérateurs
 
 ////-------------------------------------------- Constructeurs - destructeur
 
 CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
-		ObjetGeometrique *leContexte, const string *requete ) :
-		CommandeCreation(leContexte)
+        ObjetGeometrique *leContexte, const string *requete ) :
+		CommandeCreation ( leContexte )
 // Algorithme :
 //
 {
@@ -42,15 +42,15 @@ CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
 	cout << "Appel au constructeur de <CommandeCreationCercle>" << endl;
 #endif
 
-	x1 = atoi((para.at(1))->c_str());
+	x1 = atoi ( (para.at ( 1 ))->c_str ( ) );
 
-	y1 = atoi((para.at(2))->c_str());
+	y1 = atoi ( (para.at ( 2 ))->c_str ( ) );
 
-	rayon = atoi((para.at(3))->c_str());
+	rayon = atoi ( (para.at ( 3 ))->c_str ( ) );
 
 	texteCommande = OK + *requete;
 
-}    //----- Fin de CommandeCreationCercle
+} //----- Fin de CommandeCreationCercle
 
 CommandeCreationCercle::~CommandeCreationCercle ( )
 // Algorithme :
@@ -59,7 +59,7 @@ CommandeCreationCercle::~CommandeCreationCercle ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeCreationCercle>" << endl;
 #endif
-}    //----- Fin de ~CommandeCreationCercle
+} //----- Fin de ~CommandeCreationCercle
 
 //------------------------------------------------------------------ PRIVE
 

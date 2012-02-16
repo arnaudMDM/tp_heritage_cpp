@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeCreationRectangle  -  description
-                             -------------------
-    début                : 3 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeCreationRectangle  -  description
+ -------------------
+ début                : 3 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeCreationRectangle> (fichier CommandeCreationRectangle.h) ------
 #if ! defined ( COMMANDECREATIONRECTANGLE_H_ )
@@ -32,28 +32,29 @@ class CommandeCreationRectangle : public CommandeCreation
 public:
 //----------------------------------------------------- Méthodes publiques
 
-	void Execute();
+	void Execute ( );
 	// Crée une nouvelle instance de Rectangle et l'ajoute au contexte
 
 //------------------------------------------------- Surcharge d'opérateurs
-    CommandeCreationRectangle & operator = ( const CommandeCreationRectangle & unCommandeCreationRectangle );
+	CommandeCreationRectangle & operator = (
+	        const CommandeCreationRectangle & unCommandeCreationRectangle );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
-
 
 //-------------------------------------------- Constructeurs - destructeur
-    CommandeCreationRectangle ( const CommandeCreationRectangle & unCommandeCreationRectangle );
+	CommandeCreationRectangle (
+	        const CommandeCreationRectangle & unCommandeCreationRectangle );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
 
-    CommandeCreationRectangle (vector < string *> para, ObjetGeometrique *unContexte, const string *requete );
+	CommandeCreationRectangle ( vector<string *> para,
+	        ObjetGeometrique *unContexte, const string *requete );
 	// Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
 	// pour récupérer les éléments numériques et la chaine de caractères pour préparer
 	// le message.
 	// la validité des données numeriques ne sont pas verifiees dans le constructeur
 
-
-    virtual ~CommandeCreationRectangle ( );
+	virtual ~CommandeCreationRectangle ( );
 
 //------------------------------------------------------------------ PRIVE 
 

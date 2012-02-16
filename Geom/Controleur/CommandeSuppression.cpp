@@ -20,28 +20,28 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void CommandeSuppression::Execute()
+void CommandeSuppression::Execute ( )
 {
-	contexte->Deselectionner();
-	contexte->SupprimerElts(elementsSupprimes);
-}//----- Fin de Execute
+	contexte->Deselectionner ( );
+	contexte->SupprimerElts ( elementsSupprimes );
+} //----- Fin de Execute
 
-void CommandeSuppression::Redo()
+void CommandeSuppression::Redo ( )
 {
-	Execute();
-}//----- Fin de Redo
+	Execute ( );
+} //----- Fin de Redo
 
-void CommandeSuppression::Undo()
+void CommandeSuppression::Undo ( )
 {
-	contexte->AjouterEltGeom(elementsSupprimes);
-}//----- Fin de Undo
+	contexte->AjouterEltGeom ( elementsSupprimes );
+} //----- Fin de Undo
 //------------------------------------------------- Surcharge d'opérateurs
 
 ////-------------------------------------------- Constructeurs - destructeur
 
-CommandeSuppression::CommandeSuppression (ObjetGeometrique *nouveauContexte,
-		typeEtatSuppression etat) :
-		Commande(nouveauContexte), etatSuppression(etat)
+CommandeSuppression::CommandeSuppression ( ObjetGeometrique *nouveauContexte,
+        typeEtatSuppression etat ) :
+		Commande ( nouveauContexte ), etatSuppression ( etat )
 // Algorithme : selon la valeur de l'enumeration, retenu des EltGeometrique
 // selectionnes ou la totalite
 //
@@ -53,17 +53,17 @@ CommandeSuppression::CommandeSuppression (ObjetGeometrique *nouveauContexte,
 	switch (etat)
 	{
 		case DELETE:
-			elementsSupprimes = nouveauContexte->getListeEltsGeomSelect();
-			convertisseur << elementsSupprimes.size();
-			texteCommande = convertisseur.str();
+			elementsSupprimes = nouveauContexte->getListeEltsGeomSelect ( );
+			convertisseur << elementsSupprimes.size ( );
+			texteCommande = convertisseur.str ( );
 			break;
 
 		case CLEAR:
-			elementsSupprimes = nouveauContexte->getListeEltsGeomTotal();
+			elementsSupprimes = nouveauContexte->getListeEltsGeomTotal ( );
 			texteCommande = OK + "CLEAR";
 			break;
 	}
-}    //----- Fin de CommandeSuppression
+} //----- Fin de CommandeSuppression
 
 CommandeSuppression::~CommandeSuppression ( )
 // Algorithme :
@@ -72,7 +72,7 @@ CommandeSuppression::~CommandeSuppression ( )
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeSuppression>" << endl;
 #endif
-}    //----- Fin de ~CommandeSuppression
+} //----- Fin de ~CommandeSuppression
 
 //------------------------------------------------------------------ PRIVE
 

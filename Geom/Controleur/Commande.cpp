@@ -1,14 +1,12 @@
 /*************************************************************************
-                           Commande  -  description
-                             -------------------
-    début                : 3 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ Commande  -  description
+ -------------------
+ début                : 3 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <Commande> (fichier Commande.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -21,7 +19,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-string Commande::getTexteCommande()
+string Commande::getTexteCommande ( )
 {
 	return texteCommande;
 }
@@ -30,27 +28,25 @@ string Commande::getTexteCommande()
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Commande::Commande (ObjetGeometrique *nouveauContexte) :
-		contexte(nouveauContexte)
+Commande::Commande ( ObjetGeometrique *nouveauContexte ) :
+		contexte ( nouveauContexte )
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Commande>" << endl;
+	cout << "Appel au constructeur de <Commande>" << endl;
 #endif
-    if(contexte == NULL)
-    	{
-    		cout<<"Erreur contexte vide"<<endl;
-    	}
+	if ( contexte == NULL )
+	{
+		cout << "Erreur contexte vide" << endl;
+	}
 } //----- Fin de Commande
-
 
 Commande::~Commande ( )
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Commande>" << endl;
+	cout << "Appel au destructeur de <Commande>" << endl;
 #endif
 
 } //----- Fin de ~Commande
-
 
 //------------------------------------------------------------------ PRIVE
 

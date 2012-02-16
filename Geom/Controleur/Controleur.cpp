@@ -56,28 +56,28 @@ void Controleur::TraitementCommande ( )
 	while (!quitter)
 	{
 		//Recuperation de la requete de l'utilisateur
-		LireCommande(parametres, requete);
+		LireCommande ( parametres, requete );
 
 		laCommande = NULL;
 
 		//Cas oï¿½ l'utilisateur a juste fait entrï¿½e
-		if (parametres.empty())
+		if ( parametres.empty ( ) )
 		{
 			continue;
 		}
 
-		nomCommande = parametres.front();
+		nomCommande = parametres.front ( );
 
 		cout << CAR_COMMENTAIRE << requete << endl;
 
 		//Deroulement des differents cas de figure
-		if (nomCommande->at(0) == CAR_COMMENTAIRE)
+		if ( nomCommande->at ( 0 ) == CAR_COMMENTAIRE )
 		{
 			//Rien à faire
 		}
-		else if (nomCommande->compare(COMMANDE_EXIT) == 0)
+		else if ( nomCommande->compare ( COMMANDE_EXIT ) == 0 )
 		{
-			if (parametres.size() == NB_PARAM_EXIT)
+			if ( parametres.size ( ) == NB_PARAM_EXIT )
 			{
 				quitter = true;
 			}
@@ -86,11 +86,11 @@ void Controleur::TraitementCommande ( )
 				cout << ERREUR << requete << endl;
 			}
 		}
-		else if (nomCommande->compare(COMMANDE_LIST) == 0)
+		else if ( nomCommande->compare ( COMMANDE_LIST ) == 0 )
 		{
-			if (parametres.size() == NB_PARAM_LIST)
+			if ( parametres.size ( ) == NB_PARAM_LIST )
 			{
-				reponse = contexte->DescriptionEltsSelect();
+				reponse = contexte->DescriptionEltsSelect ( );
 			}
 			else
 			{
@@ -98,13 +98,13 @@ void Controleur::TraitementCommande ( )
 			}
 			cout << reponse << flush;
 		}
-		else if (nomCommande->compare(COMMANDE_COUNT) == 0)
+		else if ( nomCommande->compare ( COMMANDE_COUNT ) == 0 )
 		{
-			if (parametres.size() == NB_PARAM_COUNT)
+			if ( parametres.size ( ) == NB_PARAM_COUNT )
 			{
 				stringstream convertisseur;
-				convertisseur << contexte->NbEltsTotals();
-				reponse = LABEL_COUNT + convertisseur.str();
+				convertisseur << contexte->NbEltsTotals ( );
+				reponse = LABEL_COUNT + convertisseur.str ( );
 			}
 			else
 			{
@@ -112,46 +112,46 @@ void Controleur::TraitementCommande ( )
 			}
 			cout << reponse << endl;
 		}
-		else if (nomCommande->compare(COMMANDE_UNDO) == 0)
+		else if ( nomCommande->compare ( COMMANDE_UNDO ) == 0 )
 		{
-			cout << defaire() << endl;
+			cout << defaire ( ) << endl;
 		}
-		else if (nomCommande->compare(COMMANDE_REDO) == 0)
+		else if ( nomCommande->compare ( COMMANDE_REDO ) == 0 )
 		{
-			cout << refaire() << endl;
+			cout << refaire ( ) << endl;
 		}
-		else if (nomCommande->compare(COMMANDE_SAVE) == 0)
+		else if ( nomCommande->compare ( COMMANDE_SAVE ) == 0 )
 		{
-			cout << save() << endl;
+			cout << save ( ) << endl;
 		}
-		else if (nomCommande->compare(COMMANDE_SEL) == 0)
+		else if ( nomCommande->compare ( COMMANDE_SEL ) == 0 )
 		{
-			cout << selectionner() << endl;
+			cout << selectionner ( ) << endl;
 		}
 		else
 		{
 			//Rï¿½cupï¿½ration de la bonne commande
-			traitementCommande(laCommande);
+			traitementCommande ( laCommande );
 		}
 		//Vidage des paramï¿½tres
-		vidagePara();
+		vidagePara ( );
 		delete laCommande;
 		delete nomCommande;
 	}
 
-}    //----- Fin de TraitementCommande()
+} //----- Fin de TraitementCommande()
 
 //------------------------------------------------- Surcharge d'opï¿½rateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
 Controleur::Controleur ( ) :
-		quitter(false), contexte(new ObjetGeometrique())
+		quitter ( false ), contexte ( new ObjetGeometrique ( ) )
 {
 #ifdef MAP
 	cout << "Appel au constructeur de <Controleur>" << endl;
 #endif
-}    //----- Fin de Controleur
+} //----- Fin de Controleur
 
 Controleur::~Controleur ( )
 // Algorithme : désalloue la mémoire utiliser par les pointeurs stockes
@@ -162,26 +162,26 @@ Controleur::~Controleur ( )
 	cout << "Appel au destructeur de <Controleur>" << endl;
 #endif
 	delete contexte;
-	for (vector<string *>::iterator it = parametres.begin();
-			it != parametres.end(); it++)
-			{
+	for ( vector<string *>::iterator it = parametres.begin ( );
+	        it != parametres.end ( ); it++ )
+	{
 		delete *it;
 	}
 
-	while (!commandesExec.empty())
+	while (!commandesExec.empty ( ))
 	{
-		delete commandesExec.top();
-		commandesExec.pop();
+		delete commandesExec.top ( );
+		commandesExec.pop ( );
 	}
 
-	while (!commandesHistorique.empty())
+	while (!commandesHistorique.empty ( ))
 	{
-		delete commandesHistorique.top();
-		commandesHistorique.pop();
+		delete commandesHistorique.top ( );
+		commandesHistorique.pop ( );
 	}
 
-	parametres.clear();
-}    //----- Fin de ~Controleur
+	parametres.clear ( );
+} //----- Fin de ~Controleur
 
 //------------------------------------------------------------------ PRIVE
 
@@ -190,17 +190,17 @@ string Controleur::defaire ( )
 // executees et change cet element de pile.
 {
 	string reponse;
-	if (parametres.size() == NB_PARAM_UNDO)
+	if ( parametres.size ( ) == NB_PARAM_UNDO )
 	{
 		reponse = OK + requete;
 		//Undo possible si des commandes ont etes precedemment executees
-		if (!commandesExec.empty())
+		if ( !commandesExec.empty ( ) )
 		{
 			Commande *laCommande = NULL;
-			laCommande = commandesExec.top();
-			laCommande->Undo();
-			commandesHistorique.push(laCommande);
-			commandesExec.pop();
+			laCommande = commandesExec.top ( );
+			laCommande->Undo ( );
+			commandesHistorique.push ( laCommande );
+			commandesExec.pop ( );
 		}
 	}
 	else
@@ -208,24 +208,24 @@ string Controleur::defaire ( )
 		reponse = ERREUR + requete;
 	}
 	return reponse;
-}//----- Fin de defaire
+} //----- Fin de defaire
 
 string Controleur::refaire ( )
 // Appel le Redo() de la commande sur le dessus de la pile de commandes
 // undo-ees et change cet element de pile.
 {
 	string reponse;
-	if (parametres.size() == NB_PARAM_REDO)
+	if ( parametres.size ( ) == NB_PARAM_REDO )
 	{
 		reponse = OK + requete;
 		//Redo possible si des commandes ont etes precedemment Undo-ees
-		if (!commandesHistorique.empty())
+		if ( !commandesHistorique.empty ( ) )
 		{
 			Commande *laCommande = NULL;
-			laCommande = commandesHistorique.top();
-			laCommande->Redo();
-			commandesExec.push(laCommande);
-			commandesHistorique.pop();
+			laCommande = commandesHistorique.top ( );
+			laCommande->Redo ( );
+			commandesExec.push ( laCommande );
+			commandesHistorique.pop ( );
 		}
 	}
 	else
@@ -234,7 +234,7 @@ string Controleur::refaire ( )
 	}
 
 	return reponse;
-}//----- Fin de refaire
+} //----- Fin de refaire
 
 string Controleur::save ( )
 // Methode permettant de traiter le cas du SAVE
@@ -244,35 +244,35 @@ string Controleur::save ( )
 {
 	string reponse = ERREUR + requete;
 
-	if (parametres.size() != NB_PARAM_SAVE
-			|| parametres.at(1)->find(CommandeFactory::EXTENSION_FICHIER)
-					== string::npos)
+	if ( parametres.size ( ) != NB_PARAM_SAVE
+	        || parametres.at ( 1 )->find ( CommandeFactory::EXTENSION_FICHIER )
+	                == string::npos )
 	{
 		return reponse;
 	}
 
-	fstream fichier(parametres.at(1)->c_str(), fstream::out);
+	fstream fichier ( parametres.at ( 1 )->c_str ( ), fstream::out );
 
-	if (!fichier.is_open())
+	if ( !fichier.is_open ( ) )
 	{
 		return reponse;
 	}
 
-	string lesDescripteurs(contexte->DescriptionEltsTotal());
+	string lesDescripteurs ( contexte->DescriptionEltsTotal ( ) );
 
-	fichier.write(lesDescripteurs.c_str(), lesDescripteurs.size());
-	string texte("#fin du fichier de creation");
-	fichier.write(texte.c_str(), texte.size());
-	fichier.close();
+	fichier.write ( lesDescripteurs.c_str ( ), lesDescripteurs.size ( ) );
+	string texte ( "#fin du fichier de creation" );
+	fichier.write ( texte.c_str ( ), texte.size ( ) );
+	fichier.close ( );
 
-	if (fichier.fail())
+	if ( fichier.fail ( ) )
 	{
 		return reponse;
 	}
 
 	return OK + requete;
 
-}    //----- Fin de save
+} //----- Fin de save
 
 string Controleur::selectionner ( )
 // Methode permettant de traiter le cas du S X X X X
@@ -284,32 +284,31 @@ string Controleur::selectionner ( )
 	ostringstream os;
 
 	//Verification du nombre d'arguments
-	if (parametres.size() == NB_PARAM_SELECT)
+	if ( parametres.size ( ) == NB_PARAM_SELECT )
 	{
 		//Verification de leur validite numerique
-		vector<string*>::iterator it = parametres.begin();
+		vector<string*>::iterator it = parametres.begin ( );
 		it++;
-		while (it != parametres.end())
+		while (it != parametres.end ( ))
 		{
-			if (!IsInteger(**it))
+			if ( !IsInteger ( **it ) )
 			{
 				reponse = ERREUR + requete;
 				return reponse;
 			}
-			nombres.push_back(atoi((*it)->c_str()));
+			nombres.push_back ( atoi ( (*it)->c_str ( ) ) );
 			it++;
 		}
 	}
 
 	//Selection &R ecuperation du nombre d'elements selectionnes
-	os << contexte->SelectionnerElts(nombres.at(0), nombres.at(1),
-			nombres.at(2), nombres.at(3));
+	os
+	        << contexte->SelectionnerElts ( nombres.at ( 0 ), nombres.at ( 1 ),
+	                nombres.at ( 2 ), nombres.at ( 3 ) );
 
-	return os.str();
+	return os.str ( );
 
-}//----- Fin de selectionner
-
-
+} //----- Fin de selectionner
 
 void Controleur::traitementCommande ( Commande *laCommande )
 // Methode permettant de traiter le cas des commandes necessittant
@@ -319,21 +318,21 @@ void Controleur::traitementCommande ( Commande *laCommande )
 	bool statusCommande;
 
 	//Recuperation de la bonne commande
-	statusCommande = CommandeFactory::GetCommande(parametres, &laCommande,
-			contexte, &requete);
+	statusCommande = CommandeFactory::GetCommande ( parametres, &laCommande,
+	        contexte, &requete );
 
-	if (statusCommande)
+	if ( statusCommande )
 	{
 		//Historisation des commandes
-		laCommande->Execute();
+		laCommande->Execute ( );
 		//Si des elements existaient dans la pile de undo, alors purge de cette derniere
-		while (!commandesHistorique.empty())
+		while (!commandesHistorique.empty ( ))
 		{
-			delete commandesHistorique.top();
-			commandesHistorique.pop();
+			delete commandesHistorique.top ( );
+			commandesHistorique.pop ( );
 		}
-		commandesExec.push(laCommande);
-		cout << laCommande->getTexteCommande() << endl;
+		commandesExec.push ( laCommande );
+		cout << laCommande->getTexteCommande ( ) << endl;
 	}
 	else
 	{
@@ -345,7 +344,7 @@ void Controleur::vidagePara ( )
 {
 	//Vidage des parametres
 
-	parametres.clear();
+	parametres.clear ( );
 
 }
 //----------------------------------------------------- Methodes protï¿½gï¿½es

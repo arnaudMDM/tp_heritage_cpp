@@ -1,14 +1,12 @@
 /*************************************************************************
-                           CommandeDeplac  -  description
-                             -------------------
-    début                : 12 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeDeplac  -  description
+ -------------------
+ début                : 12 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <CommandeDeplac> (fichier CommandeDeplac.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -23,26 +21,26 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void CommandeDeplac::Execute()
+void CommandeDeplac::Execute ( )
 {
-	elementsDeplaces = contexte->getListeEltsGeomSelect();
-	contexte->Translater(deltaX, deltaY);
+	elementsDeplaces = contexte->getListeEltsGeomSelect ( );
+	contexte->Translater ( deltaX, deltaY );
 }
 
-void CommandeDeplac::Redo()
+void CommandeDeplac::Redo ( )
 {
-	contexte->SelectionnerElts(elementsDeplaces);
-	contexte->Translater(deltaX, deltaY);
-	contexte->Deselectionner();
+	contexte->SelectionnerElts ( elementsDeplaces );
+	contexte->Translater ( deltaX, deltaY );
+	contexte->Deselectionner ( );
 }
 
-void CommandeDeplac::Undo()
+void CommandeDeplac::Undo ( )
 //Annule le deplacement en effectuant un deplacement oppose
 {
-	int nbSelect = contexte->SelectionnerElts(elementsDeplaces);
-	cout<<"#"<<nbSelect<<" objets UNDO"<<endl;
-	contexte->Translater(-deltaX, -deltaY);
-	contexte->Deselectionner();
+	int nbSelect = contexte->SelectionnerElts ( elementsDeplaces );
+	cout << "#" << nbSelect << " objets UNDO" << endl;
+	contexte->Translater ( -deltaX, -deltaY );
+	contexte->Deselectionner ( );
 }
 //------------------------------------------------- Surcharge d'opérateurs
 //CommandeDeplac & CommandeDeplac::operator = ( const CommandeDeplac & unCommandeDeplac )
@@ -62,33 +60,31 @@ void CommandeDeplac::Undo()
 //#endif
 //} //----- Fin de CommandeDeplac (constructeur de copie)
 
-
-CommandeDeplac::CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte, const string *requete):
-		Commande (unContexte)
+CommandeDeplac::CommandeDeplac ( vector<string *> para,
+        ObjetGeometrique *unContexte, const string *requete ) :
+		Commande ( unContexte )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <CommandeDeplac>" << endl;
+	cout << "Appel au constructeur de <CommandeDeplac>" << endl;
 #endif
 
-    deltaX = atoi(para.at(1)->c_str());
-    deltaY = atoi(para.at(2)->c_str());
+	deltaX = atoi ( para.at ( 1 )->c_str ( ) );
+	deltaY = atoi ( para.at ( 2 )->c_str ( ) );
 
-    texteCommande = OK + *requete;
+	texteCommande = OK + *requete;
 } //----- Fin de CommandeDeplac
-
 
 CommandeDeplac::~CommandeDeplac ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <CommandeDeplac>" << endl;
+	cout << "Appel au destructeur de <CommandeDeplac>" << endl;
 #endif
-    elementsDeplaces.clear();
+	elementsDeplaces.clear ( );
 } //----- Fin de ~CommandeDeplac
-
 
 //------------------------------------------------------------------ PRIVE
 

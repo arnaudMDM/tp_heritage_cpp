@@ -1,9 +1,9 @@
 /*************************************************************************
-                           Commande  -  description
-                             -------------------
-    début                : 27 janv. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ Commande  -  description
+ -------------------
+ début                : 27 janv. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <Commande> (fichier Commande.h) ------
 #if ! defined ( COMMANDE_H_ )
@@ -37,51 +37,50 @@ class Commande
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    string getTexteCommande();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	string getTexteCommande ( );
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
-	virtual void Execute() = 0;
-    // Mode d'emploi :
-    //	A implémenter dans chaque sous-classe concrète
+	virtual void Execute ( ) = 0;
+	// Mode d'emploi :
+	//	A implémenter dans chaque sous-classe concrète
 	// Comportement correspondant à la première exécution de la commande.
-    // Contrat :
-    //
+	// Contrat :
+	//
 
-	virtual void Undo() = 0;
-    // Mode d'emploi :
-    //	A implémenter dans chaque sous-classe concrète
+	virtual void Undo ( ) = 0;
+	// Mode d'emploi :
+	//	A implémenter dans chaque sous-classe concrète
 	// Remet le modèle dans l'état précédent l'exécution de la méthode
 	// Execute()
-    // Contrat : doit être appelé après un Execute()
-    //
+	// Contrat : doit être appelé après un Execute()
+	//
 
-	virtual void Redo() = 0;
-    // Mode d'emploi :
-    //	A implémenter dans chaque sous-classe concrète
+	virtual void Redo ( ) = 0;
+	// Mode d'emploi :
+	//	A implémenter dans chaque sous-classe concrète
 	// remet le modèle dans l'état correspondant à celui après une exécution
 	// de la méthode Execute()
-    // Contrat : doit être appelé après un Undo()
-    //
+	// Contrat : doit être appelé après un Undo()
+	//
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Commande & operator = ( const Commande & unCommande );
-    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
-    // d'appels implicites.
-
+	Commande & operator = ( const Commande & unCommande );
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 //-------------------------------------------- Constructeurs - destructeur
-    Commande ( const Commande & unCommande );
-    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
-    // d'appels implicites.
+	Commande ( const Commande & unCommande );
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
-    Commande (ObjetGeometrique *nouveauContexte);
-    // Constructeur à 1 argument permettant d'initialiser l'attribut d'instance
-    // contexte
+	Commande ( ObjetGeometrique *nouveauContexte );
+	// Constructeur à 1 argument permettant d'initialiser l'attribut d'instance
+	// contexte
 
-    virtual ~Commande ( );
+	virtual ~Commande ( );
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -89,12 +88,12 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    ObjetGeometrique *contexte;
-    // Le contexte dans lequel tous les éléments graphiques seront ajoutés
-    // Contient également les éléments de status "selectionne"
+	ObjetGeometrique *contexte;
+	// Le contexte dans lequel tous les éléments graphiques seront ajoutés
+	// Contient également les éléments de status "selectionne"
 
-    string texteCommande;
-    // Le texte de la commande utilisé pour sa création.
+	string texteCommande;
+	// Le texte de la commande utilisé pour sa création.
 };
 
 //--------------------------- Autres définitions dépendantes de <Commande>

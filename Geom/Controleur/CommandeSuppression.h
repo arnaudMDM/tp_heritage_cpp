@@ -28,7 +28,7 @@
 //
 //------------------------------------------------------------------------ 
 
-class CommandeSuppression: public Commande
+class CommandeSuppression : public Commande
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,7 +37,8 @@ public:
 
 	enum typeEtatSuppression
 	{
-		DELETE, CLEAR
+		DELETE,
+		CLEAR
 	};
 
 	void Execute ( );
@@ -53,7 +54,7 @@ public:
 
 //------------------------------------------------- Surcharge d'opérateurs
 	CommandeSuppression & operator = (
-			const CommandeSuppression & unCommandeSuppression );
+	        const CommandeSuppression & unCommandeSuppression );
 	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
 	// d'appels implicites.
 
@@ -63,7 +64,7 @@ public:
 	// d'appels implicites.
 
 	CommandeSuppression ( ObjetGeometrique *nouveauContexte,
-			typeEtatSuppression );
+	        typeEtatSuppression );
 	// Constructeur permettant de valoriser les attributs d'instance
 	// l'enumeration permet de choisir, qui des elements selectionnes du contexte
 	// ou de tous les elements du contexte seront retenus pour effectuer l'action
