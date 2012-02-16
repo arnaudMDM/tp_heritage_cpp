@@ -15,7 +15,7 @@
 
 //--------------------------------------------------- Interfaces utilis�es
 #include "../Modele/EltGeometrique.h"
-#include "../Modele/Service.h"
+#include "../Service.h"
 #include "Commande.h"
 //------------------------------------------------------------- Constantes 
 

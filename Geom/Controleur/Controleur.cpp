@@ -20,7 +20,7 @@ using namespace std;
 #include "Controleur.h"
 #include "Decomposeur.h"
 #include "CommandeFactory.h"
-#include "../Modele/Service.h"
+#include "../Service.h"
 
 #include "CommandeCreation.h"
 //------------------------------------------------------------- Constantes
@@ -73,7 +73,7 @@ void Controleur::TraitementCommande ( )
 		//Deroulement des differents cas de figure
 		if (nomCommande->at(0) == CAR_COMMENTAIRE)
 		{
-			//Rien ï¿½ faire
+			//Rien à faire
 		}
 		else if (nomCommande->compare(COMMANDE_EXIT) == 0)
 		{

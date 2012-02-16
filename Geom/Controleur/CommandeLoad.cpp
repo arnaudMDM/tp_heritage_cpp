@@ -83,6 +83,12 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 	try
 	{
 		fichier.open(nomFichier.c_str());
+		// A changer
+		if (fichier == NULL)
+		{
+		texteCommande = ERREUR + LOAD + nomFichier;
+		statusLecture = false;
+		}
 
 		while (fichier.getline(bufferDesc, MAXSIZE) && statusLecture)
 		{
@@ -97,9 +103,10 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 				//Recuperation de la commande correspondante, le booleen permet de savoir
 				//si tout s'est bien passe
 				statusLecture = CommandeFactory::GetCommande(lesRequetes,
-						laCommande, contexte, uneRequete);
+						laCommande, contexte, uneRequete, Creation);
 
 				lesCommandesCrees.push_back(*laCommande);
+
 
 				// Suppression du contenu de la liste
 				for(vector<string *>::iterator it = lesRequetes.begin(); it != lesRequetes.end(); it++)

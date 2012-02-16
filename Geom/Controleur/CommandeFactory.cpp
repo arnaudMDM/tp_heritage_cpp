@@ -64,7 +64,7 @@ const string CommandeFactory::EXTENSION_FICHIER = ".txt";
 
 bool CommandeFactory::GetCommande ( vector<string *> para,
 		Commande **laCommande,
-		ObjetGeometrique *contexte, string *requete )
+		ObjetGeometrique *contexte, string *requete, TypeCommande unTypeCommande)
 // Mode d'emploi : Retourne l'instance d'une commande
 // correspondant aux arguments passés en paramètre.
 //
@@ -75,15 +75,15 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 
 	//Comparaison du nom de la commande avec les differentes constantes
 	//et traitement si correspondance
-	if (commande.compare(COMMANDE_LOAD) == 0)
+	if (commande.compare(COMMANDE_LOAD) == 0 && unTypeCommande != Creation)
 	{
 		status = traitementLoad(para, laCommande, contexte);
 	}
-	else if (commande.compare(COMMANDE_MOVE) == 0)
+	else if (commande.compare(COMMANDE_MOVE) == 0 && unTypeCommande != Creation)
 	{
 		status = traitementMove(para, laCommande, contexte, requete);
 	}
-	else if (commande.compare(COMMANDE_CLEAR) == 0)
+	else if (commande.compare(COMMANDE_CLEAR) == 0 && unTypeCommande != Creation)
 	{
 		if (para.size() == NB_PARAM_CLEAR)
 		{
@@ -95,7 +95,7 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 			status = false;
 		}
 	}
-	else if (commande.compare(COMMANDE_DELETE) == 0)
+	else if (commande.compare(COMMANDE_DELETE) == 0 && unTypeCommande != Creation)
 	{
 		if (para.size() == NB_PARAM_DELETE)
 		{

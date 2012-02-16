@@ -13,7 +13,7 @@ using namespace std;
 #include <cstdlib>
 //------------------------------------------------------ Include personnel
 #include "CommandeCreationLigne.h"
-#include "../Modele/Service.h"
+#include "../Service.h"
 #include "../Modele/Ligne.h"
 //------------------------------------------------------------- Constantes
 
@@ -38,8 +38,8 @@ CommandeCreationLigne::CommandeCreationLigne ( vector<string *> para,
 #endif
 
 	x1 = atoi(para.at(1)->c_str());
-	x2 = atoi(para.at(2)->c_str());
-	y1 = atoi(para.at(3)->c_str());
+	y1 = atoi(para.at(2)->c_str());
+	x2 = atoi(para.at(3)->c_str());
 	y2 = atoi(para.at(4)->c_str());
 
 	texteCommande = OK + *requete;

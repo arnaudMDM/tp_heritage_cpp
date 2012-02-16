@@ -16,6 +16,7 @@
 #include <vector>
 //--------------------------------------------------- Interfaces utilisées
 #include "Commande.h"
+#include "../Service.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
@@ -35,7 +36,7 @@ public:
 	//Chaine de caracteres définissant l'extension du fichier de sauvegarde
 
 	static bool GetCommande ( vector<string *> para, Commande **laCommande,
-			ObjetGeometrique *contexte, string *requete );
+			ObjetGeometrique *contexte, string *requete, TypeCommande unTypeCommande = ToutesCommandes);
 	// Mode d'emploi : Retourne un booleen valant vrai si l'instance d'une commande
 	// correspondant aux arguments passés en paramètre a ete cree.
 	// Faux sinon.
