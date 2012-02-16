@@ -1,0 +1,1 @@
+Pour exécuter le script shell de NonRegression, il suffit de changer le répertoire dans le script
