@@ -32,44 +32,43 @@ class CommandeLoad : public Commande
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	// type Méthode ( liste des paramètres );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	void Execute();
+	// Mode d'emploi : Methode permettant d'executer l'ensemble des commandes
+	// de creation.
 
 	bool IsOk();
+	// Mode d'emploi : permet de connaitre l'etat de l'attribut statusLecture
 
-	void Execute();
+
 
 	void Undo();
+	// Mode d'emploi : Permet d'annuler l'action effectuee par Execute() ou
+	// Redo().
+	// Doit etre execute apres ces derniers pour avoir un effet.
 
 	void Redo();
+	// Mode d'emploi : Permet d'effectuer de nouveau l'action annule par
+	// un appel a Undo().
+	// Doit etre execute apres ce dernier.
+
 //------------------------------------------------- Surcharge d'opérateurs
 	CommandeLoad & operator = ( const CommandeLoad & unCommandeLoad );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 //-------------------------------------------- Constructeurs - destructeur
 	CommandeLoad ( const CommandeLoad & unCommandeLoad );
-	// Mode d'emploi (constructeur de copie) :
-	//
-	// Contrat :
-	//
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 	CommandeLoad (const string &unNomFichier, ObjetGeometrique *unContexte);
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	// Constructeur permettant d'initialiser les attributs d'instance.
+	// Le constructeur se charge egalement de la recuperation des descriptions
+	// des commandes stockes dans le fichier de nom nomFichier.
+	// Mise en garde : cette instance est exploitable ssi statusLecture vaut vrai.
 
 	virtual ~CommandeLoad ( );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -78,10 +77,15 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	string nomFichier;
+	//Le nom du fichier contenant les descripteurs de commande de création
 
 	bool statusLecture;
+	//Vrai si la lecture dans le fichier s'est bien passé : pas de présence
+	//de commande interdites...Faux sinon
 
 	vector <Commande *> commandesCreation;
+	//la liste de commandes de creation permettant d'effectuer la creation des
+	//differents objets a ajouter au contexte.
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeLoad>

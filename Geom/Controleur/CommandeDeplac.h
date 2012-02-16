@@ -21,7 +21,9 @@
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <CommandeDeplac>
-//
+//Commande permettant de deplacer un ensemble d'ElementGeometrique. La valeur
+// de deplacement est donne via 2 entiers - deplacement sur l'axe des
+//abscisses et deplacement sur l'axe des ordonnees-
 //
 //------------------------------------------------------------------------ 
 
@@ -33,10 +35,16 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 	void Execute();
+	//Recupere la liste des elements a deplacer (corresponds à ceux selectionnes)
+	//et les translate.
 
 	void Redo();
+	//Redeplace les elements
+	//doit etre execute apres un Undo()
 
 	void Undo();
+	//Annule le deplacement des elements.
+	//Doit etre execute apres un Execute() ou un Redo()
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeDeplac & operator = ( const CommandeDeplac & unCommandeDeplac );
@@ -64,11 +72,11 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     int deltaX;
-    //
+    //valeur de décalage voulu sur l'axe des abscisses
     int deltaY;
-    //
+    //valeur de décalage voulu sur l'axe des ordonnees
     vector <EltGeometrique *> elementsDeplaces;
-    //
+    //Liste de tous les éléments devant etre deplaces
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeDeplac>

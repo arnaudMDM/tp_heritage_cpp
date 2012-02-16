@@ -19,48 +19,31 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type CommandeSuppression::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 void CommandeSuppression::Execute()
 {
 	contexte->Deselectionner();
 	contexte->SupprimerElts(elementsSupprimes);
-}
+}//----- Fin de Execute
 
 void CommandeSuppression::Redo()
 {
 	Execute();
-}
+}//----- Fin de Redo
 
 void CommandeSuppression::Undo()
 {
 	contexte->AjouterEltGeom(elementsSupprimes);
-}
+}//----- Fin de Undo
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeSuppression & CommandeSuppression::operator = ( const CommandeSuppression & unCommandeSuppression )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
-//
-//
+
 ////-------------------------------------------- Constructeurs - destructeur
-//CommandeSuppression::CommandeSuppression ( const CommandeSuppression & unCommandeSuppression )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeSuppression>" << endl;
-//#endif
-//} //----- Fin de CommandeSuppression (constructeur de copie)
 
 CommandeSuppression::CommandeSuppression (ObjetGeometrique *nouveauContexte,
 		typeEtatSuppression etat) :
 		Commande(nouveauContexte), etatSuppression(etat)
-// Algorithme :
+// Algorithme : selon la valeur de l'enumeration, retenu des EltGeometrique
+// selectionnes ou la totalite
 //
 {
 #ifdef MAP

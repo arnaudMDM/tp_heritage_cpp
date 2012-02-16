@@ -37,6 +37,7 @@ void CommandeDeplac::Redo()
 }
 
 void CommandeDeplac::Undo()
+//Annule le deplacement en effectuant un deplacement oppose
 {
 	int nbSelect = contexte->SelectionnerElts(elementsDeplaces);
 	cout<<"#"<<nbSelect<<" objets UNDO"<<endl;

@@ -21,7 +21,10 @@
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <CommandeSuppression>
-//
+// Classe permettant d'effectuer tous les traitements de suppression sur le
+// modele. Le comportement choisi est effectue via une enumeration, utilise
+// uniquement dans le constructeur (les comportements derrière Execute(), Undo()
+// et Redo() restent les meme).
 //
 //------------------------------------------------------------------------ 
 
@@ -31,49 +34,42 @@ class CommandeSuppression: public Commande
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	// type Méthode ( liste des paramètres );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+
 	enum typeEtatSuppression
 	{
 		DELETE, CLEAR
 	};
 
 	void Execute ( );
+	//Supprime les elements de elementsSupprimes du contexte
 
 	void Redo ( );
+	//Effectue de nouveau une suppression, correspond a Execute()
+	//Doit etre appele apres un Undo()
 
 	void Undo ( );
+	//Annule l'action sur le modele de Execute() ou Redo() :
+	//Rajoute les elements supprimes.
 
 //------------------------------------------------- Surcharge d'opérateurs
 	CommandeSuppression & operator = (
 			const CommandeSuppression & unCommandeSuppression );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 //-------------------------------------------- Constructeurs - destructeur
 	CommandeSuppression ( const CommandeSuppression & unCommandeSuppression );
-	// Mode d'emploi (constructeur de copie) :
-	//
-	// Contrat :
-	//
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 	CommandeSuppression ( ObjetGeometrique *nouveauContexte,
 			typeEtatSuppression );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	// Constructeur permettant de valoriser les attributs d'instance
+	// l'enumeration permet de choisir, qui des elements selectionnes du contexte
+	// ou de tous les elements du contexte seront retenus pour effectuer l'action
+	// de suppression.
 
 	virtual ~CommandeSuppression ( );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -82,8 +78,12 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	vector<EltGeometrique *> elementsSupprimes;
+	//Liste des elements a supprimer du modele
 
 	typeEtatSuppression etatSuppression;
+	//Attribut permettant de savoir quel type de suppression est effectue.
+	//A un role de trace car cet attribut n'est utilise que dans le
+	//constructeur
 
 };
 
