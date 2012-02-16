@@ -1,14 +1,12 @@
 /*************************************************************************
-                           PolyLigne  -  description
-                             -------------------
-    début                : 27 janv. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ PolyLigne  -  description
+ -------------------
+ début                : 27 janv. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <PolyLigne> (fichier PolyLigne.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -31,34 +29,34 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
-string PolyLigne::Description()
+string PolyLigne::Description ( )
 // Algorithme :
 //
 {
 	ostringstream osX;
 	ostringstream osY;
 	string description = "PL";
-	for(vector<Point*>::iterator it = listePoints.begin() ; it != listePoints.end() ; it++)
+	for ( vector<Point*>::iterator it = listePoints.begin ( );
+	        it != listePoints.end ( ); it++ )
 	{
-		osX << (*it)->getX();
-		osY << (*it)->getY();
-		description.append(" " + osX.str() + " " + osY.str());
-		osX.str("");
-		osY.str("");
+		osX << (*it)->getX ( );
+		osY << (*it)->getY ( );
+		description.append ( " " + osX.str ( ) + " " + osY.str ( ) );
+		osX.str ( "" );
+		osY.str ( "" );
 	}
 	description += "\n";
 	return description;
 } //----- Fin de Méthode
 
-
-bool PolyLigne::Appartient(int x1, int y1, int x2, int y2)
+bool PolyLigne::Appartient ( int x1, int y1, int x2, int y2 )
 // Algorithme :
 //
 {
-	for(vector<Point*>::iterator it = listePoints.begin() ; it != listePoints.end() ; it++)
+	for ( vector<Point*>::iterator it = listePoints.begin ( );
+	        it != listePoints.end ( ); it++ )
 	{
-		if(!Contient((*it)->getX(),(*it)->getY(),x1,y1,x2,y2))
+		if ( !Contient ( (*it)->getX ( ), (*it)->getY ( ), x1, y1, x2, y2 ) )
 		{
 			return false;
 		}
@@ -66,14 +64,14 @@ bool PolyLigne::Appartient(int x1, int y1, int x2, int y2)
 	return true;
 } //----- Fin de Méthode
 
-void PolyLigne::Translater(int deltaX, int deltaY)
+void PolyLigne::Translater ( int deltaX, int deltaY )
 // Algorithme :
 //
 {
 	vector<Point*>::iterator it;
-	for(it = listePoints.begin(); it != listePoints.end() ; it++)
+	for ( it = listePoints.begin ( ); it != listePoints.end ( ); it++ )
 	{
-		(*it)->Translater(deltaX, deltaY);
+		(*it)->Translater ( deltaX, deltaY );
 	}
 } //----- Fin de Méthode
 
@@ -82,10 +80,9 @@ PolyLigne & PolyLigne::operator = ( const PolyLigne & unPolyLigne )
 // Algorithme :
 //
 {
-	listePoints = unPolyLigne.getListePoints();
+	listePoints = unPolyLigne.getListePoints ( );
 	return *this;
 } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
 PolyLigne::PolyLigne ( const PolyLigne & unPolyLigne )
@@ -93,60 +90,56 @@ PolyLigne::PolyLigne ( const PolyLigne & unPolyLigne )
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <PolyLigne>" << endl;
+	cout << "Appel au constructeur de copie de <PolyLigne>" << endl;
 #endif
-    listePoints = unPolyLigne.getListePoints();
+	listePoints = unPolyLigne.getListePoints ( );
 } //----- Fin de PolyLigne (constructeur de copie)
-
 
 PolyLigne::PolyLigne ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <PolyLigne>" << endl;
+	cout << "Appel au constructeur de <PolyLigne>" << endl;
 #endif
 } //----- Fin de PolyLigne
 
-
-PolyLigne::PolyLigne (vector<int> unListeX, vector<int> unListeY)
+PolyLigne::PolyLigne ( vector<int> unListeX, vector<int> unListeY )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <PolyLigne>" << endl;
+	cout << "Appel au constructeur de <PolyLigne>" << endl;
 #endif
-    vector<int>::iterator it1;
-    vector<int>::iterator it2 = unListeY.begin();
-    for(it1 = unListeX.begin() ; it1 != unListeX.end() ; it1++)
-    {
-    	listePoints.push_back(new Point(*it1,*it2));
-    	it2++;
-    }
+	vector<int>::iterator it1;
+	vector<int>::iterator it2 = unListeY.begin ( );
+	for ( it1 = unListeX.begin ( ); it1 != unListeX.end ( ); it1++ )
+	{
+		listePoints.push_back ( new Point ( *it1, *it2 ) );
+		it2++;
+	}
 } //----- Fin de PolyLigne
-
 
 PolyLigne::~PolyLigne ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <PolyLigne>" << endl;
+	cout << "Appel au destructeur de <PolyLigne>" << endl;
 #endif
 //    for(vector <Point *>::iterator it = listePoints.begin(); it != listePoints.end(); it++)
 //    {
 //    	delete *it;
 //    }
-    listePoints.clear();
+	listePoints.clear ( );
 }
 
-vector<Point*> PolyLigne::getListePoints() const
+vector<Point*> PolyLigne::getListePoints ( ) const
 {
-    return listePoints;
+	return listePoints;
 }
 
- //----- Fin de ~PolyLigne
-
+//----- Fin de ~PolyLigne
 
 //------------------------------------------------------------------ PRIVE
 

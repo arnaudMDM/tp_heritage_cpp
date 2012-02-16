@@ -1,14 +1,12 @@
 /*************************************************************************
-                           Point  -  description
-                             -------------------
-    début                : 27 janv. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ Point  -  description
+ -------------------
+ début                : 27 janv. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Réalisation de la classe <Point> (fichier Point.cpp) -------
-
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -27,22 +25,21 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-int Point::getX() const
+int Point::getX ( ) const
 // Algorithme : Trivial
 //
 {
 	return x;
 } //----- Fin de Méthode
 
-int Point::getY() const
+int Point::getY ( ) const
 // Algorithme : Trivial
 //
 {
 	return y;
 } //----- Fin de Méthode
 
-
-void Point::Translater(int deltaX, int deltaY)
+void Point::Translater ( int deltaX, int deltaY )
 // Algorithme : trivial
 //
 {
@@ -55,11 +52,10 @@ Point & Point::operator = ( const Point & unPoint )
 // Algorithme :
 //
 {
-    x = unPoint.getX();
-    y = unPoint.getY();
-    return *this;
+	x = unPoint.getX ( );
+	y = unPoint.getY ( );
+	return *this;
 } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
 Point::Point ( const Point & unPoint )
@@ -67,32 +63,30 @@ Point::Point ( const Point & unPoint )
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Point>" << endl;
+	cout << "Appel au constructeur de copie de <Point>" << endl;
 #endif
-    x = unPoint.getX();
-    y = unPoint.getY();
+	x = unPoint.getX ( );
+	y = unPoint.getY ( );
 } //----- Fin de Point (constructeur de copie)
-
 
 Point::Point ( )
 // Algorithme : Trivial
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Point>" << endl;
+	cout << "Appel au constructeur de <Point>" << endl;
 #endif
 } //----- Fin de Point
 
-
-Point::Point (int unX, int unY )
+Point::Point ( int unX, int unY )
 // Algorithme : Trivial
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Point>" << endl;
+	cout << "Appel au constructeur de <Point>" << endl;
 #endif
-    x = unX;
-    y = unY;
+	x = unX;
+	y = unY;
 } //----- Fin de Point
 
 Point::~Point ( )
@@ -100,13 +94,11 @@ Point::~Point ( )
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Point>" << endl;
+	cout << "Appel au destructeur de <Point>" << endl;
 #endif
 }
 
-
- //----- Fin de ~Point
-
+//----- Fin de ~Point
 
 //------------------------------------------------------------------ PRIVE
 
