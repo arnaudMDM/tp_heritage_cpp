@@ -21,11 +21,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type CommandeCreationCercle::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 void CommandeCreationCercle::Execute ( )
 {
@@ -34,22 +29,8 @@ void CommandeCreationCercle::Execute ( )
 	selectionElt();
 }
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeCreationCercle & CommandeCreationCercle::operator = ( const CommandeCreationCercle & unCommandeCreationCercle )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
-//
-//
+
 ////-------------------------------------------- Constructeurs - destructeur
-//CommandeCreationCercle::CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeCreationCercle>" << endl;
-//#endif
-//} //----- Fin de CommandeCreationCercle (constructeur de copie)
 
 CommandeCreationCercle::CommandeCreationCercle ( vector<string *> para,
 		ObjetGeometrique *leContexte, const string *requete ) :

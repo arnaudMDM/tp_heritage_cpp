@@ -23,7 +23,10 @@
 
 //------------------------------------------------------------------------ 
 // Rï¿½le de la classe <CommandeCreation>
-//
+// Cette classe hérite de Commande et permet de créer des objets à
+// attacher au modèle. Implémente les méthodes Undo() et Redo() et laisse
+// le soin aux classes filles concrètes d'implémenter Execute().
+//L'élément nouvellement créé a le status "selectionne"
 //
 //------------------------------------------------------------------------ 
 
@@ -33,42 +36,32 @@ class CommandeCreation : public Commande
 
 public:
 //----------------------------------------------------- Mï¿½thodes publiques
-    // type Mï¿½thode ( liste des paramï¿½tres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 	virtual void Execute() = 0;
 
 	virtual void Undo();
+	// Méthode permettant de défaire une action de création d'éléments dans le
+	// contexte attribut.
 
 	virtual void Redo();
+	// Méthode permettant de refaire l'action de création annulé par l'appel à
+	// Undo()
+
 //------------------------------------------------- Surcharge d'opï¿½rateurs
-//    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
-//    // Mode d'emploi :
-//    //
-//    // Contrat :
-//    //
-//
-//
+    CommandeCreation & operator = ( const CommandeCreation & unCommandeCreation );
+    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+    // d'appels implicites.
+
 ////-------------------------------------------- Constructeurs - destructeur
-//    CommandeCreation ( const CommandeCreation & unCommandeCreation );
-//    // Mode d'emploi (constructeur de copie) :
-//    //
-//    // Contrat :
-//    //
+    CommandeCreation ( const CommandeCreation & unCommandeCreation );
+    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+    // d'appels implicites.
 
     CommandeCreation (ObjetGeometrique *unContexte);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Constructeur à 1 argument permettant d'initialiser l'attribut d'instance
+    // contexte via l'appel au constructeur parent. l'attribut d'instance element
+    // n'est pas valorisé ici mais lors de l'Execute()
 
     virtual ~CommandeCreation ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -76,9 +69,13 @@ protected:
 //----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
     void selectionElt();
+    // Méthode permettant de sélectionner l'attribut element au sein du contexte
+
 //----------------------------------------------------- Attributs protï¿½gï¿½s
 
     EltGeometrique *element;
+    // L'élément que CommandeCreation (précisement ses filles concrètes)
+    // crée et ajoute au contexte.
 };
 
 //--------------------------- Autres dï¿½finitions dï¿½pendantes de <CommandeCreation>

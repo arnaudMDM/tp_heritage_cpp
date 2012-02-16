@@ -18,41 +18,20 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
+//----------------------------------------------------- Méthodes publiques
 void CommandeCreationLigne::Execute ( )
 {
 	element = new Ligne(x1, y1, x2, y2);
 	contexte->AjouterEltGeom(element);
 	selectionElt();
 }
-//----------------------------------------------------- Méthodes publiques
-// type CommandeCreationLigne::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeCreationLigne & CommandeCreationLigne::operator = ( const CommandeCreationLigne & unCommandeCreationLigne )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-//CommandeCreationLigne::CommandeCreationLigne ( const CommandeCreationLigne & unCommandeCreationLigne )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeCreationLigne>" << endl;
-//#endif
-//} //----- Fin de CommandeCreationLigne (constructeur de copie)
 
 CommandeCreationLigne::CommandeCreationLigne ( vector<string *> para,
 		ObjetGeometrique *leContexte, const string *requete ) :
 		CommandeCreation(leContexte)
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeCreationLigne>" << endl;
@@ -68,8 +47,6 @@ CommandeCreationLigne::CommandeCreationLigne ( vector<string *> para,
 }    //----- Fin de CommandeCreationLigne
 
 CommandeCreationLigne::~CommandeCreationLigne ( )
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeCreationLigne>" << endl;

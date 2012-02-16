@@ -1,9 +1,9 @@
 /*************************************************************************
-                           CommandeCreationLigne  -  description
-                             -------------------
-    début                : 3 févr. 2012
-    copyright            : (C) 2012 par Pitou
-*************************************************************************/
+ CommandeCreationLigne  -  description
+ -------------------
+ début                : 3 févr. 2012
+ copyright            : (C) 2012 par Pitou
+ *************************************************************************/
 
 //---------- Interface de la classe <CommandeCreationLigne> (fichier CommandeCreationLigne.h) ------
 #if ! defined ( COMMANDECREATIONLIGNE_H_ )
@@ -22,60 +22,55 @@
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <CommandeCreationLigne>
-//
-//
+// Classe concrète permettant de créer la commande correspondant à la
+// création d'une Ligne.
 //------------------------------------------------------------------------ 
 
-class CommandeCreationLigne : public CommandeCreation
-{
-//----------------------------------------------------------------- PUBLIC
+class CommandeCreationLigne: public CommandeCreation {
+	//----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	//----------------------------------------------------- Méthodes publiques
+
 	void Execute();
+	// Crée une nouvelle instance de Ligne et l'ajoute au contexte
 
-//------------------------------------------------- Surcharge d'opérateurs
-    CommandeCreationLigne & operator = ( const CommandeCreationLigne & unCommandeCreationLigne );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	//------------------------------------------------- Surcharge d'opérateurs
+	CommandeCreationLigne & operator =(
+			const CommandeCreationLigne & unCommandeCreationLigne);
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 
-//-------------------------------------------- Constructeurs - destructeur
-    CommandeCreationLigne ( const CommandeCreationLigne & unCommandeCreationLigne );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+	//-------------------------------------------- Constructeurs - destructeur
+			CommandeCreationLigne(
+					const CommandeCreationLigne & unCommandeCreationLigne);
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
-    CommandeCreationLigne (vector < string *> para, ObjetGeometrique *leContexte, const string *requete);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	CommandeCreationLigne(vector<string *> para, ObjetGeometrique *leContexte,
+			const string *requete);
+	// Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
+	// pour récupérer les éléments numériques et la chaine de caractères pour préparer
+	// le message.
+	// la validité des données numeriques ne sont pas verifiees dans le constructeur
 
-    virtual ~CommandeCreationLigne ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	virtual ~CommandeCreationLigne();
 
-//------------------------------------------------------------------ PRIVE 
+	//------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+	//----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-    int x1;
-    int x2;
-    int y1;
-    int y2;
+	//----------------------------------------------------- Attributs protégés
+	int x1;
+	//abscisse du 1er point
+	int x2;
+	//abscisse du 2eme point
+	int y1;
+	//ordonnee du 1er point
+	int y2;
+	//ordonnee du 2eme point
 
 };
 

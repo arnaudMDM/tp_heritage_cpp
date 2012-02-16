@@ -22,7 +22,8 @@
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <CommandeCreationCercle>
-//
+// Classe concrète permettant de créer la commande correspondant à la
+// création d'un cercle.
 //
 //------------------------------------------------------------------------ 
 
@@ -32,39 +33,27 @@ class CommandeCreationCercle : public CommandeCreation
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 	void Execute();
+	// Crée une nouvelle instance de Cercle et l'ajoute au contexte
 
 //------------------------------------------------- Surcharge d'opérateurs
-//    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
-//    // Mode d'emploi :
-//    //
-//    // Contrat :
-//    //
-//
-//
+    CommandeCreationCercle & operator = ( const CommandeCreationCercle & unCommandeCreationCercle );
+    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+    // d'appels implicites.
+
 ////-------------------------------------------- Constructeurs - destructeur
-//    CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle );
-//    // Mode d'emploi (constructeur de copie) :
-//    //
-//    // Contrat :
-//    //
+    CommandeCreationCercle ( const CommandeCreationCercle & unCommandeCreationCercle );
+    // Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+    // d'appels implicites.
 
     CommandeCreationCercle (vector < string *> para, ObjetGeometrique *unContexte, const string *requete);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
+    // pour récupérer les éléments numériques et la chaine de caractères pour préparer
+    // le message.
+    // la validité des données numeriques ne sont pas verifiees dans le constructeur
 
     virtual ~CommandeCreationCercle ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -73,8 +62,13 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     int x1;
+    //abscisse du centre du cercle
+
     int y1;
+    //ordonnée du centre du cercle
+
     int rayon;
+    //rayon du cercle
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeCreationCercle>

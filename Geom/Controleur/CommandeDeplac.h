@@ -31,11 +31,6 @@ class CommandeDeplac : public Commande
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 	void Execute();
 
@@ -45,30 +40,22 @@ public:
 
 //------------------------------------------------- Surcharge d'opérateurs
     CommandeDeplac & operator = ( const CommandeDeplac & unCommandeDeplac );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
 //-------------------------------------------- Constructeurs - destructeur
     CommandeDeplac ( const CommandeDeplac & unCommandeDeplac );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+	// Laissé vide dans le fichier de réalisation pour s'assurer du crash lors
+	// d'appels implicites.
 
     CommandeDeplac (vector <string *> para, ObjetGeometrique *unContexte, const string *requete);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	// Constructeur permettant d'initialiser les attributs d'instance en utilisant la list
+	// pour récupérer les éléments numériques et la chaine de caractères pour préparer
+	// le message.
+	// la validité des données numeriques ne sont pas verifiees dans le constructeur
+
 
     virtual ~CommandeDeplac ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE 
 
@@ -77,8 +64,11 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     int deltaX;
+    //
     int deltaY;
+    //
     vector <EltGeometrique *> elementsDeplaces;
+    //
 };
 
 //--------------------------- Autres définitions dépendantes de <CommandeDeplac>

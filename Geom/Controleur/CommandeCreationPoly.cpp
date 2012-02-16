@@ -19,42 +19,23 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type CommandeCreationPoly::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
-void CommandeCreationPoly::Execute ( )
+void CommandeCreationPoly::Execute()
 {
 	element = new PolyLigne(coordonneesX, coordonneesY);
 	contexte->AjouterEltGeom(element);
 	selectionElt();
-}
+}//----- Fin de Execute
 
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeCreationPoly & CommandeCreationPoly::operator = ( const CommandeCreationPoly & unCommandeCreationPoly )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
-//
-//
-////-------------------------------------------- Constructeurs - destructeur
-//CommandeCreationPoly::CommandeCreationPoly ( const CommandeCreationPoly & unCommandeCreationPoly )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeCreationPoly>" << endl;
-//#endif
-//} //----- Fin de CommandeCreationPoly (constructeur de copie)
 
-CommandeCreationPoly::CommandeCreationPoly ( vector<int> abscisses,
+////-------------------------------------------- Constructeurs - destructeur
+
+CommandeCreationPoly::CommandeCreationPoly(vector<int> abscisses,
 		vector<int> ordonnees, ObjetGeometrique *unContexte,
-		const string *requete ) :
-		CommandeCreation(unContexte), coordonneesX(abscisses), coordonneesY(
-				ordonnees)
+		const string *requete) :
+	CommandeCreation(unContexte), coordonneesX(abscisses), coordonneesY(
+			ordonnees)
 // Algorithme :
 //
 {
@@ -62,16 +43,16 @@ CommandeCreationPoly::CommandeCreationPoly ( vector<int> abscisses,
 	cout << "Appel au constructeur de <CommandeCreationPoly>" << endl;
 #endif
 	texteCommande = OK + *requete;
-}    //----- Fin de CommandeCreationPoly
+} //----- Fin de CommandeCreationPoly
 
-CommandeCreationPoly::~CommandeCreationPoly ( )
+CommandeCreationPoly::~CommandeCreationPoly()
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeCreationPoly>" << endl;
 #endif
-}    //----- Fin de ~CommandeCreationPoly
+} //----- Fin de ~CommandeCreationPoly
 
 //------------------------------------------------------------------ PRIVE
 

@@ -37,23 +37,8 @@ void CommandeCreation::Redo ( )
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeCreation & CommandeCreation::operator = ( const CommandeCreation & unCommandeCreation )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
-//
-//
+
 ////-------------------------------------------- Constructeurs - destructeur
-//CommandeCreation::CommandeCreation ( const CommandeCreation & unCommandeCreation )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeCreation>" << endl;
-//#endif
-//    throw string("CommandeCreation::CommandeCreation ( const CommandeCreation & unCommandeCreation )");
-//} //----- Fin de CommandeCreation (constructeur de copie)
 
 CommandeCreation::CommandeCreation ( ObjetGeometrique *unContexte ) :
 		Commande(unContexte), element(NULL)

@@ -19,42 +19,21 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type CommandeCreationRectangle::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 void CommandeCreationRectangle::Execute ( )
 {
 	element = new Rectangle(x1, y1, x2, y2);
 	contexte->AjouterEltGeom(element);
 	selectionElt();
-}
+} //----- Fin de Execute
 
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeCreationRectangle & CommandeCreationRectangle::operator = ( const CommandeCreationRectangle & unCommandeCreationRectangle )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
-//
-//
+
 ////-------------------------------------------- Constructeurs - destructeur
-//CommandeCreationRectangle::CommandeCreationRectangle ( const CommandeCreationRectangle & unCommandeCreationRectangle )
-//// Algorithme :
-////
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <CommandeCreationRectangle>" << endl;
-//#endif
-//} //----- Fin de CommandeCreationRectangle (constructeur de copie)
 
 CommandeCreationRectangle::CommandeCreationRectangle ( vector<string *> para,
 		ObjetGeometrique *unContexte, const string *requete ) :
 		CommandeCreation(unContexte)
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeCreationRectangle>" << endl;
