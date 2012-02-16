@@ -24,31 +24,43 @@ using namespace std;
 
 //------------------------------------------------------------- Constantes
 static const string COMMANDE_RECTANGLE = "R";
+//Nom de la commande associee a la creation d'un Rectangle
 static const string COMMANDE_CERCLE = "C";
+//Nom de la commande associee a la creation d'un Cercle
 static const string COMMANDE_LIGNE = "L";
+//Nom de la commande associee a la creation d'une Ligne
 static const string COMMANDE_POLY = "PL";
+//Nom de la commande associee a la creation d'une PolyLigne
 static const string COMMANDE_LOAD = "LOAD";
+//Nom de la commande associee a la fonctionnnalite de chargement
 static const string COMMANDE_CLEAR = "CLEAR";
+//Nom de la commande associee a la fonctionnnalite Suppression - clear
 static const string COMMANDE_DELETE = "DELETE";
+//Nom de la commande associee a la fonctionnnalite de Suppression - delete
 static const string COMMANDE_MOVE = "MOVE";
+//Nom de la commande associee a la fonctionnnalite de deplacement
 
 static const unsigned int NB_PARAM_MOVE = 3;
+//le nombre necessaire et suffisant d'argument de la commande MOVE
 static const unsigned int NB_PARAM_LOAD = 2;
+//le nombre necessaire et suffisant d'argument de la commande LOAD
 static const unsigned int NB_PARAM_CLEAR = 1;
+//le nombre necessaire et suffisant d'argument de la commande CLEAR
 static const unsigned int NB_PARAM_DELETE = 1;
+//le nombre necessaire et suffisant d'argument de la commande DELETE
 static const unsigned int NB_PARAM_CREAT_RECT = 5;
+//le nombre necessaire et suffisant d'argument de la commande R
 static const unsigned int NB_PARA_INVARIANT_PL = 1;
+//le nombre minimal (mais non suffisant) d'arguments pour la commande PL
 static const unsigned int NB_PARA_PAR_POINT = 2;
+//le nombre d'arguments composant un n-uplet pour la commande PL
 static const unsigned int NB_PARAM_CREAT_CERCLE = 4;
+//le nombre necessaire et suffisant d'argument de la commande C
 static const unsigned int TAILLE_COMMANDE_LIGNE = 5;
+//le nombre necessaire et suffisant d'argument de la commande L
 //----------------------------------------------------------------- PUBLIC
 const string CommandeFactory::EXTENSION_FICHIER = ".txt";
 //----------------------------------------------------- Méthodes publiques
-// type CommandeFactory::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 bool CommandeFactory::GetCommande ( vector<string *> para,
 		Commande **laCommande,
@@ -61,9 +73,8 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 
 	string commande(*para.front());
 
-#ifdef MAP
-	cout << commande << endl;
-#endif
+	//Comparaison du nom de la commande avec les differentes constantes
+	//et traitement si correspondance
 	if (commande.compare(COMMANDE_LOAD) == 0)
 	{
 		status = traitementLoad(para, laCommande, contexte);
@@ -120,26 +131,10 @@ bool CommandeFactory::GetCommande ( vector<string *> para,
 	return status;
 }
 //------------------------------------------------- Surcharge d'opérateurs
-//CommandeFactory & CommandeFactory::operator = (
-//		const CommandeFactory & unCommandeFactory )
-//// Algorithme :
-////
-//{
-//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-CommandeFactory::CommandeFactory ( const CommandeFactory & unCommandeFactory )
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de copie de <CommandeFactory>" << endl;
-#endif
-}    //----- Fin de CommandeFactory (constructeur de copie)
 
 CommandeFactory::CommandeFactory ( )
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au constructeur de <CommandeFactory>" << endl;
@@ -147,8 +142,6 @@ CommandeFactory::CommandeFactory ( )
 }    //----- Fin de CommandeFactory
 
 CommandeFactory::~CommandeFactory ( )
-// Algorithme :
-//
 {
 #ifdef MAP
 	cout << "Appel au destructeur de <CommandeFactory>" << endl;
@@ -158,13 +151,18 @@ CommandeFactory::~CommandeFactory ( )
 //------------------------------------------------------------------ PRIVE
 bool CommandeFactory::traitementMove ( vector<string *> para,
 		Commande ** laCommande, ObjetGeometrique * contexte, const string *requete )
+//Methode permettant de traiter le cas du MOVE. Verifie la validite de la
+// commande et le cas echeant cree la commande correspondante.
+//Renvoie vrai si la commande a ete cree faux sinon
 {
 	bool etat(true);
 
+	//Verification nombre d'arguments
 	if (para.size() == NB_PARAM_MOVE)
 	{
 		vector<string*>::iterator it = para.begin() + 1;
 
+		//Verification validite de chaque argument
 		while (it != para.end() && etat)
 		{
 			if (!IsInteger(**it))
@@ -185,10 +183,16 @@ bool CommandeFactory::traitementMove ( vector<string *> para,
 	}
 
 	return etat;
-}
+}//----- Fin de traitementMove
 
 bool CommandeFactory::traitementLoad ( vector<string *> para,
 		Commande ** laCommande, ObjetGeometrique * contexte )
+//Methode permettant de traiter le cas du LOAD. Verifie la validite de la
+// commande et le cas echeant cree la commande correspondante.
+//Renvoie vrai si la commande a ete cree ET si cette commande est valide.
+// Une commande LOAD valide est une commande dont la lecture dans le
+// fichier s'est bien passe.
+//Retourne faux sinon.
 {
 	if (para.size() == NB_PARAM_LOAD
 			&& para.at(1)->find(EXTENSION_FICHIER) != string::npos)
@@ -202,11 +206,15 @@ bool CommandeFactory::traitementLoad ( vector<string *> para,
 	{
 		return false;
 	}
-}
+}//----- Fin de traitementLoad
 
 bool CommandeFactory::traitementRect ( vector<string *> para,
 		Commande ** laCommande,
 		ObjetGeometrique * contexte, const string *requete )
+//Methode permettant de traiter le cas de la création du Rectangle.
+//Verifie la validite de la commande et le cas echeant cree la commande
+// correspondante.
+//Renvoie vrai si la commande a ete cree faux sinon
 {
 	bool correct(false);
 
@@ -232,23 +240,29 @@ bool CommandeFactory::traitementRect ( vector<string *> para,
 		}
 	}
 	return correct;
-}
+}//----- Fin de traitementRect
 
 bool CommandeFactory::traitementPoly ( vector<string *> para,
 		Commande ** laCommande,
 		ObjetGeometrique * contexte, const string *requete )
+//Methode permettant de traiter le cas de la création de la PolyLigne.
+//Verifie la validite de la commande et le cas echeant cree la commande
+// correspondante.
+//Renvoie vrai si la commande a ete cree. faux sinon
 {
 	vector<int> tempX;
 	vector<int> tempY;
 
 	bool correct(true);
 
+	//Verification du nombre d'arguments
 	if ((para.size() - NB_PARA_INVARIANT_PL) % NB_PARA_PAR_POINT != 0)
 	{
 		correct = false;
 	}
 	else
 	{
+		//Verification de la validite de chaque argument
 		vector<string *>::iterator itX = para.begin() + 1;
 		vector<string *>::iterator itY = para.begin() + 2;
 
@@ -274,11 +288,15 @@ bool CommandeFactory::traitementPoly ( vector<string *> para,
 		*laCommande = new CommandeCreationPoly(tempX, tempY, contexte, requete);
 	}
 	return correct;
-}
+}//----- Fin de traitementPoly
 
 bool CommandeFactory::traitementCercle ( vector<string *> para,
 		Commande ** laCommande,
 		ObjetGeometrique * contexte, const string *requete )
+//Methode permettant de traiter le cas de la création du Cercle.
+//Verifie la validite de la commande et le cas echeant cree la commande
+// correspondante.
+//Renvoie vrai si la commande a ete cree. faux sinon
 {
 	bool correct(true);
 
@@ -309,11 +327,15 @@ bool CommandeFactory::traitementCercle ( vector<string *> para,
 	}
 
 	return correct;
-}
+}//----- Fin de traitementCercle
 
 bool CommandeFactory::traitementLigne ( vector<string *> para,
 		Commande ** laCommande,
 		ObjetGeometrique * contexte, const string *requete )
+//Methode permettant de traiter le cas de la création du Rectangle.
+//Verifie la validite de la commande et le cas echeant cree la commande
+// correspondante.
+//Renvoie vrai si la commande a ete cree. faux sinon
 {
 
 	string tmp;
@@ -343,6 +365,6 @@ bool CommandeFactory::traitementLigne ( vector<string *> para,
 	}
 
 	return correct;
-}
+}//----- Fin de traitementLigne
 //----------------------------------------------------- Méthodes protégées
 

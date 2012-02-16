@@ -27,5 +27,7 @@
 //---------------------------------------------------- Fonctions publiques
 
 void LireCommande(vector <string *> &para, string &requete);
+//Lit sur l'entre standard et valorise la liste et la chaine avec le contenu
 void DecomposerCommande(vector <string *> &para, string *requete);
+//Decompose la chaine en une liste de chaine, le separateur est l'espace
 #endif // DECOMPOSEUR_H_

@@ -23,33 +23,16 @@ using namespace std;
 
 //---------------------------------------------------- Variables statiques
 static const int MAXSIZE = 10000;
+//Taille maximale du buffer
 //------------------------------------------------------ Fonctions privées
-//static type nom ( liste de paramètres )
-// Mode d'emploi :
-//
-// Contrat :
-//
-// Algorithme :
-//
-//{
-//} //----- fin de nom
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 void LireCommande(vector<string *> &parametres, string &requete)
-// Algorithme :
+// Algorithme : lit le contenu saisi sur cin, le décompose en une liste
+//(separateur : espace) et valorise requete par la chaine complete
 //
 {
-//	if(!parametres.empty())
-//	{
-////	    for(vector<string *>::iterator it = parametres.begin(); it != parametres.end(); it++)
-////	    {
-////	    	delete *it;
-////	    }
-////
-//	    parametres.clear();
-//	}
-
 	stringstream flux;
 	char *buffer = new char[MAXSIZE];
 	getline(cin,requete);
@@ -65,8 +48,6 @@ void LireCommande(vector<string *> &parametres, string &requete)
 } //----- fin de LireCommande
 
 void DecomposerCommande(vector<string *> &parametres, string *requete)
-// Algorithme :
-//
 {
 	stringstream flux;
 	char *buffer = new char[MAXSIZE];
@@ -79,4 +60,4 @@ void DecomposerCommande(vector<string *> &parametres, string *requete)
 	}
 
 	delete buffer;
-} //----- fin de LireCommande
+} //----- fin de DecomposerCommande
