@@ -18,7 +18,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "PolyLigne.h"
 #include "Point.h"
-#include "Service.h"
+#include "../Service.h"
 
 //------------------------------------------------------------- Constantes
 

@@ -29,13 +29,13 @@ string ObjetGeometrique::DescriptionEltsSelect ( )
 //
 {
 	string description;
-	for (vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin();
-			it != listeEltsGeomSelect.end(); it++)
-			{
-		description.append((*it)->Description());
+	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin ( );
+	        it != listeEltsGeomSelect.end ( ); it++ )
+	{
+		description.append ( (*it)->Description ( ) );
 	}
 	return description;
-}    //----- Fin de Méthode
+} //----- Fin de Méthode
 
 string ObjetGeometrique::DescriptionEltsTotal ( )
 // Algorithme : rend un string coorespondant au string de chaque création des
@@ -43,89 +43,89 @@ string ObjetGeometrique::DescriptionEltsTotal ( )
 //
 {
 	string description;
-	for (vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin();
-			it != listeEltsGeomTotal.end(); it++)
+	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin ( );
+	        it != listeEltsGeomTotal.end ( ); it++ )
 	{
 
-		description.append((*it)->Description());
+		description.append ( (*it)->Description ( ) );
 	}
 	return description;
-}    //----- Fin de Méthode
+} //----- Fin de Méthode
 
 int ObjetGeometrique::NbEltsTotals ( )
 // Algorithme : rend la taille de la liste des élémentsGéométriques totals
 //
 {
-	return listeEltsGeomTotal.size();
-}    //----- Fin de Méthode
+	return listeEltsGeomTotal.size ( );
+} //----- Fin de Méthode
 
 void ObjetGeometrique::SupprimerTousElts ( )
 // Algorithme :
 //
 {
-	listeEltsGeomTotal.clear();
-	listeEltsGeomSelect.clear();
-}    //----- Fin de Méthode
+	listeEltsGeomTotal.clear ( );
+	listeEltsGeomSelect.clear ( );
+} //----- Fin de Méthode
 
 void ObjetGeometrique::SupprimerEltsSelectionnes ( )
 // Algorithme : méthode qui enlèvent de la liste des élémentsGéométriques totals
 // et de la liste des élémentsGéométriques sélectionnés les élémentsGéométriques sélectionnés
 //
 {
-	for (vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin();
-			it != listeEltsGeomSelect.end(); it++)
-			{
-		listeEltsGeomTotal.erase(it);
+	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin ( );
+	        it != listeEltsGeomSelect.end ( ); it++ )
+	{
+		listeEltsGeomTotal.erase ( it );
 	}
-	listeEltsGeomSelect.clear();
-}    //----- Fin de Méthode
+	listeEltsGeomSelect.clear ( );
+} //----- Fin de Méthode
 
 void ObjetGeometrique::Deselectionner ( )
 // Algorithme : méthode qui enlèvent de la liste des élémentsGéométriques totals
 // et de la liste des élémentsGéométriques sélectionnés les élémentsGéométriques sélectionnés
 //
 {
-	listeEltsGeomSelect.clear();
-}    //----- Fin de Méthode
+	listeEltsGeomSelect.clear ( );
+} //----- Fin de Méthode
 
 void ObjetGeometrique::SupprimerEltParticulier ( EltGeometrique *elt )
 // Algorithme : enlève un élémentGéométrique de liste des élémentGéométrique totals
 //
 {
-	bool trouve(false);
+	bool trouve ( false );
 
-	vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin();
-	while (it != listeEltsGeomTotal.end() && !trouve)
+	vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin ( );
+	while (it != listeEltsGeomTotal.end ( ) && !trouve)
 	{
-		if (*it == elt)
+		if ( *it == elt )
 		{
-			listeEltsGeomTotal.erase(it);
+			listeEltsGeomTotal.erase ( it );
 			trouve = true;
 		}
 		it++;
 	}
 
-}    //----- Fin de Méthode
+} //----- Fin de Méthode
 
 void ObjetGeometrique::SupprimerElts ( vector<EltGeometrique *> elts )
 {
-	for (vector<EltGeometrique *>::iterator it = elts.begin()
-			; it != elts.end(); it++)
+	for ( vector<EltGeometrique *>::iterator it = elts.begin ( );
+	        it != elts.end ( ); it++ )
 	{
-		SupprimerEltParticulier(*it);
+		SupprimerEltParticulier ( *it );
 	}
-}	 //----- Fin de Méthode
+} //----- Fin de Méthode
 
 void ObjetGeometrique::Translater ( int x, int y )
 // Algorithme :translate tous les élémentsGéométriques sélectionnés de x et y
 //
 {
-	for (vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin();
-			it != listeEltsGeomSelect.end(); it++)
-			{
-		(*it)->Translater(x, y);
+	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomSelect.begin ( );
+	        it != listeEltsGeomSelect.end ( ); it++ )
+	{
+		(*it)->Translater ( x, y );
 	}
-}    //----- Fin de Méthode
+} //----- Fin de Méthode
 
 int ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 // Algorithme : recherche quels sont les éléments se trouvant à l'intérieur de
@@ -133,34 +133,34 @@ int ObjetGeometrique::SelectionnerElts ( int x1, int y1, int x2, int y2 )
 // dans ce rectangle deviennent la nouvelle liste des élémentsGéométriques sélectionnés
 //
 {
-	listeEltsGeomSelect.clear();
-	for (vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin();
-			it != listeEltsGeomTotal.end(); it++)
-			{
-		if ((*it)->Appartient(x1, y1, x2, y2))
+	listeEltsGeomSelect.clear ( );
+	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin ( );
+	        it != listeEltsGeomTotal.end ( ); it++ )
+	{
+		if ( (*it)->Appartient ( x1, y1, x2, y2 ) )
 		{
-			listeEltsGeomSelect.push_back(*it);
+			listeEltsGeomSelect.push_back ( *it );
 		}
 	}
-	return listeEltsGeomSelect.size();
-}    //----- Fin de Méthode
+	return listeEltsGeomSelect.size ( );
+} //----- Fin de Méthode
 
 int ObjetGeometrique::SelectionnerElts ( vector<EltGeometrique *> elts )
 {
 	int codeRetour = 0;
-	listeEltsGeomSelect.clear();
+	listeEltsGeomSelect.clear ( );
 
-	vector<EltGeometrique *>::iterator it = elts.begin();
+	vector<EltGeometrique *>::iterator it = elts.begin ( );
 
-	while(it != elts.end() && codeRetour != -1)
+	while (it != elts.end ( ) && codeRetour != -1)
 	{
-		if(!SelectionnerElt(*it))
+		if ( !SelectionnerElt ( *it ) )
 		{
 			codeRetour = -1;
 		}
 		else
 		{
-			codeRetour ++;
+			codeRetour++;
 		}
 		it++;
 	}
@@ -168,13 +168,14 @@ int ObjetGeometrique::SelectionnerElts ( vector<EltGeometrique *> elts )
 	return codeRetour;
 }
 
-bool ObjetGeometrique::SelectionnerElt(EltGeometrique *elt)
+bool ObjetGeometrique::SelectionnerElt ( EltGeometrique *elt )
 {
-	for(vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin(); it != listeEltsGeomTotal.end(); it++)
+	for ( vector<EltGeometrique *>::iterator it = listeEltsGeomTotal.begin ( );
+	        it != listeEltsGeomTotal.end ( ); it++ )
 	{
-		if(*it == elt)
+		if ( *it == elt )
 		{
-			listeEltsGeomSelect.push_back(elt);
+			listeEltsGeomSelect.push_back ( elt );
 			return true;
 		}
 	}
@@ -186,43 +187,43 @@ void ObjetGeometrique::AjouterEltGeom ( EltGeometrique *unEltGeometrique )
 // Algorithme : ajoute un élément à la liste des élémentsGéométriques totals
 //
 {
-	listeEltsGeomTotal.push_back(unEltGeometrique);
-}    //----- Fin de Méthode
+	listeEltsGeomTotal.push_back ( unEltGeometrique );
+} //----- Fin de Méthode
 
 void ObjetGeometrique::AjouterEltGeom ( vector<EltGeometrique *> elts )
 {
-	for (vector<EltGeometrique *>::iterator it = elts.begin()
-			; it != elts.end(); it++)
+	for ( vector<EltGeometrique *>::iterator it = elts.begin ( );
+	        it != elts.end ( ); it++ )
 	{
-		AjouterEltGeom(*it);
+		AjouterEltGeom ( *it );
 	}
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
 ObjetGeometrique & ObjetGeometrique::operator = (
-		const ObjetGeometrique & unObjetGeometrique )
+        const ObjetGeometrique & unObjetGeometrique )
 // Algorithme :
 //
 {
-	listeEltsGeomTotal.assign(
-			unObjetGeometrique.getListeEltsGeomTotal().begin(),
-			unObjetGeometrique.getListeEltsGeomTotal().end());
+	listeEltsGeomTotal.assign (
+	        unObjetGeometrique.getListeEltsGeomTotal ( ).begin ( ),
+	        unObjetGeometrique.getListeEltsGeomTotal ( ).end ( ) );
 	return *this;
-}    //----- Fin de operator =
+} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
 ObjetGeometrique::ObjetGeometrique (
-		const ObjetGeometrique & unObjetGeometrique )
+        const ObjetGeometrique & unObjetGeometrique )
 // Algorithme :
 //
 {
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <ObjetGeometrique>" << endl;
 #endif
-	listeEltsGeomTotal.assign(
-			unObjetGeometrique.getListeEltsGeomTotal().begin(),
-			unObjetGeometrique.getListeEltsGeomTotal().end());
-}    //----- Fin de ObjetGeometrique (constructeur de copie)
+	listeEltsGeomTotal.assign (
+	        unObjetGeometrique.getListeEltsGeomTotal ( ).begin ( ),
+	        unObjetGeometrique.getListeEltsGeomTotal ( ).end ( ) );
+} //----- Fin de ObjetGeometrique (constructeur de copie)
 
 ObjetGeometrique::ObjetGeometrique ( )
 // Algorithme :
@@ -232,7 +233,7 @@ ObjetGeometrique::ObjetGeometrique ( )
 	cout << "Appel au constructeur de <ObjetGeometrique>" << endl;
 #endif
 
-}    //----- Fin de ObjetGeometrique
+} //----- Fin de ObjetGeometrique
 
 ObjetGeometrique::~ObjetGeometrique ( )
 // Algorithme :
@@ -252,7 +253,8 @@ ObjetGeometrique::ObjetGeometrique ( vector<EltGeometrique*> uneListeEltsGeom )
 #ifdef MAP
 	cout << "Appel au destructeur de <ObjetGeometrique>" << endl;
 #endif
-	listeEltsGeomTotal.assign(uneListeEltsGeom.begin(), uneListeEltsGeom.end());
+	listeEltsGeomTotal.assign ( uneListeEltsGeom.begin ( ),
+	        uneListeEltsGeom.end ( ) );
 }
 
 vector<EltGeometrique*> ObjetGeometrique::getListeEltsGeomTotal ( ) const
