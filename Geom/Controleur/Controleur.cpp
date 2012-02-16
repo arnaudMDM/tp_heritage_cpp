@@ -16,6 +16,7 @@ using namespace std;
 #include <fstream>
 #include <string>
 
+#include <time.h>
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
 #include "Decomposeur.h"
@@ -52,9 +53,14 @@ void Controleur::TraitementCommande ( )
 	Commande *laCommande;
 	string *nomCommande;
 	string reponse;
+	long clk_tck = CLOCKS_PER_SEC;
+	clock_t t1, t2, t3, t4;
+	srand(time(NULL));
 
 	while (!quitter)
 	{
+		t1 = clock();
+
 		//Recuperation de la requete de l'utilisateur
 		LireCommande ( parametres, requete );
 
@@ -126,7 +132,10 @@ void Controleur::TraitementCommande ( )
 		}
 		else if ( nomCommande->compare ( COMMANDE_SEL ) == 0 )
 		{
+			t1 = clock();
 			cout << selectionner ( ) << endl;
+			t2 = clock();
+			cout<<"Temps  SEL: "<<(t2-t1)<<endl;
 		}
 		else
 		{
@@ -315,6 +324,8 @@ void Controleur::traitementCommande ( Commande *laCommande )
 // une historisation c'est a dire le cas ou le undo/redo est possible:
 // Appel a la fabrique.
 {
+	clock_t t1 = clock();
+	clock_t t2;
 	bool statusCommande;
 
 	//Recuperation de la bonne commande
@@ -338,6 +349,8 @@ void Controleur::traitementCommande ( Commande *laCommande )
 	{
 		cout << ERREUR << requete << CHAINE_PARA_INVALIDE << endl;
 	}
+	t2 = clock();
+	cout<<"Temps traitementCommande: "<<(t2-t1)<<endl;
 }
 
 void Controleur::vidagePara ( )
@@ -346,6 +359,27 @@ void Controleur::vidagePara ( )
 
 	parametres.clear ( );
 
+}
+
+void Controleur::test()
+{
+	for(;;)
+	{
+		Commande *uneCommande;
+
+		LireCommande(parametres,requete);
+
+		long clk_tck = CLOCKS_PER_SEC;
+		clock_t t1, t2, t3, t4;
+		srand(time(NULL));
+		t1 = clock();
+		CommandeFactory::GetCommande(parametres,&uneCommande, contexte, &requete);
+		t2 = clock();
+		uneCommande->Execute();
+		t3 = clock();
+		cout<<"Temps : "<<(t2-t1)<<endl;
+		cout<<"Temps : "<<(t3-t2)<<endl;
+	}
 }
 //----------------------------------------------------- Methodes prot�g�es
 

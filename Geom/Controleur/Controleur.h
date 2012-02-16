@@ -36,6 +36,8 @@ class Controleur
 
 public:
 //----------------------------------------------------- Méthodes publiques
+	void test();
+
 	void TraitementCommande ( );
 	// Mode d'emploi : methode principale permettant la recuperation et
 	// la bonne execution de la commande.

@@ -17,5 +17,6 @@ int main ( int args, char *argv[] )
 	Controleur ctrl;
 
 	ctrl.TraitementCommande();
+//	ctrl.test();
 
 }
