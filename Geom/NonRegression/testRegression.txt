@@ -1,0 +1,21 @@
+declare -i compteurEchecs=0 
+declare -i compteurGlobal=0
+declare repertoire="/home/pfouchet/workspace/hello/Debug/"
+if [ $repertoire ]
+then
+	for fichierTest in `ls $repertoire/NonRegression/Test`
+	do
+		$repertoire/NonRegression/hello <"$repertoire/NonRegression/Test/$fichierTest" >"$repertoire/NonRegression/res/$fichierTest"
+		((compteurGlobal=compteurGlobal+1))
+	
+		diff -wI "^#.*" "$repertoire/NonRegression/res/$fichierTest" "$repertoire/NonRegression/res/res$fichierTest"
+		if test $? -ne 0
+		then
+			echo Le test $fichierTest a echoue
+			((compteurEchecs = compteurEchecs+1))
+		fi
+	done
+	echo Nombre de tests echoues : $compteurEchecs sur $compteurGlobal tests
+else
+	echo variable repertoire vide, veuillez indiquer le dossier Geom
+fi
