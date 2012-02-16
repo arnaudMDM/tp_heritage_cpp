@@ -21,7 +21,7 @@ for /F %%a in ('dir /B "../Test"') do (
 	) else (
 		echo Le test %%a est passe) )
 
-cd ../..
+cd ../
 
 if compteurEchecs LEQ 1 (
 @echo %compteurEchecs% test echoue sur %compteurGlobal%

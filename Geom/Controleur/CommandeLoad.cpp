@@ -90,8 +90,7 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 		// A changer
 		if ( fichier == NULL )
 		{
-			texteCommande = ERREUR + LOAD + nomFichier;
-			statusLecture = false;
+			throw exception();
 		}
 
 		while (fichier.getline ( bufferDesc, MAXSIZE ) && statusLecture)
@@ -134,13 +133,17 @@ CommandeLoad::CommandeLoad ( const string &unNomFichier,
 			texteCommande = ERREUR + LOAD + nomFichier;
 		}
 	}
-	catch (ifstream::failure &e)
+	catch (exception &e)
 	{
-//		fichier.close();
+		if(fichier != NULL)
+		{
+			fichier.close();
+		}
 		texteCommande = ERREUR + LOAD + nomFichier;
 		statusLecture = false;
 
 	}
+
 	delete uneRequete;
 } //----- Fin de CommandeLoad
 
