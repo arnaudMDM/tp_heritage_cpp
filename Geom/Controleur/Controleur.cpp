@@ -16,7 +16,6 @@ using namespace std;
 #include <fstream>
 #include <string>
 
-#include <time.h>
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
 #include "Decomposeur.h"
@@ -53,14 +52,9 @@ void Controleur::TraitementCommande ( )
 	Commande *laCommande;
 	string *nomCommande;
 	string reponse;
-	long clk_tck = CLOCKS_PER_SEC;
-	clock_t t1, t2, t3, t4;
-	srand(time(NULL));
 
 	while (!quitter)
 	{
-		t1 = clock();
-
 		//Recuperation de la requete de l'utilisateur
 		LireCommande ( parametres, requete );
 
@@ -74,7 +68,7 @@ void Controleur::TraitementCommande ( )
 
 		nomCommande = parametres.front ( );
 
-		cout << CAR_COMMENTAIRE << requete << endl;
+		cout << CAR_COMMENTAIRE << requete << FIN_LIGNE<<flush;
 
 		//Deroulement des differents cas de figure
 		if ( nomCommande->at ( 0 ) == CAR_COMMENTAIRE )
@@ -89,7 +83,7 @@ void Controleur::TraitementCommande ( )
 			}
 			else
 			{
-				cout << ERREUR << requete << endl;
+				cout << ERREUR << requete << FIN_LIGNE<<flush;
 			}
 		}
 		else if ( nomCommande->compare ( COMMANDE_LIST ) == 0 )
@@ -116,26 +110,23 @@ void Controleur::TraitementCommande ( )
 			{
 				reponse = ERREUR + requete;
 			}
-			cout << reponse << endl;
+			cout << reponse << FIN_LIGNE<<flush;
 		}
 		else if ( nomCommande->compare ( COMMANDE_UNDO ) == 0 )
 		{
-			cout << defaire ( ) << endl;
+			cout << defaire ( ) << FIN_LIGNE<<flush;
 		}
 		else if ( nomCommande->compare ( COMMANDE_REDO ) == 0 )
 		{
-			cout << refaire ( ) << endl;
+			cout << refaire ( ) << FIN_LIGNE<<flush;
 		}
 		else if ( nomCommande->compare ( COMMANDE_SAVE ) == 0 )
 		{
-			cout << save ( ) << endl;
+			cout << save ( ) << FIN_LIGNE<<flush;
 		}
 		else if ( nomCommande->compare ( COMMANDE_SEL ) == 0 )
 		{
-			t1 = clock();
-			cout << selectionner ( ) << endl;
-			t2 = clock();
-			cout<<"Temps  SEL: "<<(t2-t1)<<endl;
+			cout << selectionner ( ) << FIN_LIGNE<<flush;
 		}
 		else
 		{
@@ -158,7 +149,7 @@ Controleur::Controleur ( ) :
 		quitter ( false ), contexte ( new ObjetGeometrique ( ) )
 {
 #ifdef MAP
-	cout << "Appel au constructeur de <Controleur>" << endl;
+	cout << "Appel au constructeur de <Controleur>" << FIN_LIGNE<<flush;
 #endif
 } //----- Fin de Controleur
 
@@ -168,7 +159,7 @@ Controleur::~Controleur ( )
 //
 {
 #ifdef MAP
-	cout << "Appel au destructeur de <Controleur>" << endl;
+	cout << "Appel au destructeur de <Controleur>" << FIN_LIGNE<<flush;
 #endif
 	delete contexte;
 	for ( vector<string *>::iterator it = parametres.begin ( );
@@ -324,8 +315,6 @@ void Controleur::traitementCommande ( Commande *laCommande )
 // une historisation c'est a dire le cas ou le undo/redo est possible:
 // Appel a la fabrique.
 {
-	clock_t t1 = clock();
-	clock_t t2;
 	bool statusCommande;
 
 	//Recuperation de la bonne commande
@@ -343,14 +332,12 @@ void Controleur::traitementCommande ( Commande *laCommande )
 			commandesHistorique.pop ( );
 		}
 		commandesExec.push ( laCommande );
-		cout << laCommande->getTexteCommande ( ) << endl;
+		cout << laCommande->getTexteCommande ( ) << FIN_LIGNE<<flush;
 	}
 	else
 	{
-		cout << ERREUR << requete << CHAINE_PARA_INVALIDE << endl;
+		cout << ERREUR << requete << CHAINE_PARA_INVALIDE << FIN_LIGNE<<flush;
 	}
-	t2 = clock();
-	cout<<"Temps traitementCommande: "<<(t2-t1)<<endl;
 }
 
 void Controleur::vidagePara ( )
@@ -359,27 +346,6 @@ void Controleur::vidagePara ( )
 
 	parametres.clear ( );
 
-}
-
-void Controleur::test()
-{
-	for(;;)
-	{
-		Commande *uneCommande;
-
-		LireCommande(parametres,requete);
-
-		long clk_tck = CLOCKS_PER_SEC;
-		clock_t t1, t2, t3, t4;
-		srand(time(NULL));
-		t1 = clock();
-		CommandeFactory::GetCommande(parametres,&uneCommande, contexte, &requete);
-		t2 = clock();
-		uneCommande->Execute();
-		t3 = clock();
-		cout<<"Temps : "<<(t2-t1)<<endl;
-		cout<<"Temps : "<<(t3-t2)<<endl;
-	}
 }
 //----------------------------------------------------- Methodes prot�g�es
 
